@@ -11,14 +11,13 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "../include/minishell.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
 	size_t	i;
 
 	if (s1 == NULL || s2 == NULL)
-		return (g_error_value = 256, 1);
+		return (1);
 	i = 0;
 	while (((unsigned char *)s1)[i] && s1[i] == ((unsigned char *)s2)[i])
 		i++;
