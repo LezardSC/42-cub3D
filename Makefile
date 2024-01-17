@@ -22,6 +22,12 @@ HEADERS_WITH_PATH		= $(addprefix $(HEADER_DIR),$(HEADER_FILE))
 
 DIR						= src/
 SRC			 			= 	main.c \
+							init_param.c \
+							check_error.c \
+							map_parsing.c \
+							map_parsing_bis.c \
+							free_param.c \
+							cub3d_utils.c \
 
 OBJECTS			    	= ${addprefix ${BUILD_DIR},${SRC:.c=.o}}
 
