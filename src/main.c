@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/17 15:02:43 by jrenault          #+#    #+#             */
+/*   Updated: 2024/01/17 18:14:17 by jrenault         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/cub3d.h"
 
 static int	check_argc(int argc)
@@ -12,24 +24,26 @@ static int	check_argc(int argc)
 
 static int	parsing_and_error(t_data *param, char *name)
 {
-	// init_param(param);
-	// param->map_name = ft_strdup(name);
-	// if (!param->map_name)
-	// 	return (0);
-	// if (map_parsing(param, -1) == 1)
-	// 	return (free(param->map_name), free_all_param(param), 0);
-	// if (check_error(param) == 0)
-	// 	return (free(param->map_name), free_all_param(param), 0);
-	// return (1);
+	init_param(param);
+	param->map_name = ft_strdup(name);
+	if (!param->map_name)
+		return (1);
+	if (map_parsing(param))
+		return (free(param->map_name), free_all_param(param), 1);
+	if (check_error(param) == 0)
+		return (free(param->map_name), free_all_param(param), 1);
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_data param;
+	t_data	param;
 
 	if (check_argc(argc))
-		return (0);
-	if (parsing_and_error(&param, argv[1] == 0))
-		return (0);
+		return (1);
+	if (parsing_and_error(&param, argv[1]))
+		return (1);
+	free(param.map_name);
+	free(param.infos);
 	return (0);
 }
