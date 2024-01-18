@@ -6,11 +6,79 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:55:54 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/17 18:20:26 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/18 14:59:21 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
+
+static int	fill_texture(char *buf, t_data *param, char *texture, int which)
+{
+	int	i;
+
+	i = 2;
+	if (param->textures[which])
+		return (1);
+	while (buf[i])
+	{
+	}
+	param->textures[NO] += 1;
+	return (0);
+}
+
+static int	fill_color(char *buf, int *array_color)
+{
+	int	i;
+	int	count;
+	int	nb;
+
+	i = 1;
+	count = 0;
+	nb = 0;
+	while (buf[i] && count < 3)
+	{
+		if (ft_isdigit(buf[i]))
+			nb = nb * 10 + (buf[i] - '0');
+		else if (buf[i] == ',')
+		{
+			array_color[count] = nb;
+			nb = 0;
+			count++;
+		}
+		else if (buf[i] != ' ' && buf[i] != '\n')
+			return (1);
+		i++;
+	}
+	if (count < 3)
+		array_color[count] = nb;
+	return (0);
+}
+
+int	fill_textures_colors(char *buf, t_data *param)
+{
+	int	i;
+
+	i = 0;
+	if (buf[0] == 'N' && buf[1] == 'O')
+		fill_texture(buf, param, param->map_textures[NO], NO);
+	if (buf[0] == 'S' && buf[1] == 'O')
+		param->textures[SO] += 1;
+	if (buf[0] == 'W' && buf[1] == 'E')
+		param->textures[WE] += 1;
+	if (buf[0] == 'E' && buf[1] == 'A')
+		param->textures[EA] += 1;
+	if (buf[0] == 'F')
+	{
+		if (fill_color(buf, param->floor_color) == 1)
+			return (ft_printf("Error\nFloor color invalid\n"), 1);
+	}
+	if (buf[0] == 'C')
+	{
+		if (fill_color(buf, param->sky_color) == 1)
+			return (ft_printf("Error\nSky color invalid\n"), 1);
+	}
+	return (0);
+}
 
 int	is_line_map(char *buf)
 {
@@ -37,44 +105,11 @@ int	is_line_map(char *buf)
 // 	return (0);
 // }
 
-void	deal_with_empty_lines(t_data *param, int fd, int i)
-{
-	while (param->map_infos[i][0] == '\n')
-	{
-		free(param->map_infos[i]);
-		param->map_infos[i] = get_next_line(fd);
-	}
-}
-
-int	info_map_parsing(t_data *param, int i)
-{
-	(void)param;
-	(void)i;
-	return (0);
-	// int	fd;
-
-	// fd = open(param->map_name, O_RDONLY);
-	// if (fd == -1)
-	// 	return (error_parsing(1), close(fd), 1);
-	// while (++i < param->min_y)
-	// {
-	// 	param->map_infos[i] = get_next_line(fd);
-	// 	if (!param->map_infos[i])
-	// 		return (close(fd), 1);
-	// 	deal_with_empty_lines(param, fd, i);
-	// 	if (param->map_infos[i][ft_strlen(param->map_infos[i]) - 1] == '\n')
-	// 		param->map_infos[i][ft_strlen(param->map_infos[i]) - 1] = '\0';
-	// }
-	// param->map_infos[i] = NULL;
-	// i = -1;
-	// while (++i < (param->max_y - param->min_y))
-	// {
-	// 		param->map[i] = get_next_line(fd);
-	// 	if (!param->map[i])
-	// 		return (close(fd), 1);
-	// 	if (param->map[i][ft_strlen(param->map[i]) - 1] == '\n')
-	// 		param->map[i][ft_strlen(param->map[i]) - 1] = '\0';
-	// }
-	// param->max_x = find_max_x(param);
-	// return (param->map[i] = NULL, close(fd), 0);
-}
+// void	deal_with_empty_lines(t_data *param, int fd, int i)
+// {
+// 	while (param->map_infos[i][0] == '\n')
+// 	{
+// 		free(param->map_infos[i]);
+// 		param->map_infos[i] = get_next_line(fd);
+// 	}
+// }
