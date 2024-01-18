@@ -14,16 +14,6 @@ int	free_all_param(t_data *param)
 		}
 		free(param->map);
 	}
-	i = 0;
-	if (param->map_infos)
-	{
-		while (param->map_infos && param->map_infos[i])
-		{
-			free(param->map_infos[i]);
-			i++;
-		}
-		free(param->map_infos);
-	}
 	// if (param->map_tmp)
 	// {
 	// 	i = 0;

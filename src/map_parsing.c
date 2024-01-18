@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:26 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/17 17:43:30 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/18 14:54:16 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 int	error_parsing(int num_error)
 {
-	if (num_error == 1)
-		ft_printf("Error\nCouldn't open the map.\n");
-	if (num_error == 2)
-		ft_printf("Error\nThe map is not a valid '.cub'.\n");
 	if (num_error == 3)
 		ft_printf("Error\nThe map is empty.\n");
 	if (num_error == 4)
@@ -38,85 +34,91 @@ int	is_name_correct(t_data *param)
 	return (1);
 }
 
-static int	find_end_map(t_data *param)
+// static int	find_end_map(t_data *param, int fd)
+// {
+// 	char	*buf;
+// 	int		n;
+
+// 	n = 0;
+// 	buf = get_next_line(fd);
+// 	if (!buf)
+// 		return (close(fd), -2);
+// 	while (buf)
+// 	{
+// 		if (n == param->min_y)
+// 			break ;
+// 		n++;
+// 		free(buf);
+// 		buf = get_next_line(fd);
+// 	}
+// 	while (buf)
+// 	{
+// 		if (!is_line_map(buf))
+// 			return (close(fd), free(buf), n);
+// 		else
+// 			n++;
+// 		free(buf);
+// 		buf = get_next_line(fd);
+// 	}
+// 	return (close(fd), n);
+// }
+
+// static int	find_beginning_map(t_data *param, int fd)
+// {
+// 	char	*buf;
+// 	int		n;
+
+// 	(void)param;
+// 	n = 0;
+// 	buf = get_next_line(fd);
+// 	if (!buf)
+// 		return (-1);
+// 	while (buf)
+// 	{
+// 		n++;
+// 		if (is_line_map(buf))
+// 			return (free(buf), close(fd), n);
+// 		free(buf);
+// 		buf = get_next_line(fd);
+// 	}
+// 	return (close(fd), n);
+// }
+
+static int	find_infos(t_data *param, int fd)
 {
-	int		fd;
 	char	*buf;
 	int		n;
 
-	n = 0;
-	fd = open(param->map_name, O_RDONLY);
-	if (fd == -1)
-		return (error_parsing(1), -1);
 	buf = get_next_line(fd);
 	if (!buf)
-		return (close(fd), -2);
-	while (buf)
-	{
-		if (n == param->min_y)
-			break ;
-		n++;
-		free(buf);
-		buf = get_next_line(fd);
-	}
-	while (buf)
-	{
-		if (!is_line_map(buf))
-			return (close(fd), free(buf), n);
-		else
-			n++;
-		free(buf);
-		buf = get_next_line(fd);
-	}
-	return (close(fd), n);
-}
-
-static int	find_beginning_map(t_data *param)
-{
-	int		fd;
-	char	*buf;
-	int		n;
-
-	if (is_name_correct(param) == 1)
-		return (-1);
+		return (ft_printf("Error\nget_next_line error", 1));
 	n = 0;
-	fd = open(param->map_name, O_RDONLY);
-	if (fd == -1)
-	{
-		error_parsing(1);
-		return (-1);
-	}
-	buf = get_next_line(fd);
-	if (!buf)
-		return (-1);
-	while (buf)
+	while (!is_line_map(buf))
 	{
 		n++;
-		if (is_line_map(buf))
-			return (free(buf), close(fd), n);
+		if (fill_textures_colors(buf, param) == 1)
+			return (free(buf), close(fd), 1);
 		free(buf);
 		buf = get_next_line(fd);
 	}
-	return (close(fd), n);
+	free(buf);
+	return (close(fd), 0);
 }
 
 int	map_parsing(t_data *param)
 {
-	param->min_y = find_beginning_map(param);
-	if (param->min_y == -1)
+	int	fd;
+
+	fd = open(param->map_name, O_RDONLY);
+	if (fd == -1)
+		return (ft_printf("Error\nCouldn't open the map.\n"), 1);
+	if (find_infos(param, fd) == 1)
 		return (1);
-	param->max_y = find_end_map(param);
-	if (param->max_y == -1)
-		return (1);
-	if (check_infos(param) == 1)
-		return (1);
-	// param->map = malloc(sizeof(char *) * (param->max_y - param->min_y) + 1);
-	// if (!param->map)
+	// param->min_y = find_beginning_map(param, fd);
+	// if (param->min_y == -1)
 	// 	return (1);
-	// param->map_infos = malloc(sizeof(char *) * 6 + 1);
-	// if (!param->map_infos)
-	// 	return (1);
-	// if (info_map_parsing(param, -1) == 1)
+	// param->max_y = find_end_map(param, fd);
+	// if (param->min_y == -1)
 	// 	return (1);
 	return (0);
 }
