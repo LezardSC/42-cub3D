@@ -6,18 +6,28 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:26 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/18 14:54:16 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/19 17:16:25 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3d.h"
+#include "../../header/cub3d.h"
 
-int	error_parsing(int num_error)
+int	is_line_map(char *buf)
 {
-	if (num_error == 3)
-		ft_printf("Error\nThe map is empty.\n");
-	if (num_error == 4)
-		ft_printf("Error\nget_next_line error.\n");
+	int	i;
+
+	i = 1;
+	if (buf[0] == '1' || buf[0] == '0' || (buf[0] == 'N' && buf[1] != 'O'))
+		return (1);
+	else if (buf[0] == ' ')
+	{
+		while (buf[i])
+		{
+			if (buf[i] == '1' || buf[i] == '0' || buf[i] == 'N')
+				return (1);
+			i++;
+		}
+	}
 	return (0);
 }
 
@@ -30,7 +40,7 @@ int	is_name_correct(t_data *param)
 		&& param->map_name[size - 2] == 'u' && param->map_name[size - 3] == 'c'
 		&& param->map_name[size - 4] == '.')
 		return (0);
-	error_parsing(2);
+	ft_printf("Error\nThe map is not a valid \".cub\"");
 	return (1);
 }
 
@@ -84,35 +94,12 @@ int	is_name_correct(t_data *param)
 // 	return (close(fd), n);
 // }
 
-static int	find_infos(t_data *param, int fd)
-{
-	char	*buf;
-	int		n;
-
-	buf = get_next_line(fd);
-	if (!buf)
-		return (ft_printf("Error\nget_next_line error", 1));
-	n = 0;
-	while (!is_line_map(buf))
-	{
-		n++;
-		if (fill_textures_colors(buf, param) == 1)
-			return (free(buf), close(fd), 1);
-		free(buf);
-		buf = get_next_line(fd);
-	}
-	free(buf);
-	return (close(fd), 0);
-}
-
 int	map_parsing(t_data *param)
 {
-	int	fd;
-
-	fd = open(param->map_name, O_RDONLY);
-	if (fd == -1)
+	param->fd = open(param->map_name, O_RDONLY);
+	if (param->fd == -1)
 		return (ft_printf("Error\nCouldn't open the map.\n"), 1);
-	if (find_infos(param, fd) == 1)
+	if (find_infos(param) == 1)
 		return (1);
 	// param->min_y = find_beginning_map(param, fd);
 	// if (param->min_y == -1)
