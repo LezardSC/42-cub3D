@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:23 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/19 14:13:08 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/19 17:08:00 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,18 @@ int	ft_strlen_space(char *str)
 	while (str[i] && str[i] != ' ' && str[i] != '\n')
 		i++;
 	return (i);
+}
+
+int	is_space_or_newline(char *buf)
+{
+	int	i;
+
+	i = 0;
+	while (buf[i])
+	{
+		if (buf[i] != ' ' && buf[i] != '\n')
+			return (1);
+		i++;
+	}
+	return (0);
 }

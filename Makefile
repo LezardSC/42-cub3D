@@ -6,7 +6,7 @@
 #    By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:09:10 by lezard            #+#    #+#              #
-#    Updated: 2024/01/16 18:43:35 by jrenault         ###   ########lyon.fr    #
+#    Updated: 2024/01/19 17:15:45 by jrenault         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,12 @@ DIR						= src/
 SRC			 			= 	main.c \
 							init_param.c \
 							check_error.c \
-							map_parsing.c \
-							map_parsing_bis.c \
 							free_param.c \
 							cub3d_utils.c \
+							parsing/map_parsing.c \
+							parsing/map_parsing_bis.c \
+							parsing/infos_parsing.c \
+							parsing/fill_infos.c \
 
 OBJECTS			    	= ${addprefix ${BUILD_DIR},${SRC:.c=.o}}
 

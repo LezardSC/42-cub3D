@@ -2,12 +2,11 @@ NO ./textures/red_bricks.xpm
 SO ./textures/Glowing_Square_Tile_64x64.xpm
 WE ./textures/Brick_Wall_64x64.xpm
 
-EA ./textures/Wooden_Floor_Vertical_64x64.xpm
+EA       ./textures/Wooden_Floor_Vertical_64x64.xpm
 
+F 119,207,224
 
-F 119,207,824
 C 119,207,238
-
 
 
  11       111111111111111111111111

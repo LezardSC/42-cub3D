@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:02:43 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/19 14:23:57 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/19 17:22:39 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	parsing_and_error(t_data *param, char *name)
 		return (1);
 	}
 	if (map_parsing(param))
-		return (free(param->map_name), free_all_param(param), 1);
+		return (1);
 	// if (check_error(param) == 0)
 		// return (free(param->map_name), free_all_param(param), 1);
 	return (0);
@@ -48,16 +48,11 @@ int	main(int argc, char **argv)
 		return (1);
 	if (parsing_and_error(&param, argv[1]))
 	{
-		free(param.textures);
-		free(param.floor_color);
-		free(param.sky_color);
-		free_tab(param.map_textures);
+		free_all_param(&param);
+		close(param.fd);
 		return (1);
 	}
-	free(param.map_name);
-	free(param.textures);
-	free(param.floor_color);
-	free(param.sky_color);
-	free_tab(param.map_textures);
+	free_all_param(&param);
+	close(param.fd);
 	return (0);
 }
