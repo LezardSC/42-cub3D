@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/18 14:55:53 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/19 14:12:42 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,5 @@ int		free_all_param(t_data *param);
 
 //utils
 void	print_double_char(char **str);
+int		ft_strlen_space(char *str);
 #endif

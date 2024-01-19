@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:02:43 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/18 14:48:57 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/19 14:23:57 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,13 @@ int	main(int argc, char **argv)
 		free(param.textures);
 		free(param.floor_color);
 		free(param.sky_color);
+		free_tab(param.map_textures);
 		return (1);
 	}
 	free(param.map_name);
 	free(param.textures);
 	free(param.floor_color);
 	free(param.sky_color);
+	free_tab(param.map_textures);
 	return (0);
 }
