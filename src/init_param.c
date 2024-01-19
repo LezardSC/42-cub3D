@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:09:29 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/18 14:17:15 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/19 14:22:40 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ int	init_param(t_data *param)
 	i = 6;
 	while (--i >= 0)
 		param->textures[i] = 0;
+	param->map_textures = malloc(sizeof(char *) * (4 + 1));
+	i = 4;
+	while (--i >= 0)
+		param->map_textures[i] = NULL;
 	param->map = NULL;
-	param->map_textures = NULL;
 	return (0);
 }

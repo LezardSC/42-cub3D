@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:55:54 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/18 14:59:21 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/19 14:33:15 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,18 @@
 static int	fill_texture(char *buf, t_data *param, char *texture, int which)
 {
 	int	i;
+	int	size;
 
 	i = 2;
 	if (param->textures[which])
 		return (1);
-	while (buf[i])
-	{
-	}
+	while (buf[i] == ' ')
+		i++;
+	size = ft_strlen_space(&(buf[i]));
+	texture = malloc(sizeof(char *) * (size + 1));
+	texture = ft_strdup(&(buf[i]));
+	if (!texture)
+		return (1);
 	param->textures[NO] += 1;
 	return (0);
 }
@@ -60,19 +65,31 @@ int	fill_textures_colors(char *buf, t_data *param)
 
 	i = 0;
 	if (buf[0] == 'N' && buf[1] == 'O')
-		fill_texture(buf, param, param->map_textures[NO], NO);
-	if (buf[0] == 'S' && buf[1] == 'O')
-		param->textures[SO] += 1;
-	if (buf[0] == 'W' && buf[1] == 'E')
-		param->textures[WE] += 1;
-	if (buf[0] == 'E' && buf[1] == 'A')
-		param->textures[EA] += 1;
-	if (buf[0] == 'F')
+	{
+		if (fill_texture(buf, param, param->map_textures[NO], NO) == 1)
+			return (1);
+	}
+	else if (buf[0] == 'S' && buf[1] == 'O')
+	{
+		if (fill_texture(buf, param, param->map_textures[SO], SO) == 1)
+			return (1);
+	}
+	else if (buf[0] == 'W' && buf[1] == 'E')
+	{
+		if (fill_texture(buf, param, param->map_textures[WE], WE) == 1)
+			return (1);
+	}
+	else if (buf[0] == 'E' && buf[1] == 'A')
+	{
+		if (fill_texture(buf, param, param->map_textures[EA], EA) == 1)
+			return (1);
+	}
+	else if (buf[0] == 'F')
 	{
 		if (fill_color(buf, param->floor_color) == 1)
 			return (ft_printf("Error\nFloor color invalid\n"), 1);
 	}
-	if (buf[0] == 'C')
+	else if (buf[0] == 'C')
 	{
 		if (fill_color(buf, param->sky_color) == 1)
 			return (ft_printf("Error\nSky color invalid\n"), 1);
