@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/19 17:13:50 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/19 18:24:09 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ enum e_textures
 
 typedef struct s_data
 {
+	int		nb_lines;
 	int		fd;
 	int		*check_colors;
 	int		*textures;
@@ -66,5 +67,6 @@ int		free_all_param(t_data *param);
 void	print_double_char(char **str);
 int		ft_strlen_space(char *str);
 int		is_space_or_newline(char *buf);
+char	*go_to_map(t_data *param);
 
 #endif
