@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 17:06:01 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/19 17:16:19 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/19 17:31:07 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,13 @@ static int	all_infos_here(t_data *param)
 int	find_infos(t_data *param)
 {
 	char	*buf;
-	int		n;
 
 	buf = get_next_line(param->fd);
 	if (!buf)
 		return (ft_printf("Error\nget_next_line error", 1));
-	n = 0;
 	while (!is_line_map(buf))
 	{
-		n++;
+		param->nb_lines++;
 		if (fill_textures_colors(buf, param) == 1)
 			return (free(buf), 1);
 		free(buf);

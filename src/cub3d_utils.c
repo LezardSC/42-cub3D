@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:23 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/19 17:08:00 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/19 18:28:27 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,23 @@ int	is_space_or_newline(char *buf)
 		i++;
 	}
 	return (0);
+}
+
+char	*go_to_map(t_data *param)
+{
+	char	*buf;
+
+	param->nb_lines = 0;
+	buf = get_next_line(param->fd);
+	if (!buf)
+		return (ft_printf("Error\nget_next_line error\n"), NULL);
+	while (buf && param->nb_lines < param->min_y - 1)
+	{
+		free(buf);
+		buf = get_next_line(param->fd);
+		if (!buf)
+			return (ft_printf("Error\nget_next_line error\n"), NULL);
+		param->nb_lines++;
+	}
+	return (buf);
 }
