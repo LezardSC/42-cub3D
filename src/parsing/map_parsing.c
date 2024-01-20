@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:26 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/20 12:13:41 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/20 15:30:57 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	allocate_map(t_data *param)
 			return (1);
 		i++;
 	}
-	param->map[param->max_y] = NULL;
+	param->map[i] = NULL;
 	return (0);
 }
 
@@ -68,7 +68,7 @@ static int	fill_line_map(char *buf, t_data *param, int i)
 		param->map[i][j] = buf[j];
 		j++;
 	}
-	while (j <= param->max_x)
+	while (j < param->max_x)
 	{
 		param->map[i][j] = ' ';
 		j++;
@@ -113,7 +113,7 @@ int	map_parsing(t_data *param)
 	close(param->fd);
 	if (get_max_x_and_y(param) == 1)
 		return (1);
-	param->max_y = param->nb_lines - param->min_y;
+	param->max_y = param->nb_lines - param->min_y - 1;
 	if (allocate_map(param) == 1)
 		return (1);
 	close(param->fd);
