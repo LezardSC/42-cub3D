@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/20 15:41:49 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/24 13:35:08 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,8 @@ void	print_double_char(char **str);
 int		ft_strlen_space(char *str);
 int		is_space_or_newline(char *buf);
 char	*go_to_map(t_data *param);
+
+//visuals
+void ft_put_windows(t_data *game_data);
 
 #endif
