@@ -33,6 +33,8 @@ static int	get_max_x_and_y(t_data *param)
 		free(buf);
 		buf = get_next_line(param->fd);
 	}
+	param->max_x -= 2;
+	param->nb_lines--;
 	free(buf);
 	return (0);
 }
@@ -63,12 +65,13 @@ static int	fill_line_map(char *buf, t_data *param, int i)
 	j = 0;
 	if (!is_line_map(buf))
 		return (1);
+	// ft_printf("buf: %s\n", buf);
 	while (buf[j] && buf[j] != '\n')
 	{
 		param->map[i][j] = buf[j];
 		j++;
 	}
-	while (j < param->max_x)
+	while (j <= param->max_x)
 	{
 		param->map[i][j] = ' ';
 		j++;
@@ -109,11 +112,12 @@ int	map_parsing(t_data *param)
 	param->nb_lines = 0;
 	if (find_infos(param) == 1)
 		return (1);
-	param->min_y = param->nb_lines + 1;
+	param->beginning_map = param->nb_lines + 1;
 	close(param->fd);
 	if (get_max_x_and_y(param) == 1)
 		return (1);
-	param->max_y = param->nb_lines - param->min_y - 1;
+	param->max_y = param->nb_lines - param->beginning_map;
+	ft_printf("max x: %d\nmax y: %d\n", param->max_x, param->max_y);
 	if (allocate_map(param) == 1)
 		return (1);
 	close(param->fd);

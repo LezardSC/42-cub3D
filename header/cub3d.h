@@ -45,7 +45,7 @@ typedef struct s_data
 	char	**map_textures;
 	int		max_x;
 	int		max_y;
-	int		min_y;
+	int		beginning_map;
 }			t_data;
 
 int		main(int argc, char **argv);
