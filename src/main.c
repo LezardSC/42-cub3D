@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:02:43 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/20 15:40:07 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/24 13:57:27 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	main(int argc, char **argv)
 {
 	t_data	param;
 
+	ft_bzero(&param, sizeof(t_data));
+	ft_put_windows(&param);
 	if (check_argc(argc))
 		return (1);
 	if (parsing_and_error(&param, argv[1]))
