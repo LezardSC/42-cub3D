@@ -15,10 +15,10 @@
 static int	check_argc(int argc)
 {
 	if (argc < 2)
-		return (ft_printf("Error\nNo map given to the program."),
+		return (ft_printf("Error\nNo map given to the program.\n"),
 			1);
 	if (argc > 2)
-		return (ft_printf("Error\nToo many arguments."), 1);
+		return (ft_printf("Error\nToo many arguments.\n"), 1);
 	return (0);
 }
 
