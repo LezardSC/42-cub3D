@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/20 15:41:49 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/25 23:17:41 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int		check_infos(t_data *param);
 int		find_infos(t_data *param);
 int		fill_textures_colors(char *buf, t_data *param);
 int		check_error(t_data *param);
+int		fill_line_map(char *buf, t_data *param, int i);
 
 //free
 int		free_all_param(t_data *param);

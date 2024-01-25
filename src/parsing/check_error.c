@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:57 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/23 16:53:48 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/25 23:33:34 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,6 @@ int	check_error(t_data *param)
 {
 	if (no_wrong_arguments(param) == 1)
 		return (ft_printf("Error\nInvalid map\n"), 1);
-	param->max_y--;
-	param->max_x--;
 	if (is_map_closed(param) == 1)
 		return (ft_printf("Error\nMap isn't closed\n"), 1);
 	return (0);

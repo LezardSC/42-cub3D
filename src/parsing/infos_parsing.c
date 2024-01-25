@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 17:06:01 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/19 17:31:07 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/25 23:19:45 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ static int	all_infos_here(t_data *param)
 int	find_infos(t_data *param)
 {
 	char	*buf;
+	int		size;
 
+	size = 0;
+	param->max_x = 0;
 	buf = get_next_line(param->fd);
 	if (!buf)
 		return (ft_printf("Error\nget_next_line error", 1));
@@ -49,6 +52,17 @@ int	find_infos(t_data *param)
 		free(buf);
 		buf = get_next_line(param->fd);
 	}
+	param->beginning_map = param->nb_lines + 1;
+	while (buf)
+	{
+		param->nb_lines++;
+		size = ft_strlen(buf);
+		if (size > param->max_x)
+			param->max_x = size;
+		free(buf);
+		buf = get_next_line(param->fd);
+	}
+	param->max_x -= 2;
 	free(buf);
 	if (!all_infos_here(param))
 		return (ft_printf("Error\nMissing infos\n"), 1);
