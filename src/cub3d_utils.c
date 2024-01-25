@@ -56,7 +56,8 @@ char	*go_to_map(t_data *param)
 	buf = get_next_line(param->fd);
 	if (!buf)
 		return (ft_printf("Error\nget_next_line error\n"), NULL);
-	while (buf && param->nb_lines < param->min_y - 1)
+	ft_printf("buf1: %s\n", buf);
+	while (buf && param->nb_lines <= param->beginning_map)
 	{
 		free(buf);
 		buf = get_next_line(param->fd);
@@ -64,5 +65,7 @@ char	*go_to_map(t_data *param)
 			return (ft_printf("Error\nget_next_line error\n"), NULL);
 		param->nb_lines++;
 	}
+	ft_printf("buf2: %s\n", buf);
+	param->nb_lines--;
 	return (buf);
 }
