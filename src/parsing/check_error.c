@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:57 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/20 16:05:07 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/23 16:53:48 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ textures check_error:
 map check error:
 	-check if map is closed
 */
-
 
 static int	no_wrong_arguments(t_data *param)
 {
@@ -48,9 +47,36 @@ static int	no_wrong_arguments(t_data *param)
 	return (0);
 }
 
+static int	near_space_or_empty(t_data *param, int y, int x)
+{
+	if (y == 0 || y == param->max_y)
+		return (1);
+	if (x == 0 || param->max_x)
+		return (1);
+	return (0);
+}
+
+//Check if space near 0 or near empty (beginning/end)
 static int	is_map_closed(t_data *param)
 {
-	(void)param;
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i <= param->max_y)
+	{
+		j = 0;
+		while (j <= param->max_x)
+		{
+			if (param->map[i][j] == '0')
+			{
+				if (near_space_or_empty(param, i, j) == 1)
+					return (1);
+			}
+			j++;
+		}
+		i++;
+	}
 	return (0);
 }
 
@@ -58,6 +84,8 @@ int	check_error(t_data *param)
 {
 	if (no_wrong_arguments(param) == 1)
 		return (ft_printf("Error\nInvalid map\n"), 1);
+	param->max_y--;
+	param->max_x--;
 	if (is_map_closed(param) == 1)
 		return (ft_printf("Error\nMap isn't closed\n"), 1);
 	return (0);
