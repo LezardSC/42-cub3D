@@ -6,7 +6,7 @@
 #    By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:09:10 by lezard            #+#    #+#              #
-#    Updated: 2024/01/20 15:44:16 by jrenault         ###   ########lyon.fr    #
+#    Updated: 2024/01/26 22:16:53 by jrenault         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,8 @@ SRC			 			= 	main.c \
 							parsing/infos_parsing.c \
 							parsing/fill_infos.c \
 							parsing/check_error.c \
+							exec/close_win.c \
+							exec/deal_key.c \
 
 OBJECTS			    	= ${addprefix ${BUILD_DIR},${SRC:.c=.o}}
 

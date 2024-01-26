@@ -6,19 +6,11 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:57 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/26 03:43:01 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/26 17:50:57 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
-
-/*
-textures check_error:
-	-check if path exist and stock it inside a variable
-	
-map check error:
-	-check if map is closed
-*/
 
 static int	no_wrong_arguments(t_data *param)
 {

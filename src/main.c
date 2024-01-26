@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:02:43 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/20 15:40:07 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/26 22:34:52 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	parsing_and_error(t_data *param, char *name)
 	}
 	if (map_parsing(param))
 		return (1);
-	if (check_error(param) == 0)
+	if (check_error(param) == 1)
 		return (1);
 	return (0);
 }
@@ -52,7 +52,18 @@ int	main(int argc, char **argv)
 		close(param.fd);
 		return (1);
 	}
+	param.mlx = mlx_init();
+	if (!param.mlx)
+		return (free_all_param(&param),
+			mlx_destroy_display(param.mlx), free(param.mlx), 1);
+	param.win = mlx_new_window(param.mlx,
+			1920, 1080, "cub3d");
+	mlx_hook(param.win, 02, 1L << 0, deal_key, &param);
+	mlx_hook(param.win, 17, 0, close_win, &param);
+	mlx_loop(param.mlx);
 	free_all_param(&param);
+	mlx_destroy_display(param.mlx);
+	free(param.mlx);
 	close(param.fd);
 	return (0);
 }
