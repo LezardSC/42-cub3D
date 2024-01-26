@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/26 22:41:55 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/26 23:03:02 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_data
 	char	**map_textures;
 	int		max_x;
 	int		max_y;
+	int		pos_x;
+	int		pos_y;
 	int		beginning_map;
 }			t_data;
 
