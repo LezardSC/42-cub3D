@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/24 13:35:08 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/01/26 15:09:34 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../mlx/mlx.h"
 # include "../libft/libft.h"
+# include <math.h>
 
 enum e_colors
 {
@@ -46,6 +47,8 @@ typedef struct s_data
 	int		max_x;
 	int		max_y;
 	int		min_y;
+	int		pos_x;
+	int		pos_y;
 }			t_data;
 
 int		main(int argc, char **argv);
