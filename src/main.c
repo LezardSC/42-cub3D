@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:02:43 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/26 22:40:37 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/26 23:30:12 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,11 @@ int	main(int argc, char **argv)
 		return (free_all_param(&param),
 			mlx_destroy_display(param.mlx), free(param.mlx), 1);
 	param.win = mlx_new_window(param.mlx,
-			1920, 1080, "cub3d");
+			(param.max_x * 72), (param.max_y * 72), "cub3d");
 	if (show_minimap(&param) == 1)
 		return (free_all_param(&param), mlx_destroy_display(param.mlx),
 			free(param.mlx), 1);
+	show_minimap(&param);
 	mlx_hook(param.win, 02, 1L << 0, deal_key, &param);
 	mlx_hook(param.win, 17, 0, close_win, &param);
 	mlx_loop(param.mlx);
