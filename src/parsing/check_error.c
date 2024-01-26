@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:57 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/25 23:33:34 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/26 03:07:22 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,13 @@ static int	near_space_or_empty(t_data *param, int y, int x)
 {
 	if (y == 0 || y == param->max_y)
 		return (1);
-	if (x == 0 || param->max_x)
+	if (x == 0 || x == param->max_x)
+		return (1);
+	if (param->map[y + 1][x] == ' ' || param->map[y - 1][x] == ' '
+		|| param->map[y][x + 1] == ' ' || param->map[y][x - 1] == ' ')
+		return (1);
+	if (param->map[y + 1][x + 1] == ' ' || param->map[y - 1][x - 1] == ' '
+		|| param->map[y - 1][x + 1] == ' ' || param->map[y + 1][x - 1] == ' ')
 		return (1);
 	return (0);
 }
@@ -65,6 +71,7 @@ static int	is_map_closed(t_data *param)
 	i = 0;
 	while (i <= param->max_y)
 	{
+		ft_printf("map[i]: %s\n", param->map[i]);
 		j = 0;
 		while (j <= param->max_x)
 		{
