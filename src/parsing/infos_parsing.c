@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 17:06:01 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/25 23:19:45 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/26 03:15:19 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,9 @@ int	find_infos(t_data *param)
 	int		size;
 
 	size = 0;
-	param->max_x = 0;
 	buf = get_next_line(param->fd);
 	if (!buf)
-		return (ft_printf("Error\nget_next_line error", 1));
+		return (ft_printf("Error\nget_next_line error\n"), 1);
 	while (!is_line_map(buf))
 	{
 		param->nb_lines++;

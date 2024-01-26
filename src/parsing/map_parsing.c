@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:26 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/25 23:33:04 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/26 03:15:09 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	map_parsing(t_data *param)
 	if (param->fd == -1)
 		return (ft_printf("Error\nCouldn't open the map.\n"), 1);
 	param->nb_lines = 0;
+	param->max_x = 0;
 	if (find_infos(param) == 1)
 		return (1);
 	param->max_y = param->nb_lines - param->beginning_map;
