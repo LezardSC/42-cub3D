@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/26 22:26:09 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/26 22:41:55 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int		fill_line_map(char *buf, t_data *param, int i);
 //exec
 int		close_win(t_data *param);
 int		deal_key(int key, t_data *param);
+int		show_minimap(t_data *param);
 
 //free
 int		free_all_param(t_data *param);
