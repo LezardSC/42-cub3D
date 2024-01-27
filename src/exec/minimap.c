@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 02:38:40 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/27 03:51:59 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/27 19:09:20 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	my_mlx_square_put(t_pixel *pixel, int x, int y, int color)
 	int	j;
 
 	i = 0;
-	while (i < pixel->width)
+	while (i < pixel->size)
 	{
 		j = 0;
-		while (j < pixel->height)
+		while (j < pixel->size)
 		{
 			my_mlx_pixel_put(pixel, x + i, y + j, color);
 			j++;
@@ -84,7 +84,7 @@ int	show_minimap(t_data *param)
 	x = 0;
 	y = 0;
 	param->pixel.img = mlx_new_image(param->mlx,
-			300, 200);
+			400, 400);
 	param->pixel.addr = mlx_get_data_addr(param->pixel.img, &param->pixel.bits_per_pixel,
 			&param->pixel.line_length, &param->pixel.endian);
 	while (param->map[y])
@@ -92,45 +92,19 @@ int	show_minimap(t_data *param)
 		while (param->map[y][x])
 		{
 			if (param->map[y][x] == '1')
-				my_mlx_square_put(&param->pixel, (x * 16), (y * 16), 0x00FF0000);
-			x++;
-		}
-		x = 0;
-		y++;
-	}
-	my_mlx_circle_put(&param->pixel, (param->pos_x * 16 + 8), (param->pos_y * 16 + 8), 0x00FF0000);
-	mlx_put_image_to_window(param->mlx, param->win, param->pixel.img, 0, 0);
-	return (0);
-}
-
-int	show_minimap_first_time(t_data *param)
-{
-	int		x;
-	int		y;
-
-	x = 0;
-	y = 0;
-	param->pixel.img = mlx_new_image(param->mlx,
-			300, 200);
-	param->pixel.addr = mlx_get_data_addr(param->pixel.img, &param->pixel.bits_per_pixel,
-			&param->pixel.line_length, &param->pixel.endian);
-	while (param->map[y])
-	{
-		while (param->map[y][x])
-		{
-			if (param->map[y][x] == '1')
-				my_mlx_square_put(&param->pixel, (x * 16), (y * 16), 0x00FF0000);
+				my_mlx_square_put(&param->pixel, (x * param->pixel.size), (y * param->pixel.size), RED_COLOR);
 			if (param->map[y][x] == 'N')
 			{
+				param->map[y][x] = '0';
 				param->pos_x = x;
 				param->pos_y = y;
-				my_mlx_circle_put(&param->pixel, (x * 16 + 8), (y * 16 + 8), 0x00FF0000);
 			}
 			x++;
 		}
 		x = 0;
 		y++;
 	}
+	my_mlx_circle_put(&param->pixel, (param->pos_x * param->pixel.size + param->pixel.radius), (param->pos_y * param->pixel.size + param->pixel.radius), BLUE_COLOR);
 	mlx_put_image_to_window(param->mlx, param->win, param->pixel.img, 0, 0);
 	return (0);
 }

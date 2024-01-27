@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:09:29 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/27 03:10:09 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/27 18:41:35 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,12 @@ int	init_param(t_data *param)
 	return (0);
 }
 
-int	init_pixels(t_pixel *pixel)
+int	init_pixels(t_data *param)
 {
-	pixel->width = 16;
-	pixel->height = 16;
-	pixel->radius = 8;
+	if (param->max_x > param->max_y)
+		param->pixel.size = (MINIMAP_WIDTH / (param->max_x + 1));
+	else
+		param->pixel.size = (MINIMAP_HEIGHT / (param->max_y + 1));
+	param->pixel.radius = param->pixel.size / 2;
 	return (0);
 }
