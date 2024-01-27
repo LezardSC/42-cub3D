@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:02:43 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/26 23:30:12 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/27 03:44:10 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static int	check_argc(int argc)
 
 static int	parsing_and_error(t_data *param, char *name)
 {
-	init_param(param);
+	if (init_param(param) == 1)
+		return (1);
 	param->map_name = ft_strdup(name);
 	if (!param->map_name)
 		return (1);
@@ -57,11 +58,13 @@ int	main(int argc, char **argv)
 		return (free_all_param(&param),
 			mlx_destroy_display(param.mlx), free(param.mlx), 1);
 	param.win = mlx_new_window(param.mlx,
-			(param.max_x * 72), (param.max_y * 72), "cub3d");
-	if (show_minimap(&param) == 1)
+			1920, 1080, "cub3d");
+	if (init_pixels(&param.pixel) == 1)
+		return (free_all_param(&param),
+			mlx_destroy_display(param.mlx), free(param.mlx), 1);
+	if (show_minimap_first_time(&param) == 1)
 		return (free_all_param(&param), mlx_destroy_display(param.mlx),
 			free(param.mlx), 1);
-	show_minimap(&param);
 	mlx_hook(param.win, 02, 1L << 0, deal_key, &param);
 	mlx_hook(param.win, 17, 0, close_win, &param);
 	mlx_loop(param.mlx);

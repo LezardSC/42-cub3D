@@ -5,22 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/26 22:40:59 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/27 00:24:33 by jrenault         ###   ########lyon.fr   */
+/*   Created: 2024/01/27 02:38:40 by jrenault          #+#    #+#             */
+/*   Updated: 2024/01/27 03:51:59 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3d.h"
-
-typedef struct s_pixel {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		width;
-	int		height;
-}				t_pixel;
 
 void	my_mlx_pixel_put(t_pixel *pixel, int x, int y, int color)
 {
@@ -39,79 +29,108 @@ void	my_mlx_square_put(t_pixel *pixel, int x, int y, int color)
 	i = 0;
 	while (i < pixel->width)
 	{
+		j = 0;
 		while (j < pixel->height)
 		{
 			my_mlx_pixel_put(pixel, x + i, y + j, color);
 			j++;
 		}
-		j = 0;
 		i++;
 	}
 }
 
-void	my_mlx_circle_put(t_pixel *pixel, int center_x, int center_y, int radius, int color)
+void	my_mlx_circle_put(t_pixel *pixel, int center_x, int center_y, int color)
 {
 	int	x;
 	int	y;
-	int	radiusError;
+	int	i;
+	int	radius_error;
 
-	x = radius;
+	x = pixel->radius;
 	y = 0;
-	radiusError = 1 - x;
-    while (x >= y)
+	radius_error = 1 - x;
+	while (x >= y)
 	{
-        int i = center_x - x;
-        while (i <= center_x + x) {
-            my_mlx_pixel_put(pixel, i, center_y + y, color);
-            my_mlx_pixel_put(pixel, i, center_y - y, color);
-            i++;
-        }
-
-        i = center_x - y;
-        while (i <= center_x + y) {
-            my_mlx_pixel_put(pixel, i, center_y + x, color);
-            my_mlx_pixel_put(pixel, i, center_y - x, color);
-            i++;
-        }
-
-        y++;
-
-        if (radiusError < 0)
-            radiusError += 2 * y + 1;
-        else {
-            x--;
-            radiusError += 2 * (y - x + 1);
-        }
-    }
+		i = center_x - x;
+		while (i <= center_x + x)
+		{
+			my_mlx_pixel_put(pixel, i, center_y + y, color);
+			my_mlx_pixel_put(pixel, i, center_y - y, color);
+			i++;
+		}
+		i = center_x - y;
+		while (i <= center_x + y)
+		{
+			my_mlx_pixel_put(pixel, i, center_y + x, color);
+			my_mlx_pixel_put(pixel, i, center_y - x, color);
+			i++;
+		}
+		y++;
+		if (radius_error < 0)
+			radius_error += 2 * y + 1;
+		else
+		{
+			x--;
+			radius_error += 2 * (y - x + 1);
+		}
+	}
 }
 
 int	show_minimap(t_data *param)
 {
 	int		x;
 	int		y;
-	t_pixel	img;
 
 	x = 0;
 	y = 0;
-	img.img = mlx_new_image(param->mlx,
-			(param->max_x * 72), (param->max_y * 72));
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
-			&img.line_length, &img.endian);
-	img.width = 14;
-	img.height = 14;
+	param->pixel.img = mlx_new_image(param->mlx,
+			300, 200);
+	param->pixel.addr = mlx_get_data_addr(param->pixel.img, &param->pixel.bits_per_pixel,
+			&param->pixel.line_length, &param->pixel.endian);
 	while (param->map[y])
 	{
 		while (param->map[y][x])
 		{
 			if (param->map[y][x] == '1')
-				my_mlx_square_put(&img, (x * 14), (y * 14), 0x00FF0000);
-			if (param->map[y][x] == 'N')
-				my_mlx_circle_put(&img, (x * 14) + 7, (y * 14) + 7, 7, 0x00FF0000);
+				my_mlx_square_put(&param->pixel, (x * 16), (y * 16), 0x00FF0000);
 			x++;
 		}
 		x = 0;
 		y++;
 	}
-	mlx_put_image_to_window(param->mlx, param->win, img.img, 0, 0);
+	my_mlx_circle_put(&param->pixel, (param->pos_x * 16 + 8), (param->pos_y * 16 + 8), 0x00FF0000);
+	mlx_put_image_to_window(param->mlx, param->win, param->pixel.img, 0, 0);
+	return (0);
+}
+
+int	show_minimap_first_time(t_data *param)
+{
+	int		x;
+	int		y;
+
+	x = 0;
+	y = 0;
+	param->pixel.img = mlx_new_image(param->mlx,
+			300, 200);
+	param->pixel.addr = mlx_get_data_addr(param->pixel.img, &param->pixel.bits_per_pixel,
+			&param->pixel.line_length, &param->pixel.endian);
+	while (param->map[y])
+	{
+		while (param->map[y][x])
+		{
+			if (param->map[y][x] == '1')
+				my_mlx_square_put(&param->pixel, (x * 16), (y * 16), 0x00FF0000);
+			if (param->map[y][x] == 'N')
+			{
+				param->pos_x = x;
+				param->pos_y = y;
+				my_mlx_circle_put(&param->pixel, (x * 16 + 8), (y * 16 + 8), 0x00FF0000);
+			}
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	mlx_put_image_to_window(param->mlx, param->win, param->pixel.img, 0, 0);
 	return (0);
 }
