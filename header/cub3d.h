@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/26 23:03:02 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/27 03:44:38 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,17 @@ enum e_textures
 	EA = 3
 };
 
+typedef struct s_pixel {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
+	int		radius;
+}				t_pixel;
+
 typedef struct s_data
 {
 	void	*mlx;
@@ -48,10 +59,12 @@ typedef struct s_data
 	int		pos_x;
 	int		pos_y;
 	int		beginning_map;
+	t_pixel	pixel;
 }			t_data;
 
 int		main(int argc, char **argv);
 int		init_param(t_data *param);
+int		init_pixels(t_pixel *pixel);
 
 //parsing
 int		is_name_correct(t_data *param);
@@ -66,7 +79,15 @@ int		fill_line_map(char *buf, t_data *param, int i);
 //exec
 int		close_win(t_data *param);
 int		deal_key(int key, t_data *param);
+int		show_minimap_first_time(t_data *param);
 int		show_minimap(t_data *param);
+
+//draw
+
+void	my_mlx_pixel_put(t_pixel *pixel, int x, int y, int color);
+void	my_mlx_square_put(t_pixel *pixel, int x, int y, int color);
+void	my_mlx_circle_put(t_pixel *pixel,
+			int center_x, int center_y, int color);
 
 //free
 int		free_all_param(t_data *param);
