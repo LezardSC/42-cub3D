@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/27 03:44:38 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/27 19:09:48 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 
 # include "../mlx/mlx.h"
 # include "../libft/libft.h"
+
+# define MINIMAP_HEIGHT	200
+# define MINIMAP_WIDTH	200
+
+# define WHITE_COLOR	0x00FFFFFF
+# define RED_COLOR		0x00FF0000
+# define GREEN_COLOR	0x0000FF00
+# define BLUE_COLOR 	0x000000FF
 
 enum e_colors
 {
@@ -36,8 +44,7 @@ typedef struct s_pixel {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	int		width;
-	int		height;
+	int		size;
 	int		radius;
 }				t_pixel;
 
@@ -64,7 +71,7 @@ typedef struct s_data
 
 int		main(int argc, char **argv);
 int		init_param(t_data *param);
-int		init_pixels(t_pixel *pixel);
+int		init_pixels(t_data *param);
 
 //parsing
 int		is_name_correct(t_data *param);
@@ -79,7 +86,6 @@ int		fill_line_map(char *buf, t_data *param, int i);
 //exec
 int		close_win(t_data *param);
 int		deal_key(int key, t_data *param);
-int		show_minimap_first_time(t_data *param);
 int		show_minimap(t_data *param);
 
 //draw
