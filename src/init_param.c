@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:09:29 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/27 18:41:35 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/28 03:29:39 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,17 @@ int	init_param(t_data *param)
 	param->check_colors[F] = 0;
 	param->check_colors[C] = 0;
 	param->map = NULL;
+	return (0);
+}
+
+int	init_player(t_data *param)
+{
+	param->player.pos_x = 0;
+	param->player.pos_y = 0;
+	param->player.forward = FALSE;
+	param->player.left = FALSE;
+	param->player.right = FALSE;
+	param->player.backward = FALSE;
 	return (0);
 }
 
