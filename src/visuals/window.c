@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/01/29 17:37:42 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/01/29 17:58:46 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,8 +187,8 @@ int	ft_key(int key, t_data *gd)
 		exit_game(gd);
     if (key == 119 || key == 65362)
     {
-        gd->pos_y += gd->y2 / 4;
-        gd->pos_x += gd->x2 / 4;
+        gd->pos_y += (gd->x2*sin(gd->c) + gd->y2*cos(gd->c)) / 4;
+        gd->pos_x += (gd->x2*cos(gd->c) - gd->y2*sin(gd->c)) / 4;
         mlx_clear_window(gd->mlx, gd->win);
         draw_player_view(gd);
     }
@@ -201,8 +201,8 @@ int	ft_key(int key, t_data *gd)
     }
     else if (key == 115 || key == 65364)
     {
-        gd->pos_y -= gd->y2 / 4;
-        gd->pos_x -= gd->x2 / 4;
+        gd->pos_y -= (gd->x2*sin(gd->c) + gd->y2*cos(gd->c)) / 4;
+        gd->pos_x -= (gd->x2*cos(gd->c) - gd->y2*sin(gd->c)) / 4;
         mlx_clear_window(gd->mlx, gd->win);
         draw_player_view(gd);
     }
@@ -220,6 +220,7 @@ void ft_put_windows(t_data *game_data)
 {
 
     game_data->a = 15 * M_PI / 180.0;
+    game_data->c = 15 * 5 * M_PI / 180.0;
     game_data->pos_x = 200;
     game_data->pos_y = 200;
     game_data->x2 = 200;
