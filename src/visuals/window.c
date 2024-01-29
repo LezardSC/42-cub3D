@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/01/26 15:19:16 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/01/29 14:07:55 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,44 +129,59 @@ void draw_circle(t_data *game_data, int xc, int yc, int radius, int color)
     }
 }
 
+void draw_player_view(t_data *game_data)
+{
+    int i;
+    double cp_x = game_data->x2;
+    double cp_y = game_data->y2;
+    double length;
+
+    i = 0;
+    while (i < 4)
+    {
+        cp_x = cp_x*cos(game_data->a) - cp_y*sin(game_data->a);
+        cp_y = cp_x*sin(game_data->a) + cp_y*cos(game_data->a);
+        length = sqrt(cp_x * cp_x + cp_y * cp_y);
+        cp_x = (cp_x / length) * 50;
+        cp_y = (cp_y / length) * 50;
+        draw_line(game_data, game_data->pos_x, game_data->pos_y,cp_x,cp_y,0xFF2D00);
+        i++;
+    }
+}
+
 int	ft_key(int key, t_data *gd)
 {
 	if (key == 65307)
 		exit_game(gd);
     if (key == 119 || key == 65362)
     {
+        gd->pos_y -= 1;
+        gd->y2 -= 1;
         mlx_clear_window(gd->mlx, gd->win);
-        draw_circle(gd,gd->pos_x , --gd->pos_y , 200, 0xFF2D00);
-    }
-    else if (key == 100 || key == 65363)
-    {
-        mlx_clear_window(gd->mlx, gd->win);
-        draw_circle(gd,++gd->pos_x , gd->pos_y , 200, 0xFF2D00);
+        draw_player_view(gd);
     }
     else if (key == 115 || key == 65364)
     {
+        gd->pos_y += 1;
+        gd->y2 += 1;
         mlx_clear_window(gd->mlx, gd->win);
-        draw_circle(gd,gd->pos_x , ++gd->pos_y , 200, 0xFF2D00);
-    }
-    else if (key == 97 || key == 65361)
-    {
-        mlx_clear_window(gd->mlx, gd->win);
-        draw_circle(gd,--gd->pos_x , gd->pos_y , 200, 0xFF2D00);
+        draw_player_view(gd);
     }
 	return (0);
 }
 
 void ft_put_windows(t_data *game_data)
 {
-    //int i = 0;
-    //int y = 0;
-    //int j = 0;
-    //int x = 0;
-    game_data->pos_x = 100;
-    game_data->pos_y = 100;
+
+    game_data->a = 15 * M_PI / 180.0;
+    game_data->pos_x = 200;
+    game_data->pos_y = 200;
+    game_data->x2 = 100;
+    game_data->y2 = 0;
     
     game_data->mlx = mlx_init();
     game_data->win = mlx_new_window(game_data->mlx,720,480,"Cube3D");
+    //draw_line(game_data, x1, y1, j * cos(a) - x * sin(a) , j * sin(a) + x * cos(a),0xFF2D00);
     //draw_circle(game_data, 300, 300, 40, 0xFF2D00);
     mlx_key_hook(game_data->win, ft_key, game_data);
     mlx_hook(game_data->win, 17, 1l << 0, exit_game, game_data);
