@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/01/29 14:45:55 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/01/29 17:37:42 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,10 +156,10 @@ void draw_player_view(t_data *game_data)
     double cp_y = game_data->y2;
 
     // Calcul de la longueur du rayon
-    double radius = 100.0; // Remplacez cette valeur par la longueur souhaitée
+    double radius = 200.0; // Remplacez cette valeur par la longueur souhaitée
 
     i = 1;
-    while (i < 9)
+    while (i < 10)
     {
         // Copie temporaire des coordonnées
         double temp_cp_x = cp_x;
@@ -187,27 +187,29 @@ int	ft_key(int key, t_data *gd)
 		exit_game(gd);
     if (key == 119 || key == 65362)
     {
-        gd->pos_y += 1;
-        gd->pos_x += 1;
+        gd->pos_y += gd->y2 / 4;
+        gd->pos_x += gd->x2 / 4;
         mlx_clear_window(gd->mlx, gd->win);
         draw_player_view(gd);
     }
     else if (key == 100 || key == 65363)
     {
-       gd->y2 -= 1;
+        gd->x2 = gd->x2*cos(gd->a) - gd->y2*sin(gd->a);
+        gd->y2 = gd->x2*sin(gd->a) + gd->y2*cos(gd->a);
         mlx_clear_window(gd->mlx, gd->win);
         draw_player_view(gd); 
     }
     else if (key == 115 || key == 65364)
     {
-        gd->pos_y -= 1;
-        gd->pos_x -= 1;
+        gd->pos_y -= gd->y2 / 4;
+        gd->pos_x -= gd->x2 / 4;
         mlx_clear_window(gd->mlx, gd->win);
         draw_player_view(gd);
     }
     else if (key == 97 || key == 65361)
     {
-        gd->y2 += 1;
+        gd->x2 = gd->x2*cos(gd->a) + gd->y2*sin(gd->a);
+        gd->y2 = -gd->x2*sin(gd->a) + gd->y2*cos(gd->a);
         mlx_clear_window(gd->mlx, gd->win);
         draw_player_view(gd);
     }
@@ -220,7 +222,7 @@ void ft_put_windows(t_data *game_data)
     game_data->a = 15 * M_PI / 180.0;
     game_data->pos_x = 200;
     game_data->pos_y = 200;
-    game_data->x2 = 100;
+    game_data->x2 = 200;
     game_data->y2 = 0;
     
     game_data->mlx = mlx_init();
