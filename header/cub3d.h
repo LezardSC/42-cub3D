@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/29 13:28:37 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/01/29 17:53:37 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_data
 	double	x2;
 	double	y2;
 	double	a;
+	double	c;
 }			t_data;
 
 int		main(int argc, char **argv);
