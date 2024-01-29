@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/01/29 14:07:55 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/01/29 14:45:55 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void draw_circle(t_data *game_data, int xc, int yc, int radius, int color)
     }
 }
 
-void draw_player_view(t_data *game_data)
+/*void draw_player_view(t_data *game_data)
 {
     int i;
     double cp_x = game_data->x2;
@@ -147,6 +147,38 @@ void draw_player_view(t_data *game_data)
         draw_line(game_data, game_data->pos_x, game_data->pos_y,cp_x,cp_y,0xFF2D00);
         i++;
     }
+}*/
+
+void draw_player_view(t_data *game_data)
+{
+    int i;
+    double cp_x = game_data->x2;
+    double cp_y = game_data->y2;
+
+    // Calcul de la longueur du rayon
+    double radius = 100.0; // Remplacez cette valeur par la longueur souhaitée
+
+    i = 1;
+    while (i < 9)
+    {
+        // Copie temporaire des coordonnées
+        double temp_cp_x = cp_x;
+        double temp_cp_y = cp_y;
+
+        // Transformation de rotation
+        cp_x = temp_cp_x * cos(game_data->a) - temp_cp_y * sin(game_data->a);
+        cp_y = temp_cp_x * sin(game_data->a) + temp_cp_y * cos(game_data->a);
+
+        // Normalisation de la longueur du rayon
+        double length = sqrt(cp_x * cp_x + cp_y * cp_y);
+        cp_x = (cp_x / length) * radius;
+        cp_y = (cp_y / length) * radius;
+
+        // Dessiner la ligne
+        draw_line(game_data, game_data->pos_x, game_data->pos_y, game_data->pos_x + cp_x, game_data->pos_y + cp_y, 0xFF2D00);
+
+        i++;
+    }
 }
 
 int	ft_key(int key, t_data *gd)
@@ -155,14 +187,26 @@ int	ft_key(int key, t_data *gd)
 		exit_game(gd);
     if (key == 119 || key == 65362)
     {
-        gd->pos_y -= 1;
-        gd->y2 -= 1;
+        gd->pos_y += 1;
+        gd->pos_x += 1;
         mlx_clear_window(gd->mlx, gd->win);
         draw_player_view(gd);
     }
+    else if (key == 100 || key == 65363)
+    {
+       gd->y2 -= 1;
+        mlx_clear_window(gd->mlx, gd->win);
+        draw_player_view(gd); 
+    }
     else if (key == 115 || key == 65364)
     {
-        gd->pos_y += 1;
+        gd->pos_y -= 1;
+        gd->pos_x -= 1;
+        mlx_clear_window(gd->mlx, gd->win);
+        draw_player_view(gd);
+    }
+    else if (key == 97 || key == 65361)
+    {
         gd->y2 += 1;
         mlx_clear_window(gd->mlx, gd->win);
         draw_player_view(gd);
