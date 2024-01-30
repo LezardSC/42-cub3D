@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/30 12:57:54 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/30 18:40:36 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,25 @@
 # include "../mlx/mlx.h"
 # include "../libft/libft.h"
 
+# include <math.h>
+
 # define TRUE 			1
 # define FALSE			0
 
-# define MINIMAP_HEIGHT	200
+# define MINIMAP_HEIGHT	150
 # define MINIMAP_WIDTH	200
 
 # define WHITE_COLOR	0x00FFFFFF
 # define RED_COLOR		0x00FF0000
 # define GREEN_COLOR	0x0000FF00
 # define BLUE_COLOR 	0x000000FF
+# define BLACK_COLOR	0x00000000
+# define YELLOW_COLOR	0x00FFFF00
+# define CYAN_COLOR		0x0000FFFF
+# define MAGENTA_COLOR	0x00FF00FF
 
-# define SPEED			0.07
+# define SPEED			0.06
+# define ROTATION_SPEED	0.1
 
 enum e_colors
 {
@@ -49,7 +56,9 @@ enum e_keys
 	UP = 119,
 	LEFT = 97,
 	DOWN = 115,
-	RIGHT = 100
+	RIGHT = 100,
+	ROTATE_LEFT = 106,
+	ROTATE_RIGHT = 107
 };
 
 typedef struct s_pixel {
@@ -66,6 +75,10 @@ typedef struct s_player
 {
 	double	pos_x;
 	double	pos_y;
+	double	x_2;
+	double	y_2;
+	double	angle;
+	double	copy_angle;
 	int		forward;
 	int		left;
 	int		right;

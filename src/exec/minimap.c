@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 02:38:40 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/30 15:26:20 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/30 18:42:29 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static void	fill_minimap(t_data *param)
 	{
 		while (x < MINIMAP_WIDTH)
 		{
-			my_mlx_pixel_put(&param->pixel, x, y, WHITE_COLOR);
+			my_mlx_pixel_put(&param->pixel, x, y, BLACK_COLOR);
 			x++;
 		}
 		x = 0;
