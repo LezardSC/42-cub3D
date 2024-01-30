@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/29 17:53:37 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/01/30 16:35:45 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ typedef struct s_data
 	int		pos_y;
 	double	x2;
 	double	y2;
-	double	a;
-	double	c;
+	double	angle;
+	double	copy_angle;
 }			t_data;
 
 int		main(int argc, char **argv);
@@ -79,5 +79,9 @@ char	*go_to_map(t_data *param);
 
 //visuals
 void ft_put_windows(t_data *game_data);
+
+//tools
+int	ft_key(int key, t_data *gd);  //prends les inputs
+void draw_player_view(t_data *game_data);  //print les rayon
 
 #endif
