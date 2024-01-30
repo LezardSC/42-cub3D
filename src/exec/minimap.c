@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 02:38:40 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/28 07:37:44 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/30 15:26:20 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,25 @@ void	my_mlx_circle_put(t_pixel *pixel, int center_x, int center_y, int color)
 	}
 }
 
+static void	fill_minimap(t_data *param)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (y < MINIMAP_HEIGHT)
+	{
+		while (x < MINIMAP_WIDTH)
+		{
+			my_mlx_pixel_put(&param->pixel, x, y, WHITE_COLOR);
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}
+
 int	show_minimap(t_data *param)
 {
 	int		x;
@@ -83,10 +102,8 @@ int	show_minimap(t_data *param)
 
 	x = 0;
 	y = 0;
-	param->pixel.img = mlx_new_image(param->mlx,
-			MINIMAP_WIDTH, MINIMAP_HEIGHT);
-	param->pixel.addr = mlx_get_data_addr(param->pixel.img, &param->pixel.bits_per_pixel,
-			&param->pixel.line_length, &param->pixel.endian);
+
+	fill_minimap(param);
 	while (param->map[y])
 	{
 		while (param->map[y][x])

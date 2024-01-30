@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 22:17:18 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/28 07:44:33 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/30 13:05:13 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static int	move_up(t_data *param)
 {
-	mlx_clear_window(param->mlx, param->win);
-	mlx_destroy_image(param->mlx, param->pixel.img);
 	param->player.pos_y -= SPEED;
 	show_minimap(param);
 	return (0);
@@ -23,8 +21,6 @@ static int	move_up(t_data *param)
 
 static int	move_left(t_data *param)
 {
-	mlx_clear_window(param->mlx, param->win);
-	mlx_destroy_image(param->mlx, param->pixel.img);
 	param->player.pos_x -= SPEED;
 	show_minimap(param);
 	return (0);
@@ -32,8 +28,6 @@ static int	move_left(t_data *param)
 
 static int	move_down(t_data *param)
 {
-	mlx_clear_window(param->mlx, param->win);
-	mlx_destroy_image(param->mlx, param->pixel.img);
 	param->player.pos_y += SPEED;
 	show_minimap(param);
 	return (0);
@@ -41,8 +35,6 @@ static int	move_down(t_data *param)
 
 static int	move_right(t_data *param)
 {
-	mlx_clear_window(param->mlx, param->win);
-	mlx_destroy_image(param->mlx, param->pixel.img);
 	param->player.pos_x += SPEED;
 	show_minimap(param);
 	return (0);
