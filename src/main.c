@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:02:43 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/28 07:37:58 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/30 13:05:25 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,10 @@ int	main(int argc, char **argv)
 	if (init_player(&param) == 1)
 		return (free_all_param(&param),
 			mlx_destroy_display(param.mlx), free(param.mlx), 1);
+	param.pixel.img = mlx_new_image(param.mlx,
+			MINIMAP_WIDTH, MINIMAP_HEIGHT);
+	param.pixel.addr = mlx_get_data_addr(param.pixel.img, &param.pixel.bits_per_pixel,
+			&param.pixel.line_length, &param.pixel.endian);
 	if (show_minimap(&param) == 1)
 		return (free_all_param(&param), mlx_destroy_display(param.mlx),
 			free(param.mlx), 1);
@@ -74,6 +78,8 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(param.mlx, move_player, &param);
 	mlx_loop(param.mlx);
 	free_all_param(&param);
+	mlx_clear_window(param.mlx, param.win);
+	mlx_destroy_image(param.mlx, param.pixel.img);
 	mlx_destroy_display(param.mlx);
 	return (free(param.mlx), close(param.fd), 0);
 }

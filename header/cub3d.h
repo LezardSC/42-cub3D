@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/28 07:38:50 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/30 12:57:54 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define GREEN_COLOR	0x0000FF00
 # define BLUE_COLOR 	0x000000FF
 
-# define SPEED			0.05
+# define SPEED			0.07
 
 enum e_colors
 {
