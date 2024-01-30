@@ -6,11 +6,12 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/01/29 17:58:46 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/01/30 11:09:01 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3d.h"
+#include <stdio.h>
 
 int exit_game(t_data *game_data)
 {
@@ -159,7 +160,7 @@ void draw_player_view(t_data *game_data)
     double radius = 200.0; // Remplacez cette valeur par la longueur souhaitée
 
     i = 1;
-    while (i < 10)
+    while (i < 90)
     {
         // Copie temporaire des coordonnées
         double temp_cp_x = cp_x;
@@ -213,14 +214,15 @@ int	ft_key(int key, t_data *gd)
         mlx_clear_window(gd->mlx, gd->win);
         draw_player_view(gd);
     }
+    printf(">>>>>>>%f | %f = %f\n", gd->x2, gd->y2, gd->x2 + gd->y2);
 	return (0);
 }
 
 void ft_put_windows(t_data *game_data)
 {
 
-    game_data->a = 15 * M_PI / 180.0;
-    game_data->c = 15 * 5 * M_PI / 180.0;
+    game_data->a = 1 * M_PI / 180.0;
+    game_data->c = 1 * 90/3 * M_PI / 180.0;
     game_data->pos_x = 200;
     game_data->pos_y = 200;
     game_data->x2 = 200;
