@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:09:29 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/28 03:29:39 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/30 18:50:45 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ int	init_player(t_data *param)
 	param->player.left = FALSE;
 	param->player.right = FALSE;
 	param->player.backward = FALSE;
+	param->player.angle = 90 * M_PI / 180.0;
+	param->player.copy_angle = 90 / 3 * M_PI / 180.0;
+	param->player.x_2 = 200;
+	param->player.y_2 = 0;
 	return (0);
 }
 
