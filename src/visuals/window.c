@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/01/30 11:09:01 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/01/30 11:20:42 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ void draw_player_view(t_data *game_data)
     double radius = 200.0; // Remplacez cette valeur par la longueur souhaitée
 
     i = 1;
-    while (i < 90)
+    while (i < 70)
     {
         // Copie temporaire des coordonnées
         double temp_cp_x = cp_x;
