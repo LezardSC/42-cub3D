@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/31 17:11:55 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/31 17:41:28 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define TRUE 			1
 # define FALSE			0
 
-# define MINIMAP_HEIGHT	300
+# define MINIMAP_HEIGHT	400
 # define MINIMAP_WIDTH	400
 
 # define WHITE_COLOR	0x00FFFFFF
