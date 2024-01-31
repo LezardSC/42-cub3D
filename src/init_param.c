@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:09:29 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/31 10:38:09 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/31 17:11:30 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,14 @@ static void	init_player(t_data *param)
 	param->player.left = FALSE;
 	param->player.right = FALSE;
 	param->player.backward = FALSE;
-	param->player.angle = 90 * M_PI / 180.0;
+	if (param->direction == 'N')
+		param->player.angle = 90 * M_PI / 180.0;
+	else if (param->direction == 'S')
+		param->player.angle = 270 * M_PI / 180.0;
+	else if (param->direction == 'E')
+		param->player.angle = 0 * M_PI / 180.0;
+	else if (param->direction == 'W')
+		param->player.angle = 180 * M_PI / 180.0;
 }
 
 int	init_pixels(t_data *param)
@@ -59,6 +66,7 @@ int	init_pixels(t_data *param)
 	else
 		param->pixel.size = (MINIMAP_HEIGHT / (param->max_y + 1));
 	param->pixel.radius = param->pixel.size / 2;
+	init_player(param);
 	return (0);
 }
 
@@ -72,6 +80,5 @@ int	init_param(t_data *param)
 	param->check_colors[F] = 0;
 	param->check_colors[C] = 0;
 	param->map = NULL;
-	init_player(param);
 	return (0);
 }
