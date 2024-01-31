@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:09:29 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/31 17:10:15 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/31 17:11:30 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static void	init_player(t_data *param)
 	param->player.left = FALSE;
 	param->player.right = FALSE;
 	param->player.backward = FALSE;
-	ft_printf("direction: %c\n", param->direction);
 	if (param->direction == 'N')
 		param->player.angle = 90 * M_PI / 180.0;
 	else if (param->direction == 'S')
