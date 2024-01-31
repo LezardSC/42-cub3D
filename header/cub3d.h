@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/25 23:17:41 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/26 22:39:33 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ typedef struct s_data
 	int		max_x;
 	int		max_y;
 	int		beginning_map;
+	
+	int		pos_x;          //for visuals
+	int		pos_y;
+
 }			t_data;
 
 int		main(int argc, char **argv);
@@ -70,5 +74,8 @@ void	print_double_char(char **str);
 int		ft_strlen_space(char *str);
 int		is_space_or_newline(char *buf);
 char	*go_to_map(t_data *param);
+
+//visuals
+void 	ft_put_windows(t_data *game_data);
 
 #endif
