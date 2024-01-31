@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/31 14:02:17 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/31 14:03:29 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,26 @@
 
 # include "../mlx/mlx.h"
 # include "../libft/libft.h"
+
+# include <math.h>
+
+# define TRUE 			1
+# define FALSE			0
+
+# define MINIMAP_HEIGHT	300
+# define MINIMAP_WIDTH	400
+
+# define WHITE_COLOR	0x00FFFFFF
+# define RED_COLOR		0x00FF0000
+# define GREEN_COLOR	0x0000FF00
+# define BLUE_COLOR 	0x000000FF
+# define BLACK_COLOR	0x00000000
+# define YELLOW_COLOR	0x00FFFF00
+# define CYAN_COLOR		0x0000FFFF
+# define MAGENTA_COLOR	0x00FF00FF
+
+# define SPEED			0.22
+# define ROTATION_SPEED	0.1
 
 enum e_colors
 {
@@ -30,30 +50,61 @@ enum e_textures
 	EA = 3
 };
 
+enum e_keys
+{
+	ESC = 65307,
+	UP = 119,
+	LEFT = 97,
+	DOWN = 115,
+	RIGHT = 100,
+	ROTATE_LEFT = 106,
+	ROTATE_RIGHT = 107
+};
+
+typedef struct s_pixel {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		size;
+	int		radius;
+}				t_pixel;
+
+typedef struct s_player
+{
+	double	pos_x;
+	double	pos_y;
+	double	angle;
+	int		forward;
+	int		left;
+	int		right;
+	int		backward;
+}				t_player;
+
 typedef struct s_data
 {
-	int		nb_lines;
-	int		fd;
-	int		*check_colors;
-	int		*textures;
-	int		*floor_color;
-	int		*sky_color;
-	void	*mlx;
-	void	*win;
-	char	*map_name;
-	char	**map;
-	char	**map_textures;
-	int		max_x;
-	int		max_y;
-	int		beginning_map;
-
-	int		pos_x;          //for visuals
-	int		pos_y;
-
+	void		*mlx;
+	void		*win;
+	int			nb_lines;
+	int			fd;
+	int			*check_colors;
+	int			*textures;
+	int			*floor_color;
+	int			*sky_color;
+	char		*map_name;
+	char		**map;
+	char		**map_textures;
+	int			max_x;
+	int			max_y;
+	int			beginning_map;
+	t_pixel		pixel;
+	t_player	player;
 }			t_data;
 
 int		main(int argc, char **argv);
 int		init_param(t_data *param);
+int		init_pixels(t_data *param);
 
 //parsing
 int		is_name_correct(t_data *param);
@@ -64,6 +115,23 @@ int		find_infos(t_data *param);
 int		fill_textures_colors(char *buf, t_data *param);
 int		check_error(t_data *param);
 int		fill_line_map(char *buf, t_data *param, int i);
+
+//exec
+int		close_win(t_data *param);
+int		deal_key(int key, t_data *param);
+int		key_release(int key, t_data *param);
+int		move_player(t_data *param);
+int		show_minimap(t_data *param);
+int		move_forward(t_data *param);
+int		move_backward(t_data *param);
+int		move_left(t_data *param);
+int		move_right(t_data *param);
+
+//draw
+
+void	my_mlx_pixel_put(t_pixel *pixel, int x, int y, int color);
+void	my_mlx_square_put(t_pixel *pixel, int x, int y, int color);
+void	my_mlx_circle_put(t_data *param, int color);
 
 //free
 int		free_all_param(t_data *param);
