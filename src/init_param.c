@@ -6,28 +6,26 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:09:29 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/30 18:50:45 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/31 10:38:09 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
 
-int	init_param(t_data *param)
+static int	init_map(t_data *param, int i)
 {
-	int	i;
-
-	i = 3;
 	param->floor_color = malloc(sizeof(int) * 3);
 	if (!param->floor_color)
 		return (1);
-	while (--i >= 0)
-		param->floor_color[i] = 0;
-	i = 3;
 	param->sky_color = malloc(sizeof(int) * 3);
 	if (!param->sky_color)
 		return (1);
+	i = 3;
 	while (--i >= 0)
+	{	
+		param->floor_color[i] = 0;
 		param->sky_color[i] = 0;
+	}
 	param->textures = malloc(sizeof(int) * 6);
 	if (!param->textures)
 		return (1);
@@ -40,16 +38,10 @@ int	init_param(t_data *param)
 	i = 4;
 	while (--i >= 0)
 		param->map_textures[i] = NULL;
-	param->check_colors = malloc(sizeof(int) * 2);
-	if (!param->check_colors)
-		return (1);
-	param->check_colors[F] = 0;
-	param->check_colors[C] = 0;
-	param->map = NULL;
 	return (0);
 }
 
-int	init_player(t_data *param)
+static void	init_player(t_data *param)
 {
 	param->player.pos_x = 0;
 	param->player.pos_y = 0;
@@ -58,10 +50,6 @@ int	init_player(t_data *param)
 	param->player.right = FALSE;
 	param->player.backward = FALSE;
 	param->player.angle = 90 * M_PI / 180.0;
-	param->player.copy_angle = 90 / 3 * M_PI / 180.0;
-	param->player.x_2 = 200;
-	param->player.y_2 = 0;
-	return (0);
 }
 
 int	init_pixels(t_data *param)
@@ -71,5 +59,19 @@ int	init_pixels(t_data *param)
 	else
 		param->pixel.size = (MINIMAP_HEIGHT / (param->max_y + 1));
 	param->pixel.radius = param->pixel.size / 2;
+	return (0);
+}
+
+int	init_param(t_data *param)
+{
+	if (init_map(param, 3) == 1)
+		return (1);
+	param->check_colors = malloc(sizeof(int) * 2);
+	if (!param->check_colors)
+		return (1);
+	param->check_colors[F] = 0;
+	param->check_colors[C] = 0;
+	param->map = NULL;
+	init_player(param);
 	return (0);
 }
