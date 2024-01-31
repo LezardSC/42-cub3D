@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+         #
+#    By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:09:10 by lezard            #+#    #+#              #
-#    Updated: 2024/01/26 22:34:28 by tmalidi          ###   ########.fr        #
+#    Updated: 2024/01/31 14:03:10 by jrenault         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,11 @@ SRC			 			= 	main.c \
 							parsing/infos_parsing.c \
 							parsing/fill_infos.c \
 							parsing/check_error.c \
-							visuals/window.c \
+							exec/close_win.c \
+							exec/deal_key.c \
+							exec/minimap.c \
+							exec/move_player.c \
+							exec/draw_pixels.c \
 
 OBJECTS			    	= ${addprefix ${BUILD_DIR},${SRC:.c=.o}}
 
