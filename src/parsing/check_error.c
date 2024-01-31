@@ -6,16 +6,14 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:57 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/26 17:50:57 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/31 16:53:50 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
 
-static int	no_wrong_arguments(t_data *param)
+static int	no_wrong_arguments(t_data *param, int i, int j)
 {
-	int	i;
-	int	j;
 	int	n;
 
 	i = 0;
@@ -25,8 +23,12 @@ static int	no_wrong_arguments(t_data *param)
 		j = 0;
 		while (param->map[i][j])
 		{
-			if (param->map[i][j] == 'N')
+			if (param->map[i][j] == 'N' || param->map[i][j] == 'E'
+					|| param->map[i][j] == 'W' || param->map[i][j] == 'S')
+			{
+				param->direction = param->map[i][j];
 				n++;
+			}
 			else if (param->map[i][j] != ' '
 				&& param->map[i][j] != '1' && param->map[i][j] != '0')
 				return (1);
@@ -79,7 +81,7 @@ static int	is_map_closed(t_data *param)
 
 int	check_error(t_data *param)
 {
-	if (no_wrong_arguments(param) == 1)
+	if (no_wrong_arguments(param, 0, 0) == 1)
 		return (ft_printf("Error\nInvalid map\n"), 1);
 	if (is_map_closed(param) == 1)
 		return (ft_printf("Error\nMap isn't closed\n"), 1);
