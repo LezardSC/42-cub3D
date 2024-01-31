@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/31 13:48:27 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/31 16:50:25 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct s_data
 	int			max_x;
 	int			max_y;
 	int			beginning_map;
+	char		direction;
 	t_pixel		pixel;
 	t_player	player;
 }			t_data;
