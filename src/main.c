@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:02:43 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/30 13:05:25 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/31 10:49:30 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	check_argc(int argc)
 static int	parsing_and_error(t_data *param, char *name)
 {
 	if (init_param(param) == 1)
-		return (1);
+		return (ft_printf("Error\nError in initialization\n"), 1);
 	param->map_name = ft_strdup(name);
 	if (!param->map_name)
 		return (1);
@@ -41,6 +41,29 @@ static int	parsing_and_error(t_data *param, char *name)
 	return (0);
 }
 
+static void	end_program(t_data *param)
+{
+	free_all_param(param);
+	mlx_clear_window(param->mlx, param->win);
+	mlx_destroy_image(param->mlx, param->pixel.img);
+	mlx_destroy_display(param->mlx);
+	free(param->mlx);
+	close(param->fd);
+}
+
+static int	display_map(t_data *param)
+{
+	param->pixel.img = mlx_new_image(param->mlx,
+			MINIMAP_WIDTH, MINIMAP_HEIGHT);
+	param->pixel.addr = mlx_get_data_addr(param->pixel.img,
+			&param->pixel.bits_per_pixel,
+			&param->pixel.line_length, &param->pixel.endian);
+	if (show_minimap(param) == 1)
+		return (free_all_param(param), mlx_destroy_display(param->mlx),
+			free(param->mlx), 1);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	param;
@@ -48,11 +71,7 @@ int	main(int argc, char **argv)
 	if (check_argc(argc))
 		return (1);
 	if (parsing_and_error(&param, argv[1]))
-	{
-		free_all_param(&param);
-		close(param.fd);
-		return (1);
-	}
+		return (free_all_param(&param), close(param.fd), 1);
 	param.mlx = mlx_init();
 	if (!param.mlx)
 		return (free_all_param(&param),
@@ -62,24 +81,12 @@ int	main(int argc, char **argv)
 	if (init_pixels(&param) == 1)
 		return (free_all_param(&param),
 			mlx_destroy_display(param.mlx), free(param.mlx), 1);
-	if (init_player(&param) == 1)
-		return (free_all_param(&param),
-			mlx_destroy_display(param.mlx), free(param.mlx), 1);
-	param.pixel.img = mlx_new_image(param.mlx,
-			MINIMAP_WIDTH, MINIMAP_HEIGHT);
-	param.pixel.addr = mlx_get_data_addr(param.pixel.img, &param.pixel.bits_per_pixel,
-			&param.pixel.line_length, &param.pixel.endian);
-	if (show_minimap(&param) == 1)
-		return (free_all_param(&param), mlx_destroy_display(param.mlx),
-			free(param.mlx), 1);
+	if (display_map(&param) == 1)
+		return (1);
 	mlx_hook(param.win, 02, 1L << 0, deal_key, &param);
 	mlx_hook(param.win, 17, 0, close_win, &param);
 	mlx_key_hook(param.win, key_release, &param);
 	mlx_loop_hook(param.mlx, move_player, &param);
 	mlx_loop(param.mlx);
-	free_all_param(&param);
-	mlx_clear_window(param.mlx, param.win);
-	mlx_destroy_image(param.mlx, param.pixel.img);
-	mlx_destroy_display(param.mlx);
-	return (free(param.mlx), close(param.fd), 0);
+	return (end_program(&param), 0);
 }

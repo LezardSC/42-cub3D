@@ -6,7 +6,7 @@
 #    By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:09:10 by lezard            #+#    #+#              #
-#    Updated: 2024/01/26 22:42:11 by jrenault         ###   ########lyon.fr    #
+#    Updated: 2024/01/31 13:56:28 by jrenault         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ SRC			 			= 	main.c \
 							exec/close_win.c \
 							exec/deal_key.c \
 							exec/minimap.c \
+							exec/move_player.c \
+							exec/draw_pixels.c \
 
 OBJECTS			    	= ${addprefix ${BUILD_DIR},${SRC:.c=.o}}
 

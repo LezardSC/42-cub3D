@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/30 18:40:36 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/31 13:48:27 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # define TRUE 			1
 # define FALSE			0
 
-# define MINIMAP_HEIGHT	150
-# define MINIMAP_WIDTH	200
+# define MINIMAP_HEIGHT	300
+# define MINIMAP_WIDTH	400
 
 # define WHITE_COLOR	0x00FFFFFF
 # define RED_COLOR		0x00FF0000
@@ -33,7 +33,7 @@
 # define CYAN_COLOR		0x0000FFFF
 # define MAGENTA_COLOR	0x00FF00FF
 
-# define SPEED			0.06
+# define SPEED			0.22
 # define ROTATION_SPEED	0.1
 
 enum e_colors
@@ -75,10 +75,7 @@ typedef struct s_player
 {
 	double	pos_x;
 	double	pos_y;
-	double	x_2;
-	double	y_2;
 	double	angle;
-	double	copy_angle;
 	int		forward;
 	int		left;
 	int		right;
@@ -108,7 +105,6 @@ typedef struct s_data
 int		main(int argc, char **argv);
 int		init_param(t_data *param);
 int		init_pixels(t_data *param);
-int		init_player(t_data *param);
 
 //parsing
 int		is_name_correct(t_data *param);
@@ -126,13 +122,16 @@ int		deal_key(int key, t_data *param);
 int		key_release(int key, t_data *param);
 int		move_player(t_data *param);
 int		show_minimap(t_data *param);
+int		move_forward(t_data *param);
+int		move_backward(t_data *param);
+int		move_left(t_data *param);
+int		move_right(t_data *param);
 
 //draw
 
 void	my_mlx_pixel_put(t_pixel *pixel, int x, int y, int color);
 void	my_mlx_square_put(t_pixel *pixel, int x, int y, int color);
-void	my_mlx_circle_put(t_pixel *pixel,
-			int center_x, int center_y, int color);
+void	my_mlx_circle_put(t_data *param, int color);
 
 //free
 int		free_all_param(t_data *param);

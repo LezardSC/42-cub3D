@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:53:14 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/19 18:29:30 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/31 10:49:52 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,3 @@ int	free_all_param(t_data *param)
 	free(param->map_textures);
 	return (0);
 }
-
-// int	free_init(t_data *param)
-// {
-// 	mlx_destroy_image(param->mlx, param->draw.ground);
-// 	mlx_destroy_image(param->mlx, param->draw.escape);
-// 	mlx_destroy_image(param->mlx, param->draw.item);
-// 	mlx_destroy_image(param->mlx, param->draw.player);
-// 	mlx_destroy_image(param->mlx, param->draw.wall_center);
-// 	return (0);
-// }
