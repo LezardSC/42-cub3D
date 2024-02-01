@@ -6,11 +6,12 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/01/30 16:37:54 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/02/01 11:13:21 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3d.h"
+#include <stdio.h>
 
 int exit_game(t_data *game_data)
 {
@@ -106,31 +107,73 @@ void draw_player_view(t_data *game_data)
     }
 }
 
+void draw_circle(t_data *game_data, int xc, int yc, int radius, int color)
+{
+    int x = radius;
+    int y = 0;
+    int radiusError = 1 - x;
+
+    while (x >= y)
+    {
+        // Tracer les rayons du cercle vers chaque point sur le cercle (sens horaire)
+        draw_line(game_data, xc, yc, xc + x, yc - y, color);
+        draw_line(game_data, xc, yc, xc - x, yc - y, color);
+        draw_line(game_data, xc, yc, xc + x, yc + y, color);
+        draw_line(game_data, xc, yc, xc - x, yc + y, color);
+        draw_line(game_data, xc, yc, xc + y, yc + x, color);
+        draw_line(game_data, xc, yc, xc - y, yc + x, color);
+        draw_line(game_data, xc, yc, xc + y, yc - x, color);
+        draw_line(game_data, xc, yc, xc - y, yc - x, color);
+
+        y++;
+
+        if (radiusError < 0)
+            radiusError += 2 * y + 1;
+        else
+        {
+            x--;
+            radiusError += 2 * (y - x) + 1;
+        }
+    }
+}
+
 int	ft_key(int key, t_data *gd)
 {
 	if (key == 65307)
 		exit_game(gd);
     if (key == 119 || key == 65362)
     {
-        gd->pos_y += (gd->x2*sin(gd->copy_angle) + gd->y2*cos(gd->copy_angle)) / 4;
-        gd->pos_x += (gd->x2*cos(gd->copy_angle) - gd->y2*sin(gd->copy_angle)) / 4;
+        gd->pos_y += (gd->x2*sin(gd->copy_angle) + gd->y2*cos(gd->copy_angle)) / 10;
+        gd->pos_x += (gd->x2*cos(gd->copy_angle) - gd->y2*sin(gd->copy_angle)) / 10;
     }
-    else if (key == 100 || key == 65363)
+    else if (key == 65363)
     {
         gd->x2 = gd->x2*cos(gd->angle) - gd->y2*sin(gd->angle);
         gd->y2 = gd->x2*sin(gd->angle) + gd->y2*cos(gd->angle); 
     }
     else if (key == 115 || key == 65364)
     {
-        gd->pos_y -= (gd->x2*sin(gd->copy_angle) + gd->y2*cos(gd->copy_angle)) / 4;
-        gd->pos_x -= (gd->x2*cos(gd->copy_angle) - gd->y2*sin(gd->copy_angle)) / 4;
+        gd->pos_y -= (gd->x2*sin(gd->copy_angle) + gd->y2*cos(gd->copy_angle)) / 10;
+        gd->pos_x -= (gd->x2*cos(gd->copy_angle) - gd->y2*sin(gd->copy_angle)) / 10;
     }
-    else if (key == 97 || key == 65361)
+    else if (key == 65361)
     {
         gd->x2 = gd->x2*cos(gd->angle) + gd->y2*sin(gd->angle);
         gd->y2 = -gd->x2*sin(gd->angle) + gd->y2*cos(gd->angle);
     }
+    else if (key == 113)
+    {
+        gd->pos_y -= (gd->x2*sin(120 * M_PI / 180.0) + gd->y2*cos(120 * M_PI / 180.0)) / 10;
+        gd->pos_x -= (gd->x2*cos(120 * M_PI / 180.0) - gd->y2*sin(120 * M_PI / 180.0)) / 10;
+    }
+    else if (key == 100)
+    {
+        gd->pos_y += (gd->x2*sin(120 * M_PI / 180.0) + gd->y2*cos(120 * M_PI / 180.0)) / 10;
+        gd->pos_x += (gd->x2*cos(120 * M_PI / 180.0) - gd->y2*sin(120 * M_PI / 180.0)) / 10; 
+    }
+    printf("%d\n", key);
     mlx_clear_window(gd->mlx, gd->win);
+    draw_circle(gd,gd->pos_x,gd->pos_y,20,0xFF2D00);
     draw_player_view(gd);
 	return (0);
 }
@@ -140,8 +183,8 @@ void ft_put_windows(t_data *game_data)
     //initilisation des données
     game_data->angle = 1 * M_PI / 180.0;
     game_data->copy_angle = 1 * 90/3 * M_PI / 180.0;
-    game_data->pos_x = 200;
-    game_data->pos_y = 200;
+    game_data->pos_x = 0;
+    game_data->pos_y = 0;
     game_data->x2 = 200;
     game_data->y2 = 0;
     
