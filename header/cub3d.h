@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/31 17:41:28 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/02/01 16:40:20 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,12 @@ typedef struct s_data
 	int			max_y;
 	int			beginning_map;
 	char		direction;
+	int			pos_x;
+	int			pos_y;
+	double		x2;
+	double		y2;
+	double		angle;
+	double		copy_angle;
 	t_pixel		pixel;
 	t_player	player;
 }			t_data;
@@ -146,5 +152,7 @@ char	*go_to_map(t_data *param);
 
 //visuals
 void 	ft_put_windows(t_data *game_data);
+int		ft_key(int key, t_data *gd);
+void	draw_player_view(t_data *game_data);
 
 #endif
