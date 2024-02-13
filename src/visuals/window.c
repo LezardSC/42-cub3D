@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/02/05 15:53:00 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/02/06 19:14:41 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,7 @@ int	ft_key(int key, t_data *gd)
         gd->pos_x += (gd->x2*cos(120 * M_PI / 180.0) - gd->y2*sin(120 * M_PI / 180.0)) / 10; 
     }
     mlx_clear_window(gd->mlx, gd->win);
-    draw_circle(gd,gd->pos_x,gd->pos_y,20,0xFF2D00);
+    draw_circle(gd,gd->pos_x,gd->pos_y,10,0xFF2D00);
     draw_player_view(gd);
 	return (0);
 }
