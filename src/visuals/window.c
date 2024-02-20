@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/02/13 15:52:15 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/02/20 14:23:47 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ int	ft_key(int key, t_data *gd)
 
 void ft_put_windows(t_data *game_data)
 {
-    /*//initilisation des données
+    //initilisation des données
     game_data->angle = 1 * M_PI / 180.0;
     game_data->copy_angle = 1 * 90/3 * M_PI / 180.0;
     game_data->pos_x = 100;
@@ -209,20 +209,5 @@ void ft_put_windows(t_data *game_data)
     mlx_key_hook(game_data->win, ft_key, game_data);
     
     mlx_hook(game_data->win, 17, 1l << 0, exit_game, game_data);
-    mlx_loop(game_data->mlx);*/
-
-    //affichage 3D
-
-    int cube = 1;
-
-    game_data->mlx = mlx_init();
-    game_data->win = mlx_new_window(game_data->mlx,720,720,"Cube3D");
-
-    void *wall = mlx_xpm_file_to_image(game_data->mlx, "textures/wall.xpm",&cube,&cube);
-    
-    mlx_hook(game_data->win, 17, 1l << 0, exit_game, game_data);
-
-    mlx_put_image_to_window(game_data->mlx,game_data->win,wall,480/4,480/4);
-    
     mlx_loop(game_data->mlx);
 }

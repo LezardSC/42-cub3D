@@ -6,7 +6,7 @@
 #    By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:09:10 by lezard            #+#    #+#              #
-#    Updated: 2024/01/24 13:53:10 by tmalidi          ###   ########.fr        #
+#    Updated: 2024/02/20 14:38:20 by tmalidi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC			 			= 	init_param.c \
 							parsing/fill_infos.c \
 							parsing/check_error.c \
 							visuals/window.c \
+							visuals/3d_view.c \
 							main.c \
 
 OBJECTS			    	= ${addprefix ${BUILD_DIR},${SRC:.c=.o}}
@@ -38,7 +39,7 @@ LIBFT					= libft.a
 LIB_DIR					= libft/
 
 GCC						= cc
-CFLAGS					= -Wall -Wextra -Werror -g3 -pthread
+CFLAGS					= -Wall -Wextra -Werror -g3 -pthread -fsanitize=address
 
 RM 						= rm -rf
 CLEAR					= clear
