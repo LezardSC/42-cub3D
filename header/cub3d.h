@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/30 16:35:45 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/02/20 14:23:07 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,11 @@ char	*go_to_map(t_data *param);
 
 //visuals
 void ft_put_windows(t_data *game_data);
+void ft_put_3dview(t_data *game_data);
 
 //tools
 int	ft_key(int key, t_data *gd);  //prends les inputs
 void draw_player_view(t_data *game_data);  //print les rayon
+int exit_game(t_data *game_data);
 
 #endif
