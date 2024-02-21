@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/02/20 14:23:47 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/02/21 16:20:13 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,10 @@ float calculerDistance(int x1, int y1, int x2, int y2) {
     return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
 }
 
-void draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color)
+float draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color)
 {
+    (void)color;
+    
     int dx = abs(x2 - x1);
     int dy = abs(y2 - y1);
     int sx, sy;
@@ -88,7 +90,12 @@ void draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color)
         }
     }
     if (x1 != x2 || y1 != y2)
+    {
         printf("distance == %f\n", calculerDistance(gd->pos_x,gd->pos_y,x1,y1));
+        return (calculerDistance(gd->pos_x,gd->pos_y,x1,y1));
+    }
+    return (-1);
+        //draw_vertical_line(gd,calculerDistance(gd->pos_x,gd->pos_y,x1,y1));
 }
 
 void draw_player_view(t_data *game_data)
@@ -96,14 +103,14 @@ void draw_player_view(t_data *game_data)
     int i;
     double cp_x = game_data->x2;
     double cp_y = game_data->y2;
-    double radius = 200.0;
+    double radius = 720.0;
 
     i = 1;
-    draw_line(game_data, 399,200,399,240,0x0000FF);
+    /*draw_line(game_data, 399,200,399,240,0x0000FF);
     draw_line(game_data, 439,200,439,240,0x0000FF);
     draw_line(game_data, 399,240,439,240,0x0000FF);
-    draw_line(game_data, 399,200,439,200,0x0000FF);
-    while (i < 70)
+    draw_line(game_data, 399,200,439,200,0x0000FF);*/
+    while (i < 72)
     {
         
         double temp_cp_x = cp_x;
@@ -113,7 +120,10 @@ void draw_player_view(t_data *game_data)
         cp_x = (cp_x / sqrt(cp_x * cp_x + cp_y * cp_y)) * radius;
         cp_y = (cp_y / sqrt(cp_x * cp_x + cp_y * cp_y)) * radius;
         if (i > 2)
-            draw_line(game_data, game_data->pos_x, game_data->pos_y, game_data->pos_x + cp_x, game_data->pos_y + cp_y, 0xFF2D00);
+        {
+            //draw_line(game_data, game_data->pos_x, game_data->pos_y, game_data->pos_x + cp_x, game_data->pos_y + cp_y, 0xFF2D00);
+            draw_vertical_line(game_data,draw_line(game_data, game_data->pos_x, game_data->pos_y, game_data->pos_x + cp_x, game_data->pos_y + cp_y, 0xFF2D00),i);
+        }
         i++;
     }
 }
@@ -183,7 +193,7 @@ int	ft_key(int key, t_data *gd)
         gd->pos_x += (gd->x2*cos(120 * M_PI / 180.0) - gd->y2*sin(120 * M_PI / 180.0)) / 10; 
     }
     mlx_clear_window(gd->mlx, gd->win);
-    draw_circle(gd,gd->pos_x,gd->pos_y,10,0xFF2D00);
+    //draw_circle(gd,gd->pos_x,gd->pos_y,10,0xFF2D00);
     draw_player_view(gd);
 	return (0);
 }
@@ -203,7 +213,7 @@ void ft_put_windows(t_data *game_data)
     game_data->win = mlx_new_window(game_data->mlx,720,480,"Cube3D");
     
     //position initiale du joueur
-    draw_player_view(game_data);
+    //draw_player_view(game_data);
     
     //fonction de deplacement
     mlx_key_hook(game_data->win, ft_key, game_data);
