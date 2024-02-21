@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/02/21 16:20:13 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/02/21 22:20:26 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,52 @@ int exit_game(t_data *game_data)
 
 float calculerDistance(int x1, int y1, int x2, int y2) {
     return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+}
+
+float other_draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color)
+{
+    (void)color;
+    
+    int dx = abs(x2 - x1);
+    int dy = abs(y2 - y1);
+    int sx, sy;
+
+    if (x1 < x2)
+        sx = 1;
+    else
+        sx = -1;
+
+    if (y1 < y2)
+        sy = 1;
+    else
+        sy = -1;
+
+    int err = dx - dy;
+    while (1)
+    {
+        mlx_pixel_put(gd->mlx, gd->win2, x1, y1, color);
+        if (x1 == x2 && y1 == y2)
+            break;
+
+        int e2 = 2 * err;
+        if (e2 > -dy)
+        {
+            err -= dy;
+            x1 += sx;
+        }
+        if (e2 < dx)
+        {
+            err += dx;
+            y1 += sy;
+        }
+    }
+    if (x1 != x2 || y1 != y2)
+    {
+        printf("distance == %f\n", calculerDistance(gd->pos_x,gd->pos_y,x1,y1));
+        return (calculerDistance(gd->pos_x,gd->pos_y,x1,y1));
+    }
+    return (-1);
+        //draw_vertical_line(gd,calculerDistance(gd->pos_x,gd->pos_y,x1,y1));
 }
 
 float draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color)
@@ -106,10 +152,10 @@ void draw_player_view(t_data *game_data)
     double radius = 720.0;
 
     i = 1;
-    /*draw_line(game_data, 399,200,399,240,0x0000FF);
+    draw_line(game_data, 399,200,399,240,0x0000FF);
     draw_line(game_data, 439,200,439,240,0x0000FF);
     draw_line(game_data, 399,240,439,240,0x0000FF);
-    draw_line(game_data, 399,200,439,200,0x0000FF);*/
+    draw_line(game_data, 399,200,439,200,0x0000FF);
     while (i < 72)
     {
         
@@ -164,8 +210,8 @@ int	ft_key(int key, t_data *gd)
 		exit_game(gd);
     if (key == 119 || key == 65362)
     {
-        gd->pos_y += (gd->x2*sin(gd->copy_angle) + gd->y2*cos(gd->copy_angle)) / 10;
-        gd->pos_x += (gd->x2*cos(gd->copy_angle) - gd->y2*sin(gd->copy_angle)) / 10;
+        gd->pos_y += (gd->x2*sin(gd->copy_angle) + gd->y2*cos(gd->copy_angle)) / 100;
+        gd->pos_x += (gd->x2*cos(gd->copy_angle) - gd->y2*sin(gd->copy_angle)) / 100;
     }
     else if (key == 65363)
     {
@@ -174,8 +220,8 @@ int	ft_key(int key, t_data *gd)
     }
     else if (key == 115 || key == 65364)
     {
-        gd->pos_y -= (gd->x2*sin(gd->copy_angle) + gd->y2*cos(gd->copy_angle)) / 10;
-        gd->pos_x -= (gd->x2*cos(gd->copy_angle) - gd->y2*sin(gd->copy_angle)) / 10;
+        gd->pos_y -= (gd->x2*sin(gd->copy_angle) + gd->y2*cos(gd->copy_angle)) / 100;
+        gd->pos_x -= (gd->x2*cos(gd->copy_angle) - gd->y2*sin(gd->copy_angle)) / 100;
     }
     else if (key == 65361)
     {
@@ -184,16 +230,18 @@ int	ft_key(int key, t_data *gd)
     }
     else if (key == 113)
     {
-        gd->pos_y -= (gd->x2*sin(120 * M_PI / 180.0) + gd->y2*cos(120 * M_PI / 180.0)) / 10;
-        gd->pos_x -= (gd->x2*cos(120 * M_PI / 180.0) - gd->y2*sin(120 * M_PI / 180.0)) / 10;
+        gd->pos_y -= (gd->x2*sin(120 * M_PI / 180.0) + gd->y2*cos(120 * M_PI / 180.0)) / 100;
+        gd->pos_x -= (gd->x2*cos(120 * M_PI / 180.0) - gd->y2*sin(120 * M_PI / 180.0)) / 100;
     }
     else if (key == 100)
     {
-        gd->pos_y += (gd->x2*sin(120 * M_PI / 180.0) + gd->y2*cos(120 * M_PI / 180.0)) / 10;
-        gd->pos_x += (gd->x2*cos(120 * M_PI / 180.0) - gd->y2*sin(120 * M_PI / 180.0)) / 10; 
+        gd->pos_y += (gd->x2*sin(120 * M_PI / 180.0) + gd->y2*cos(120 * M_PI / 180.0)) / 100;
+        gd->pos_x += (gd->x2*cos(120 * M_PI / 180.0) - gd->y2*sin(120 * M_PI / 180.0)) / 100; 
     }
     mlx_clear_window(gd->mlx, gd->win);
-    //draw_circle(gd,gd->pos_x,gd->pos_y,10,0xFF2D00);
+    mlx_clear_window(gd->mlx, gd->win2);
+    draw_floor(gd);
+    draw_circle(gd,gd->pos_x,gd->pos_y,10,0xFF2D00);
     draw_player_view(gd);
 	return (0);
 }
@@ -211,6 +259,7 @@ void ft_put_windows(t_data *game_data)
     //init de la fenetre
     game_data->mlx = mlx_init();
     game_data->win = mlx_new_window(game_data->mlx,720,480,"Cube3D");
+    game_data->win2 = mlx_new_window(game_data->mlx,720,480,"Cube3DV2");
     
     //position initiale du joueur
     //draw_player_view(game_data);

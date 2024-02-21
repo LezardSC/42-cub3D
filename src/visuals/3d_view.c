@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:22:01 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/02/21 16:18:33 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/02/21 22:19:45 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,18 @@ void *new_display(t_data *game_data, char *wall_data,int width, int height)
     return enlarged_wall;
 }
 
+void draw_floor(t_data *gd)
+{
+    int i;
+    
+    i = 0;
+    while (i < 720)
+    {
+        other_draw_line(gd,i,480/2,i,480,0x646464);
+        i++;
+    }
+}
+
 void draw_vertical_line(t_data *game_data, float dist, int ray)
 {
     if (dist == -1)
@@ -55,7 +67,12 @@ void draw_vertical_line(t_data *game_data, float dist, int ray)
     height = (20*480) / dist;
     float y1 = (480/2) - height/2;
     int x = (720/70)*ray;
-    draw_line(game_data,x,y1,x,y1+height,0xFF2D00);
+    int i = 0;
+    while (i < 10)
+    {
+        other_draw_line(game_data,x+i,y1,x+i,y1+height,0xFF2D00);
+        i++;
+    }
 }
 
 void ft_put_3dview(t_data *game_data)

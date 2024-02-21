@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/02/21 16:10:23 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/02/21 22:20:05 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_data
 	int		*sky_color;
 	void	*mlx;
 	void	*win;
+	void	*win2;
 	char	*map_name;
 	char	**map;
 	char	**map_textures;
@@ -88,5 +89,7 @@ int exit_game(t_data *game_data);
 float draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color);
 float calculerDistance(int x1, int y1, int x2, int y2);
 void draw_vertical_line(t_data *game_data, float dist, int ray);
+float other_draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color);
+void draw_floor(t_data *gd);
 
 #endif
