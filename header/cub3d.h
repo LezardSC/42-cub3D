@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/02/20 14:23:07 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/02/21 16:10:23 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,8 @@ void ft_put_3dview(t_data *game_data);
 int	ft_key(int key, t_data *gd);  //prends les inputs
 void draw_player_view(t_data *game_data);  //print les rayon
 int exit_game(t_data *game_data);
+float draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color);
+float calculerDistance(int x1, int y1, int x2, int y2);
+void draw_vertical_line(t_data *game_data, float dist, int ray);
 
 #endif
