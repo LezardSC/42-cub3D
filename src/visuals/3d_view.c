@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:22:01 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/02/20 15:04:29 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/02/21 15:04:18 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void *new_display(t_data *game_data, char *wall_data,int width, int height)
             int original_x = x * original_width / width;
             int original_y = y * original_height / height;
 
-            int original_index = original_y * sl + original_x * (bpp / 8);
+            int original_index = original_y * original_width * (bpp / 8) + original_x * (bpp / 8);
             int enlarged_index = y * sl + x * (bpp / 8);
 
             // Copie des données de l'image originale vers l'image agrandie
@@ -62,7 +62,7 @@ void ft_put_3dview(t_data *game_data)
     void *wall = mlx_xpm_file_to_image(game_data->mlx, "textures/wall_0.xpm", &cube, &cube);
     char *wall_data = mlx_get_data_addr(wall, &bpp, &sl, &endian);
 
-    void *final = new_display(game_data,wall_data,200,300);
+    void *final = new_display(game_data,wall_data,300,300);
     
     // Affichage de l'image agrandie dans la fenêtre
     mlx_put_image_to_window(game_data->mlx, game_data->win, final, 0, 0);
