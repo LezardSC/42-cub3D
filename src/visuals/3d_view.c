@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:22:01 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/02/21 22:19:45 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/02/22 16:13:43 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,14 @@ void draw_vertical_line(t_data *game_data, float dist, int ray)
         other_draw_line(game_data,x+i,y1,x+i,y1+height,0xFF2D00);
         i++;
     }
+}
+
+void put_pixel_to_image(t_data *gd, int x, int y, int color)
+{
+    char *dst = gd->addr + (y * gd->sl + x * (gd->bpp / 8));
+
+    // La couleur est représentée en format BGR (bleu, vert, rouge) sur 32 bits
+    *(unsigned int *)dst = color;
 }
 
 void ft_put_3dview(t_data *game_data)

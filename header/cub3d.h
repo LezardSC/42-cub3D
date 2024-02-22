@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/02/21 22:20:05 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/02/22 16:10:41 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,12 @@ typedef struct s_data
 	double	y2;
 	double	angle;
 	double	copy_angle;
+
+	void	*gi;
+	int 	sl;
+	int		bpp;
+	int		endian;
+	char	*addr;
 }			t_data;
 
 int		main(int argc, char **argv);
@@ -91,5 +97,6 @@ float calculerDistance(int x1, int y1, int x2, int y2);
 void draw_vertical_line(t_data *game_data, float dist, int ray);
 float other_draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color);
 void draw_floor(t_data *gd);
+void put_pixel_to_image(t_data *gd, int x, int y, int color);
 
 #endif
