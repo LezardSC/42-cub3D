@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/02/22 16:20:31 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/02/22 22:06:58 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,8 +211,8 @@ int	ft_key(int key, t_data *gd)
     }
     mlx_clear_window(gd->mlx, gd->win);
     mlx_clear_window(gd->mlx, gd->win2);
-    mlx_destroy_image(gd->mlx,gd->gi);
-    gd->gi = mlx_new_image(gd->mlx,720,480);
+    //mlx_destroy_image(gd->mlx,gd->gi);
+    //gd->gi = mlx_new_image(gd->mlx,720,480);
     draw_floor(gd);
     mlx_put_image_to_window(gd->mlx,gd->win2,gd->gi,0,0);
     draw_circle(gd,gd->pos_x,gd->pos_y,10,0xFF2D00);

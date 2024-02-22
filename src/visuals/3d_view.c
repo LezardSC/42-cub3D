@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:22:01 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/02/22 16:13:43 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/02/22 22:09:23 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void draw_floor(t_data *gd)
     i = 0;
     while (i < 720)
     {
+        other_draw_line(gd,i,0,i,480/2,0x0000FF);
         other_draw_line(gd,i,480/2,i,480,0x646464);
         i++;
     }
