@@ -6,7 +6,7 @@
 #    By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:09:10 by lezard            #+#    #+#              #
-#    Updated: 2024/02/26 19:56:29 by tmalidi          ###   ########.fr        #
+#    Updated: 2024/02/26 20:05:27 by tmalidi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC			 			= 	init_param.c \
 							visuals/3d_view.c \
 							visuals/exit_view.c \
 							visuals/key.c \
+							visuals/raycasting.c \
 							main.c \
 
 OBJECTS			    	= ${addprefix ${BUILD_DIR},${SRC:.c=.o}}
