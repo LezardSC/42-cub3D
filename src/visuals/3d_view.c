@@ -6,12 +6,14 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:22:01 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/02/22 22:09:23 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/02/26 18:27:53 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3d.h"
 #include <stdio.h>
+
+//inutile pour l'instant
 
 void *new_display(t_data *game_data, char *wall_data,int width, int height)
 {
@@ -53,7 +55,7 @@ void draw_floor(t_data *gd)
     i = 0;
     while (i < 720)
     {
-        other_draw_line(gd,i,0,i,480/2,0x0000FF);
+        other_draw_line(gd,i,0,i,480/2,0x0100FF);
         other_draw_line(gd,i,480/2,i,480,0x646464);
         i++;
     }
@@ -84,9 +86,9 @@ void put_pixel_to_image(t_data *gd, int x, int y, int color)
     *(unsigned int *)dst = color;
 }
 
-void ft_put_3dview(t_data *game_data)
+/*void ft_put_3dview(t_data *game_data)
 {
-    /*// Initialisation des données du jeu
+    // Initialisation des données du jeu
     
     int bpp = 0;
     int sl = 0;
@@ -111,7 +113,7 @@ void ft_put_3dview(t_data *game_data)
     mlx_hook(game_data->win, 17, 1L << 0, exit_game, game_data);
 
     // Boucle principale
-    mlx_loop(game_data->mlx);*/
+    mlx_loop(game_data->mlx);
 
     int i = 0;
 
@@ -125,4 +127,4 @@ void ft_put_3dview(t_data *game_data)
         draw_vertical_line(game_data, dist++,i++);
 
     mlx_loop(game_data->mlx);
-}
+}*/
