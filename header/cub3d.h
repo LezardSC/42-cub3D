@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/02/22 16:10:41 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/02/26 19:50:35 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../mlx/mlx.h"
 # include "../libft/libft.h"
 # include <math.h>
+# include <stdio.h>
 
 enum e_colors
 {
@@ -60,6 +61,10 @@ typedef struct s_data
 	int		bpp;
 	int		endian;
 	char	*addr;
+
+	double radius;
+	int		sx;
+	int		sy;
 }			t_data;
 
 int		main(int argc, char **argv);
@@ -93,7 +98,7 @@ int	ft_key(int key, t_data *gd);  //prends les inputs
 void draw_player_view(t_data *game_data);  //print les rayon
 int exit_game(t_data *game_data);
 float draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color);
-float calculerDistance(int x1, int y1, int x2, int y2);
+float calc_dist(int x1, int y1, int x2, int y2);
 void draw_vertical_line(t_data *game_data, float dist, int ray);
 float other_draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color);
 void draw_floor(t_data *gd);

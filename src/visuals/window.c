@@ -6,19 +6,12 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/02/26 14:43:53 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/02/26 19:57:15 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3d.h"
 #include <stdio.h>
-
-int exit_game(t_data *game_data)
-{
-    mlx_destroy_window(game_data->mlx, game_data->win2);
-    mlx_destroy_display(game_data->mlx);
-    exit(0);
-}
 
 float calculerDistance(int x1, int y1, int x2, int y2) {
     return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
@@ -173,51 +166,6 @@ void draw_circle(t_data *game_data, int xc, int yc, int radius, int color)
             radiusError += 2 * (y - x) + 1;
         }
     }
-}
-
-int	ft_key(int key, t_data *gd)
-{
-	if (key == 65307)
-		exit_game(gd);
-    if (key == 119 || key == 65362)
-    {
-        gd->pos_y += (gd->x2*sin(gd->copy_angle) + gd->y2*cos(gd->copy_angle)) / 100;
-        gd->pos_x += (gd->x2*cos(gd->copy_angle) - gd->y2*sin(gd->copy_angle)) / 100;
-    }
-    else if (key == 65363)
-    {
-        gd->x2 = gd->x2*cos(gd->angle) - gd->y2*sin(gd->angle);
-        gd->y2 = gd->x2*sin(gd->angle) + gd->y2*cos(gd->angle); 
-    }
-    else if (key == 115 || key == 65364)
-    {
-        gd->pos_y -= (gd->x2*sin(gd->copy_angle) + gd->y2*cos(gd->copy_angle)) / 100;
-        gd->pos_x -= (gd->x2*cos(gd->copy_angle) - gd->y2*sin(gd->copy_angle)) / 100;
-    }
-    else if (key == 65361)
-    {
-        gd->x2 = gd->x2*cos(gd->angle) + gd->y2*sin(gd->angle);
-        gd->y2 = -gd->x2*sin(gd->angle) + gd->y2*cos(gd->angle);
-    }
-    else if (key == 113)
-    {
-        gd->pos_y -= (gd->x2*sin(120 * M_PI / 180.0) + gd->y2*cos(120 * M_PI / 180.0)) / 100;
-        gd->pos_x -= (gd->x2*cos(120 * M_PI / 180.0) - gd->y2*sin(120 * M_PI / 180.0)) / 100;
-    }
-    else if (key == 100)
-    {
-        gd->pos_y += (gd->x2*sin(120 * M_PI / 180.0) + gd->y2*cos(120 * M_PI / 180.0)) / 100;
-        gd->pos_x += (gd->x2*cos(120 * M_PI / 180.0) - gd->y2*sin(120 * M_PI / 180.0)) / 100; 
-    }
-    //mlx_clear_window(gd->mlx, gd->win);
-    //mlx_clear_window(gd->mlx, gd->win2);
-    //mlx_destroy_image(gd->mlx,gd->gi);
-    //gd->gi = mlx_new_image(gd->mlx,720,480);
-    draw_floor(gd);
-    mlx_put_image_to_window(gd->mlx,gd->win2,gd->gi,0,0);
-    draw_circle(gd,gd->pos_x,gd->pos_y,10,0xFF2D00);
-    draw_player_view(gd);
-	return (0);
 }
 
 void ft_put_windows(t_data *game_data)
