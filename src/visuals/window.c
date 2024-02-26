@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/02/23 14:30:35 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/02/26 14:43:53 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int exit_game(t_data *game_data)
 {
-    mlx_destroy_window(game_data->mlx, game_data->win);
+    mlx_destroy_window(game_data->mlx, game_data->win2);
     mlx_destroy_display(game_data->mlx);
     exit(0);
 }
@@ -91,7 +91,7 @@ float draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color)
     int err = dx - dy;
     while ((x1 < 400 || y1 < 200 +1) || (x1 > 440 - 2 || y1 > 240 - 1))
     {
-        mlx_pixel_put(gd->mlx, gd->win, x1, y1, color);
+        //mlx_pixel_put(gd->mlx, gd->win, x1, y1, color);
         if (x1 == x2 && y1 == y2)
             break;
 
@@ -209,7 +209,7 @@ int	ft_key(int key, t_data *gd)
         gd->pos_y += (gd->x2*sin(120 * M_PI / 180.0) + gd->y2*cos(120 * M_PI / 180.0)) / 100;
         gd->pos_x += (gd->x2*cos(120 * M_PI / 180.0) - gd->y2*sin(120 * M_PI / 180.0)) / 100; 
     }
-    mlx_clear_window(gd->mlx, gd->win);
+    //mlx_clear_window(gd->mlx, gd->win);
     //mlx_clear_window(gd->mlx, gd->win2);
     //mlx_destroy_image(gd->mlx,gd->gi);
     //gd->gi = mlx_new_image(gd->mlx,720,480);
@@ -232,7 +232,7 @@ void ft_put_windows(t_data *game_data)
     
     //init de la fenetre
     game_data->mlx = mlx_init();
-    game_data->win = mlx_new_window(game_data->mlx,720,480,"Cube3D");
+    //game_data->win = mlx_new_window(game_data->mlx,720,480,"Cube3D");
     game_data->win2 = mlx_new_window(game_data->mlx,720,480,"Cube3D");
     game_data->gi = mlx_new_image(game_data->mlx,720,480);
     game_data->addr = mlx_get_data_addr(game_data->gi,&game_data->bpp,&game_data->sl,&game_data->endian);
@@ -241,8 +241,8 @@ void ft_put_windows(t_data *game_data)
     //draw_player_view(game_data);
     
     //fonction de deplacement
-    mlx_key_hook(game_data->win, ft_key, game_data);
+    mlx_key_hook(game_data->win2, ft_key, game_data);
     
-    mlx_hook(game_data->win, 17, 1l << 0, exit_game, game_data);
+    mlx_hook(game_data->win2, 17, 1l << 0, exit_game, game_data);
     mlx_loop(game_data->mlx);
 }
