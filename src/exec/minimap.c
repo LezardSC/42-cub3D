@@ -12,6 +12,8 @@
 
 #include "../../header/cub3d.h"
 
+//	Fill the minimap with black. It was too difficult to update the map if there was no background.
+
 static void	fill_minimap(t_data *param, int color)
 {
 	int	x;
@@ -31,6 +33,8 @@ static void	fill_minimap(t_data *param, int color)
 	}
 }
 
+//get the first position of the player in the parsing then delete it so the position is now stocked in the struct.
+
 static void	player_first_position(t_data *param, int y, int x)
 {
 	param->map[y][x] = '0';
@@ -39,6 +43,9 @@ static void	player_first_position(t_data *param, int y, int x)
 	param->player.pos_y = y * param->pixel.size
 		+ param->pixel.radius;
 }
+
+//display the minimap on the screen by creating a square each time it see a wall.
+//the player will be drawn in the move_player functions.
 
 int	show_minimap(t_data *param)
 {

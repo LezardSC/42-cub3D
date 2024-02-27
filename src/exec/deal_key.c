@@ -12,6 +12,13 @@
 
 #include "../../header/cub3d.h"
 
+/*
+	I have a boolean for each direction and when the button is pressed, the player move and when the key is released,
+	the boolean turn false and then the player is not moving anymore. That's the technique so we can have smooth movements.
+
+	rotate_left and right change the rotation. I don't think I use the smooth way, I should add that later.
+*/
+
 static int	rotate_left(t_data *param)
 {
 	param->player.angle -= ROTATION_SPEED;

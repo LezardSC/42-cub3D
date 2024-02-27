@@ -12,6 +12,14 @@
 
 #include "../../header/cub3d.h"
 
+/*
+	each function to move check if there is collision, and move the player in the direction based on the rotation.
+	the calcul is weird and I used GPT to help me to be honest, but it works well and that's the principal.
+
+	check collision will just do what the name says. It's not perfect right now because it check with the center of the player,
+	so the player could go half in the wall then glitch and pass through it. We will see that later.
+*/
+
 static int	check_collision(t_data *param, double new_y, double new_x)
 {
 	int	check_y;

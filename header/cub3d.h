@@ -15,9 +15,7 @@
 
 # include "../mlx/mlx.h"
 # include "../libft/libft.h"
-# include <math.h>
 # include <stdio.h>
-
 # include <math.h>
 
 # define TRUE 			1
@@ -35,15 +33,18 @@
 # define CYAN_COLOR			0x0000FFFF
 # define MAGENTA_COLOR		0x00FF00FF
 
+//define the speed of the player and the rotation speed. The speed has to be adjust if using valgrind because it slow the program.
 # define SPEED			0.22
 # define ROTATION_SPEED	0.1
 
+//for the color of the floor and sky
 enum e_colors
 {
 	F = 0,
 	C = 1
 };
 
+//for the textures of the wall depending of the direction.
 enum e_textures
 {
 	NO = 0,
@@ -63,6 +64,7 @@ enum e_keys
 	ROTATE_RIGHT = 107
 };
 
+//classic struct for the pixels
 typedef struct s_pixel {
 	void	*img;
 	char	*addr;
@@ -73,12 +75,13 @@ typedef struct s_pixel {
 	int		radius;
 }				t_pixel;
 
+//struct with anything concerning the player.
 typedef struct s_player
 {
-	double	pos_x;
+	double	pos_x; //position of the player
 	double	pos_y;
 	double	angle;
-	int		forward;
+	int		forward; //bools for the smooth move
 	int		left;
 	int		right;
 	int		backward;
@@ -86,41 +89,42 @@ typedef struct s_player
 
 typedef struct s_data
 {
-	int		nb_lines;
-	int		fd;
-	int		*check_colors;
-	int		*textures;
-	int		*floor_color;
-	int		*sky_color;
-	void	*mlx;
-	void	*win;
-	void	*win2;
-	char	*map_name;
-	char	**map;
-	char	**map_textures;
-	int		max_x;
-	int		max_y;
-	int		min_y;
-	int		pos_x;
-	int		pos_y;
-	double	x2;
-	double	y2;
-	double	angle;
-	double	copy_angle;
-
-	void	*gi;
-	int 	sl;
-	int		bpp;
-	int		endian;
-	char	*addr;
-
-	double radius;
-	int		sx;
-	int		sy;
+	//my stuff
+	int			nb_lines;
+	int			fd;
+	int			*check_colors;
+	int			*textures;
+	int			*floor_color; //the color of the floor, the 3 int are stocked in this array
+	int			*sky_color; //the color of the sky
+	void		*mlx;
+	void		*win;
+	char		*map_name;
+	char		**map; //the map is stocked here.
+	char		**map_textures; // the texture path is stocked here. I don't check if the path is valid.
+	int			max_x; //max x of the array, so the end of the biggest line of the map. The rest is filled with '0'
+	int			max_y; //max y of the array, so the last line of the map.
 	int			beginning_map;
-	char		direction;
+	char		direction; //direction where the player is facing at the beginning
 	t_pixel		pixel;
 	t_player	player;
+
+//your stuff
+	void		*win2;
+	int			pos_x;
+	int			pos_y;
+	double		x2;
+	double		y2;
+	double		angle;
+	double		copy_angle;
+	void		*gi;
+	int			sl;
+	int			bpp;
+	int			endian;
+	char		*addr;
+	double		radius;
+	int			sx;
+	int			sy;
+
 }			t_data;
 
 int		main(int argc, char **argv);
