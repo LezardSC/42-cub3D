@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 17:06:01 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/19 17:31:07 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/31 11:04:55 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,34 @@ static int	all_infos_here(t_data *param)
 	return (0);
 }
 
+static int	find_max_x(char *buf, t_data *param)
+{
+	int	size;
+
+	size = 0;
+	while (buf)
+	{
+		if (!buf)
+			return (ft_printf("Error\nget_next_line error\n"), 1);
+		param->nb_lines++;
+		size = ft_strlen(buf);
+		if (size > param->max_x)
+			param->max_x = size;
+		free(buf);
+		buf = get_next_line(param->fd);
+	}
+	param->max_x -= 2;
+	free(buf);
+	return (0);
+}
+
 int	find_infos(t_data *param)
 {
 	char	*buf;
 
 	buf = get_next_line(param->fd);
 	if (!buf)
-		return (ft_printf("Error\nget_next_line error", 1));
+		return (ft_printf("Error\nget_next_line error\n"), 1);
 	while (!is_line_map(buf))
 	{
 		param->nb_lines++;
@@ -48,8 +69,12 @@ int	find_infos(t_data *param)
 			return (free(buf), 1);
 		free(buf);
 		buf = get_next_line(param->fd);
+		if (!buf)
+			return (ft_printf("Error\nget_next_line error\n"), 1);
 	}
-	free(buf);
+	param->beginning_map = param->nb_lines + 1;
+	if (find_max_x(buf, param) == 1)
+		return (1);
 	if (!all_infos_here(param))
 		return (ft_printf("Error\nMissing infos\n"), 1);
 	return (0);

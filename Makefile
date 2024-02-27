@@ -35,6 +35,11 @@ SRC			 			= 	init_param.c \
 							visuals/key.c \
 							visuals/raycasting.c \
 							main.c \
+							exec/close_win.c \
+							exec/deal_key.c \
+							exec/minimap.c \
+							exec/move_player.c \
+							exec/draw_pixels.c \
 
 OBJECTS			    	= ${addprefix ${BUILD_DIR},${SRC:.c=.o}}
 
