@@ -64,13 +64,22 @@ static int	display_map(t_data *param)
 	return (0);
 }
 
+/*
+-bzero secure the struct.
+-check_argc check if there is only one arg, which is the map.
+-parsing and error will parse the map to be sure it's an existing and correct map.
+-we init mlx and window.
+-init_pixels will init the pixel size of the minimap. We will have to adjust that to work with the real map too.
+-display_map will show the minimap on the screen. We will have to adjust that to work with the real map too.
+-the mlx hook deal with keys, close the windows, move the player dynamically, etc. We will have to adjust the real map moves to adapt.
+-key release and move player allow the player to move smoothly.
+*/
+
 int	main(int argc, char **argv)
 {
 	t_data	param;
 
 	ft_bzero(&param, sizeof(t_data));
-	//ft_put_3dview(&param);
-	ft_put_windows(&param);
 	if (check_argc(argc))
 		return (1);
 	if (parsing_and_error(&param, argv[1]))
