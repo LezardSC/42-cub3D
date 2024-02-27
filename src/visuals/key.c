@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 18:54:28 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/02/26 19:10:35 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/02/27 16:20:43 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_key(int key, t_data *gd)
     else if (key == 113 || key == 100)
         front_back_move(key, gd);
     draw_floor(gd);
-    mlx_put_image_to_window(gd->mlx,gd->win2,gd->gi,0,0);
     draw_player_view(gd);
+    mlx_put_image_to_window(gd->mlx,gd->win2,gd->gi,0,0);
 	return (0);
 }
