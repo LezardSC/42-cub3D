@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/02/26 20:08:50 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/02/27 16:41:04 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ void ft_put_windows(t_data *game_data)
     //initilisation des données
     game_data->angle = 1 * M_PI / 180.0;
     game_data->copy_angle = 1 * 90/3 * M_PI / 180.0;
-    game_data->pos_x = 100;
-    game_data->pos_y = 0 + 100;
-    game_data->x2 = 200 + 100;
-    game_data->y2 = 0 + 100;
+    game_data->pos_x = 5;
+    game_data->pos_y = 5;
+    game_data->x2 = game_data->pos_x + 720;
+    game_data->y2 = game_data->pos_y;
     
     //init de la fenetre
     game_data->mlx = mlx_init();
