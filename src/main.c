@@ -22,6 +22,9 @@ static int	check_argc(int argc)
 	return (0);
 }
 
+//This function will check error and parse.
+//I don't think you don't need to touch it.
+
 static int	parsing_and_error(t_data *param, char *name)
 {
 	if (init_param(param) == 1)
@@ -41,6 +44,8 @@ static int	parsing_and_error(t_data *param, char *name)
 	return (0);
 }
 
+//end the program and free everything
+
 static void	end_program(t_data *param)
 {
 	free_all_param(param);
@@ -50,6 +55,10 @@ static void	end_program(t_data *param)
 	free(param->mlx);
 	close(param->fd);
 }
+
+//Will create the image of the minimap.
+//That's where you need to start include your code.
+//The minimap has to be displayed after the map so...
 
 static int	display_map(t_data *param)
 {

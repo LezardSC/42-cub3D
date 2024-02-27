@@ -12,6 +12,11 @@
 
 #include "../../header/cub3d.h"
 
+/*
+Here I have the function to draw a pixel, and also one for a square, for the walls of the minimap, and two to draw a circle, for the
+player.
+*/
+
 void	my_mlx_pixel_put(t_pixel *pixel, int x, int y, int color)
 {
 	char	*dst;
