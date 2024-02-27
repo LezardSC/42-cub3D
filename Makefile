@@ -40,6 +40,7 @@ SRC			 			= 	init_param.c \
 							exec/minimap.c \
 							exec/move_player.c \
 							exec/draw_pixels.c \
+							exec/map.c
 
 OBJECTS			    	= ${addprefix ${BUILD_DIR},${SRC:.c=.o}}
 

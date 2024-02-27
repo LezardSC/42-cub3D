@@ -50,7 +50,8 @@ static void	end_program(t_data *param)
 {
 	free_all_param(param);
 	mlx_clear_window(param->mlx, param->win);
-	mlx_destroy_image(param->mlx, param->pixel.img);
+	mlx_destroy_image(param->mlx, param->drawmm.img);
+	mlx_destroy_image(param->mlx, param->drawmap.img);
 	mlx_destroy_display(param->mlx);
 	free(param->mlx);
 	close(param->fd);
@@ -62,11 +63,19 @@ static void	end_program(t_data *param)
 
 static int	display_map(t_data *param)
 {
-	param->pixel.img = mlx_new_image(param->mlx,
+	param->drawmap.img = mlx_new_image(param->mlx, MAP_WIDTH, MAP_HEIGHT);
+	param->drawmap.addr = mlx_get_data_addr(param->drawmap.img,
+			&param->drawmap.bits_per_pixel,
+			&param->drawmap.line_length, &param->drawmap.endian);
+	param->drawmm.img = mlx_new_image(param->mlx,
 			MINIMAP_WIDTH, MINIMAP_HEIGHT);
-	param->pixel.addr = mlx_get_data_addr(param->pixel.img,
-			&param->pixel.bits_per_pixel,
-			&param->pixel.line_length, &param->pixel.endian);
+	param->drawmm.addr = mlx_get_data_addr(param->drawmm.img,
+			&param->drawmm.bits_per_pixel,
+			&param->drawmm.line_length, &param->drawmm.endian);
+	param->x2 = param->player.pos_x + MAP_WIDTH;
+	param->y2 = param->player.pos_y;
+	param->copy_angle = 1 * 90 / 3 * M_PI / 180.0;
+	show_map(param);
 	if (show_minimap(param) == 1)
 		return (free_all_param(param), mlx_destroy_display(param->mlx),
 			free(param->mlx), 1);
@@ -98,7 +107,7 @@ int	main(int argc, char **argv)
 		return (free_all_param(&param),
 			mlx_destroy_display(param.mlx), free(param.mlx), 1);
 	param.win = mlx_new_window(param.mlx,
-			1920, 1080, "cub3d");
+			MAP_WIDTH, MAP_HEIGHT, "cub3d");
 	if (init_pixels(&param) == 1)
 		return (free_all_param(&param),
 			mlx_destroy_display(param.mlx), free(param.mlx), 1);

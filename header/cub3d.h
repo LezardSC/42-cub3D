@@ -15,14 +15,15 @@
 
 # include "../mlx/mlx.h"
 # include "../libft/libft.h"
-# include <stdio.h>
 # include <math.h>
 
 # define TRUE 			1
 # define FALSE			0
 
-# define MINIMAP_HEIGHT	400
-# define MINIMAP_WIDTH	400
+# define MINIMAP_HEIGHT	300
+# define MINIMAP_WIDTH	300
+# define MAP_HEIGHT		1080
+# define MAP_WIDTH		1920
 
 # define WHITE_COLOR		0x00FFFFFF
 # define RED_COLOR			0x00FF0000
@@ -32,9 +33,12 @@
 # define YELLOW_COLOR		0x00FFFF00
 # define CYAN_COLOR			0x0000FFFF
 # define MAGENTA_COLOR		0x00FF00FF
+# define GRAY_COLOR			0x646464
+# define SCARLET_COLOR		0xFF2D00
 
-//define the speed of the player and the rotation speed. The speed has to be adjust if using valgrind because it slow the program.
-# define SPEED			0.22
+//define the speed of the player and the rotation speed. The speed has to be adjust if using valgrind because it slow down
+// the program.
+# define SPEED			1
 # define ROTATION_SPEED	0.1
 
 //for the color of the floor and sky
@@ -65,7 +69,7 @@ enum e_keys
 };
 
 //classic struct for the pixels
-typedef struct s_pixel {
+typedef struct s_draw_minimap {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -73,7 +77,17 @@ typedef struct s_pixel {
 	int		endian;
 	int		size;
 	int		radius;
-}				t_pixel;
+}				t_drawmm;
+
+typedef struct s_draw_map {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		size;
+	int		radius;
+}				t_drawmap;
 
 //struct with anything concerning the player.
 typedef struct s_player
@@ -105,22 +119,14 @@ typedef struct s_data
 	int			max_y; //max y of the array, so the last line of the map.
 	int			beginning_map;
 	char		direction; //direction where the player is facing at the beginning
-	t_pixel		pixel;
+	t_drawmm	drawmm;
+	t_drawmap	drawmap;
 	t_player	player;
 
 //your stuff
-	void		*win2;
-	int			pos_x;
-	int			pos_y;
 	double		x2;
 	double		y2;
-	double		angle;
 	double		copy_angle;
-	void		*gi;
-	int			sl;
-	int			bpp;
-	int			endian;
-	char		*addr;
 	double		radius;
 	int			sx;
 	int			sy;
@@ -147,6 +153,7 @@ int		deal_key(int key, t_data *param);
 int		key_release(int key, t_data *param);
 int		move_player(t_data *param);
 int		show_minimap(t_data *param);
+void 	show_map(t_data *param);
 int		move_forward(t_data *param);
 int		move_backward(t_data *param);
 int		move_left(t_data *param);
@@ -154,8 +161,9 @@ int		move_right(t_data *param);
 
 //draw
 
-void	my_mlx_pixel_put(t_pixel *pixel, int x, int y, int color);
-void	my_mlx_square_put(t_pixel *pixel, int x, int y, int color);
+void	my_mlx_pixel_put_map(t_drawmap *drawmap, int x, int y, int color);
+void	my_mlx_pixel_put_mini(t_drawmm *drawmm, int x, int y, int color);
+void	my_mlx_square_put(t_drawmm *drawmm, int x, int y, int color);
 void	my_mlx_circle_put(t_data *param, int color);
 
 //free
@@ -169,18 +177,17 @@ int		is_space_or_newline(char *buf);
 char	*go_to_map(t_data *param);
 
 //visuals
-void ft_put_windows(t_data *game_data);
-void ft_put_3dview(t_data *game_data);
+void	ft_put_3dview(t_data *game_data);
 
 //tools
-int	ft_key(int key, t_data *gd);  //prends les inputs
-void draw_player_view(t_data *game_data);  //print les rayon
-int exit_game(t_data *game_data);
-float draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color);
-float calc_dist(int x1, int y1, int x2, int y2);
-void draw_vertical_line(t_data *game_data, float dist, int ray);
-float other_draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color);
-void draw_floor(t_data *gd);
-void put_pixel_to_image(t_data *gd, int x, int y, int color);
+int		ft_key(int key, t_data *gd);  //prends les inputs
+void	draw_player_view(t_data *game_data);  //print les rayon
+int		exit_game(t_data *game_data);
+float	draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color);
+float	calc_dist(int x1, int y1, int x2, int y2);
+void	draw_vertical_line(t_data *game_data, float dist, int ray);
+float	other_draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color);
+void	draw_floor(t_data *gd);
+void	put_pixel_to_image(t_data *gd, int x, int y, int color);
 
 #endif

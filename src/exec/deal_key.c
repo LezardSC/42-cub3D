@@ -22,6 +22,7 @@
 static int	rotate_left(t_data *param)
 {
 	param->player.angle -= ROTATION_SPEED;
+	show_map(param);
 	show_minimap(param);
 	return (0);
 }
@@ -29,6 +30,7 @@ static int	rotate_left(t_data *param)
 static int	rotate_right(t_data *param)
 {
 	param->player.angle += ROTATION_SPEED;
+	show_map(param);
 	show_minimap(param);
 	return (0);
 }
