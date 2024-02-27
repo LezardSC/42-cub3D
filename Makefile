@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:09:10 by lezard            #+#    #+#              #
-#    Updated: 2024/01/31 14:03:10 by jrenault         ###   ########lyon.fr    #
+#    Updated: 2024/02/26 20:05:27 by tmalidi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,7 @@ HEADER_FILE				= cub3d.h
 HEADERS_WITH_PATH		= $(addprefix $(HEADER_DIR),$(HEADER_FILE))
 
 DIR						= src/
-SRC			 			= 	main.c \
-							init_param.c \
+SRC			 			= 	init_param.c \
 							free_param.c \
 							cub3d_utils.c \
 							parsing/map_parsing.c \
@@ -30,6 +29,12 @@ SRC			 			= 	main.c \
 							parsing/infos_parsing.c \
 							parsing/fill_infos.c \
 							parsing/check_error.c \
+							visuals/window.c \
+							visuals/3d_view.c \
+							visuals/exit_view.c \
+							visuals/key.c \
+							visuals/raycasting.c \
+							main.c \
 							exec/close_win.c \
 							exec/deal_key.c \
 							exec/minimap.c \
@@ -42,7 +47,7 @@ LIBFT					= libft.a
 LIB_DIR					= libft/
 
 GCC						= cc
-CFLAGS					= -Wall -Wextra -Werror -g3 -pthread
+CFLAGS					= -Wall -Wextra -Werror -g3 -pthread -fsanitize=address
 
 RM 						= rm -rf
 CLEAR					= clear
