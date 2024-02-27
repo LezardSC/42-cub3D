@@ -14,7 +14,7 @@
 
 int exit_game(t_data *game_data)
 {
-    mlx_destroy_window(game_data->mlx, game_data->win2);
+    mlx_destroy_window(game_data->mlx, game_data->win);
     mlx_destroy_display(game_data->mlx);
     exit(0);
 }

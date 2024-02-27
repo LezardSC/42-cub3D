@@ -1,66 +1,55 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   key.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 18:54:28 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/02/26 19:10:35 by tmalidi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
-#include "../../header/cub3d.h"
+// #include "../../header/cub3d.h"
 
-void    front_back_move(int key, t_data *gd)
-{
-   if (key == 113)
-    {
-        gd->pos_y -= (gd->x2*sin(120 * M_PI / 180.0) + gd->y2*cos(120 * M_PI / 180.0)) / 100;
-        gd->pos_x -= (gd->x2*cos(120 * M_PI / 180.0) - gd->y2*sin(120 * M_PI / 180.0)) / 100;
-    }
-    else if (key == 100)
-    {
-        gd->pos_y += (gd->x2*sin(120 * M_PI / 180.0) + gd->y2*cos(120 * M_PI / 180.0)) / 100;
-        gd->pos_x += (gd->x2*cos(120 * M_PI / 180.0) - gd->y2*sin(120 * M_PI / 180.0)) / 100; 
-    } 
-}
+// void	front_back_move(int key, t_data *gd)
+// {
+// 	if (key == 113)
+// 	{
+// 		gd->pos_y -= (gd->x2*sin(120 * M_PI / 180.0) + gd->y2*cos(120 * M_PI / 180.0)) / 100;
+// 		gd->pos_x -= (gd->x2*cos(120 * M_PI / 180.0) - gd->y2*sin(120 * M_PI / 180.0)) / 100;
+// 	}
+// 	else if (key == 100)
+// 	{
+// 		gd->pos_y += (gd->x2*sin(120 * M_PI / 180.0) + gd->y2*cos(120 * M_PI / 180.0)) / 100;
+// 		gd->pos_x += (gd->x2*cos(120 * M_PI / 180.0) - gd->y2*sin(120 * M_PI / 180.0)) / 100; 
+// 	} 
+// }
 
-void    rotate_view(int key, t_data *gd)
-{
-    if (key == 65361)
-    {
-        gd->x2 = gd->x2*cos(gd->angle) + gd->y2*sin(gd->angle);
-        gd->y2 = -gd->x2*sin(gd->angle) + gd->y2*cos(gd->angle);
-    }
-    else if (key == 65363)
-    {
-        gd->x2 = gd->x2*cos(gd->angle) - gd->y2*sin(gd->angle);
-        gd->y2 = gd->x2*sin(gd->angle) + gd->y2*cos(gd->angle); 
-    }
-}
+// void	rotate_view(int key, t_data *gd)
+// {
+// 	if (key == 65361)
+// 	{
+// 		gd->x2 = gd->x2*cos(gd->angle) + gd->y2*sin(gd->angle);
+// 		gd->y2 = -gd->x2*sin(gd->angle) + gd->y2*cos(gd->angle);
+// 	}
+// 	else if (key == 65363)
+// 	{
+// 		gd->x2 = gd->x2*cos(gd->angle) - gd->y2*sin(gd->angle);
+// 		gd->y2 = gd->x2*sin(gd->angle) + gd->y2*cos(gd->angle); 
+// 	}
+// }
 
-int	ft_key(int key, t_data *gd)
-{
-    printf("%d\n",key);
-	if (key == 65307)
-		exit_game(gd);
-    if (key == 119 || key == 65362)
-    {
-        gd->pos_y += (gd->x2*sin(gd->copy_angle) + gd->y2*cos(gd->copy_angle)) / 100;
-        gd->pos_x += (gd->x2*cos(gd->copy_angle) - gd->y2*sin(gd->copy_angle)) / 100;
-    }
-    else if (key == 115 || key == 65364)
-    {
-        gd->pos_y -= (gd->x2*sin(gd->copy_angle) + gd->y2*cos(gd->copy_angle)) / 100;
-        gd->pos_x -= (gd->x2*cos(gd->copy_angle) - gd->y2*sin(gd->copy_angle)) / 100;
-    }
-    else if (key == 65363 || key == 65361)
-        rotate_view(key,gd);
-    else if (key == 113 || key == 100)
-        front_back_move(key, gd);
-    draw_floor(gd);
-    mlx_put_image_to_window(gd->mlx,gd->win2,gd->gi,0,0);
-    draw_player_view(gd);
-	return (0);
-}
+// int	ft_key(int key, t_data *gd)
+// {
+// 	ft_printf("%d\n",key);
+// 	if (key == 65307)
+// 		exit_game(gd);
+// 	if (key == 119 || key == 65362)
+// 	{
+// 		gd->pos_y += (gd->x2*sin(gd->copy_angle) + gd->y2*cos(gd->copy_angle)) / 100;
+// 		gd->pos_x += (gd->x2*cos(gd->copy_angle) - gd->y2*sin(gd->copy_angle)) / 100;
+// 	}
+// 	else if (key == 115 || key == 65364)
+// 	{
+// 		gd->pos_y -= (gd->x2*sin(gd->copy_angle) + gd->y2*cos(gd->copy_angle)) / 100;
+// 		gd->pos_x -= (gd->x2*cos(gd->copy_angle) - gd->y2*sin(gd->copy_angle)) / 100;
+// 	}
+// 	else if (key == 65363 || key == 65361)
+// 		rotate_view(key,gd);
+// 	else if (key == 113 || key == 100)
+// 		front_back_move(key, gd);
+// 	draw_floor(gd);
+// 	mlx_put_image_to_window(gd->mlx, gd->win2, gd->drawmap.img, 0, 0);
+// 	draw_player_view(gd);
+// 	return (0);
+// }
