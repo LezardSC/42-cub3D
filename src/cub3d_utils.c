@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:23 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/19 18:28:27 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/25 23:25:22 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*go_to_map(t_data *param)
 	buf = get_next_line(param->fd);
 	if (!buf)
 		return (ft_printf("Error\nget_next_line error\n"), NULL);
-	while (buf && param->nb_lines < param->min_y - 1)
+	while (buf && param->nb_lines < param->beginning_map - 1)
 	{
 		free(buf);
 		buf = get_next_line(param->fd);
@@ -64,5 +64,6 @@ char	*go_to_map(t_data *param)
 			return (ft_printf("Error\nget_next_line error\n"), NULL);
 		param->nb_lines++;
 	}
+	param->nb_lines--;
 	return (buf);
 }

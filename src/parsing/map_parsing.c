@@ -6,48 +6,23 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:26 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/20 15:30:57 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/01/26 03:15:09 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3d.h"
-
-static int	get_max_x_and_y(t_data *param)
-{
-	char	*buf;
-	int		size;
-
-	param->nb_lines = 0;
-	size = 0;
-	param->max_x = 0;
-	param->fd = open(param->map_name, O_RDONLY);
-	if (!param->fd)
-		return (ft_printf("Error\nCouldn't open the file\n"), 1);
-	buf = go_to_map(param);
-	while (buf)
-	{
-		param->nb_lines++;
-		size = ft_strlen(buf);
-		if (size > param->max_x)
-			param->max_x = size;
-		free(buf);
-		buf = get_next_line(param->fd);
-	}
-	free(buf);
-	return (0);
-}
 
 static int	allocate_map(t_data *param)
 {
 	int		i;
 
 	i = 0;
-	param->map = malloc(sizeof(char *) * (param->max_y + 1));
+	param->map = malloc(sizeof(char *) * (param->max_y + 2));
 	if (!param->map)
 		return (1);
-	while (i < param->max_y)
+	while (i <= param->max_y)
 	{
-		param->map[i] = malloc(sizeof(char) * (param->max_x + 1));
+		param->map[i] = malloc(sizeof(char) * (param->max_x + 2));
 		if (!param->map[i])
 			return (1);
 		i++;
@@ -56,7 +31,7 @@ static int	allocate_map(t_data *param)
 	return (0);
 }
 
-static int	fill_line_map(char *buf, t_data *param, int i)
+int	fill_line_map(char *buf, t_data *param, int i)
 {
 	int	j;
 
@@ -68,7 +43,7 @@ static int	fill_line_map(char *buf, t_data *param, int i)
 		param->map[i][j] = buf[j];
 		j++;
 	}
-	while (j < param->max_x)
+	while (j <= param->max_x)
 	{
 		param->map[i][j] = ' ';
 		j++;
@@ -83,6 +58,7 @@ static int	fill_map(t_data *param)
 	char	*buf;
 
 	i = 0;
+	close(param->fd);
 	param->fd = open(param->map_name, O_RDONLY);
 	if (param->fd == -1)
 		return (ft_printf("Error\nCouldn't open the map.\n"), 1);
@@ -107,16 +83,12 @@ int	map_parsing(t_data *param)
 	if (param->fd == -1)
 		return (ft_printf("Error\nCouldn't open the map.\n"), 1);
 	param->nb_lines = 0;
+	param->max_x = 0;
 	if (find_infos(param) == 1)
 		return (1);
-	param->min_y = param->nb_lines + 1;
-	close(param->fd);
-	if (get_max_x_and_y(param) == 1)
-		return (1);
-	param->max_y = param->nb_lines - param->min_y - 1;
+	param->max_y = param->nb_lines - param->beginning_map;
 	if (allocate_map(param) == 1)
 		return (1);
-	close(param->fd);
 	if (fill_map(param) == 1)
 		return (1);
 	return (0);
