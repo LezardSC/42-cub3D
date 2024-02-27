@@ -6,7 +6,7 @@
 /*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/31 17:41:28 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/02/02 17:25:18 by jrenault         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@
 # define MINIMAP_HEIGHT	400
 # define MINIMAP_WIDTH	400
 
-# define WHITE_COLOR	0x00FFFFFF
-# define RED_COLOR		0x00FF0000
-# define GREEN_COLOR	0x0000FF00
-# define BLUE_COLOR 	0x000000FF
-# define BLACK_COLOR	0x00000000
-# define YELLOW_COLOR	0x00FFFF00
-# define CYAN_COLOR		0x0000FFFF
-# define MAGENTA_COLOR	0x00FF00FF
+# define WHITE_COLOR		0x00FFFFFF
+# define RED_COLOR			0x00FF0000
+# define GREEN_COLOR		0x0000FF00
+# define BLUE_COLOR 		0x000000FF
+# define BLACK_COLOR		0x00000000
+# define YELLOW_COLOR		0x00FFFF00
+# define CYAN_COLOR			0x0000FFFF
+# define MAGENTA_COLOR		0x00FF00FF
 
 # define SPEED			0.22
 # define ROTATION_SPEED	0.1
@@ -145,6 +145,6 @@ int		is_space_or_newline(char *buf);
 char	*go_to_map(t_data *param);
 
 //visuals
-void 	ft_put_windows(t_data *game_data);
+void	ft_put_windows(t_data *game_data);
 
 #endif
