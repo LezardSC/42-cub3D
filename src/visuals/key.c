@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 18:54:28 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/02/27 21:28:58 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/01 14:46:05 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ void    rotate_view(int key, t_data *gd)
 
 int	ft_key(int key, t_data *gd)
 {
+    int tmp_x;
+    int tmp_y;
+    
+    tmp_x = gd->pos_x;
+    tmp_y = gd->pos_y;
 	if (key == 65307)
 		exit_game(gd);
     if (key == 119 || key == 65362)
@@ -58,11 +63,14 @@ int	ft_key(int key, t_data *gd)
         rotate_view(key,gd);
     else if (key == 113 || key == 100)
         front_back_move(key, gd);
+    if (!collision(gd,gd->pos_x,gd->pos_y))
+    {
+        gd->pos_x = tmp_x;
+        gd->pos_y = tmp_y;
+    }
     mlx_clear_window(gd->mlx,gd->win);
-    //making_map(gd);
     draw_floor(gd);
     draw_player_view(gd);
-    mlx_put_image_to_window(gd->mlx,gd->win2,gd->gi,0,0);
-    //collision(gd,gd->pos_x,gd->pos_y);
+    mlx_put_image_to_window(gd->mlx,gd->win,gd->gi,0,0);
 	return (0);
 }
