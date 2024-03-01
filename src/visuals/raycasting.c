@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 19:13:58 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/02/27 21:29:08 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/01 14:56:49 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ float other_draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color)
     int err = dx - dy;
     while (1)
     {
-        put_pixel_to_image(gd,x1,y1,color);
-        if (x1 == x2 && y1 == y2)
+        if ((y1 < 1080 && y1 > 0))
+            put_pixel_to_image(gd,x1,y1,color);
+        if ((x1 == x2 && y1 == y2))
             break;
-
         int e2 = 2 * err;
         if (e2 > -dy)
         {
@@ -54,12 +54,8 @@ float other_draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color)
         }
     }
     if (x1 != x2 || y1 != y2)
-    {
-        printf("distance == %f\n", calculerDistance(gd->pos_x,gd->pos_y,x1,y1));
         return (calculerDistance(gd->pos_x,gd->pos_y,x1,y1));
-    }
     return (-1);
-        //draw_vertical_line(gd,calculerDistance(gd->pos_x,gd->pos_y,x1,y1));
 }
 
 float draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color)
@@ -83,7 +79,6 @@ float draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color)
     int err = dx - dy;
     while (1)
     {
-        //mlx_pixel_put(gd->mlx, gd->win, x1, y1, color);
         if ((x1 == x2 && y1 == y2) || !collision(gd,x1,y1))
             break;
         int e2 = 2 * err;
@@ -99,10 +94,7 @@ float draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color)
         }
     }
     if (x1 != x2 || y1 != y2)
-    {
-        printf("distance == %f\n", calculerDistance(gd->pos_x,gd->pos_y,x1,y1));
         return (calculerDistance(gd->pos_x,gd->pos_y,x1,y1));
-    }
     return (-1);
 }
 
@@ -127,7 +119,7 @@ float draw_line_for_wall(t_data *gd, int x1, int y1, int x2, int y2, int color)
     int err = dx - dy;
     while (1)
     {
-        mlx_pixel_put(gd->mlx, gd->win, x1, y1, color);
+        //mlx_pixel_put(gd->mlx, gd->win2, x1, y1, color);
         if (x1 == x2 && y1 == y2)
             break;
 
@@ -145,7 +137,7 @@ float draw_line_for_wall(t_data *gd, int x1, int y1, int x2, int y2, int color)
     }
     if (x1 != x2 || y1 != y2)
     {
-        printf("distance == %f\n", calculerDistance(gd->pos_x,gd->pos_y,x1,y1));
+        //printf("distance == %f\n", calculerDistance(gd->pos_x,gd->pos_y,x1,y1));
         return (calculerDistance(gd->pos_x,gd->pos_y,x1,y1));
     }
     return (-1);
