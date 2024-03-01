@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:22:01 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/01 15:08:49 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/01 15:22:24 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ void draw_floor(t_data *gd)
     int i;
     
     i = 0;
-    while (i < 1920)
+    while (i < WINDOW_WIDTH)
     {
-        other_draw_line(gd,i,0,i,1080/2,0x0100FF);
-        other_draw_line(gd,i,1080/2,i,1080,0x646464);
+        other_draw_line(gd,i,0,i,WINDOW_HEIGHT/2,BLUE_COLOR);
+        other_draw_line(gd,i,WINDOW_HEIGHT/2,i,WINDOW_HEIGHT,GREY_COLOR);
         i++;
     }
 }
@@ -67,13 +67,13 @@ void draw_vertical_line(t_data *game_data, float dist, int ray)
         return;
     float height;
 
-    height = (30*1080) / dist;
-    float y1 = (1080/2) - height/2;
-    int x = (1920/73)*ray;
+    height = (30*WINDOW_HEIGHT) / dist;
+    float y1 = (WINDOW_HEIGHT/2) - height/2;
+    int x = (WINDOW_WIDTH/73)*ray;
     int i = 0;
     while (i < 30)
     {
-        other_draw_line(game_data,x+i,y1,x+i,y1+height,0xFF2D00);
+        other_draw_line(game_data,x+i,y1,x+i,y1+height,ORANGE_COLOR);
         i++;
     }
 }
@@ -94,7 +94,7 @@ void put_pixel_to_image(t_data *gd, int x, int y, int color)
     int cube = 72;
     
     game_data->mlx = mlx_init();
-    game_data->win = mlx_new_window(game_data->mlx, 1920, 1920, "Cube3D");
+    game_data->win = mlx_new_window(game_data->mlx, WINDOW_WIDTH, WINDOW_WIDTH, "Cube3D");
 
     // Chargement de l'image .xpm originale
     void *wall = mlx_xpm_file_to_image(game_data->mlx, "textures/wall_0.xpm", &cube, &cube);
@@ -104,7 +104,7 @@ void put_pixel_to_image(t_data *gd, int x, int y, int color)
     void *side = new_display(game_data,wall_data,50,300);
     
     // Affichage de l'image agrandie dans la fenêtre
-    mlx_put_image_to_window(game_data->mlx, game_data->win, final, 1920/2 - 300/2, 100);
+    mlx_put_image_to_window(game_data->mlx, game_data->win, final, WINDOW_WIDTH/2 - 300/2, 100);
     mlx_put_image_to_window(game_data->mlx, game_data->win, side, 50, 100);
 
     // Gestion de l'événement de fermeture de la fenêtre
@@ -116,7 +116,7 @@ void put_pixel_to_image(t_data *gd, int x, int y, int color)
     int i = 0;
 
     game_data->mlx = mlx_init();
-    game_data->win = mlx_new_window(game_data->mlx, 1920, 1920, "Cube3D");
+    game_data->win = mlx_new_window(game_data->mlx, WINDOW_WIDTH, WINDOW_WIDTH, "Cube3D");
 
     mlx_hook(game_data->win, 17, 1L << 0, exit_game, game_data);
     
