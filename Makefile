@@ -47,7 +47,7 @@ LIBFT					= libft.a
 LIB_DIR					= libft/
 
 GCC						= cc
-CFLAGS					= -Wall -Wextra -Werror
+CFLAGS					= -Wall -Wextra -Werror -fsanitize=address -g3
 
 RM 						= rm -rf
 CLEAR					= clear
