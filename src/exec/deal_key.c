@@ -30,12 +30,16 @@ int	move_player(t_data *param)
 {
 	if (param->player.forward == TRUE)
 		move_forward(param);
-	else if (param->player.backward == TRUE)
+	if (param->player.backward == TRUE)
 		move_backward(param);
-	else if (param->player.left == TRUE)
+	if (param->player.left == TRUE)
 		move_left(param);
-	else if (param->player.right == TRUE)
+	if (param->player.right == TRUE)
 		move_right(param);
+	if (param->player.rotate_left == TRUE)
+		rotate_left(param);
+	if (param->player.rotate_right == TRUE)
+		rotate_right(param);
 	return (0);
 }
 
@@ -49,6 +53,10 @@ int	key_release(int key, t_data *param)
 		param->player.left = FALSE;
 	if (key == RIGHT)
 		param->player.right = FALSE;
+	if (key == ROTATE_LEFT)
+		param->player.rotate_left = FALSE;
+	if (key == ROTATE_RIGHT)
+		param->player.rotate_right = FALSE;
 	return (0);
 }
 
@@ -65,8 +73,8 @@ int	deal_key(int key, t_data *param)
 	if (key == RIGHT)
 		param->player.right = TRUE;
 	if (key == ROTATE_LEFT)
-		rotate_left(param);
+		param->player.rotate_left = TRUE;
 	if (key == ROTATE_RIGHT)
-		rotate_right(param);
+		param->player.rotate_right = TRUE;
 	return (0);
 }
