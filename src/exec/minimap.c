@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 02:38:40 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/31 21:11:17 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/03/12 17:39:09 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ int	show_minimap(t_data *param)
 	}
 	my_mlx_circle_put(param, BLUE_COLOR);
 	mlx_put_image_to_window(param->mlx, param->win, param->pixel.img, 0, 0);
+	//printf("OUIIIII\n");
 	return (0);
 }
