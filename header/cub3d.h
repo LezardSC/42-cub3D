@@ -38,7 +38,7 @@
 # define ORANGE_COLOR	0xFF2D00
 
 # define SPEED			0.22
-# define ROTATION_SPEED	0.1
+# define ROTATION_SPEED	0.002
 
 # define WINDOW_WIDTH	1920
 # define WINDOW_HEIGHT	1080
@@ -87,6 +87,8 @@ typedef struct s_player
 	int		left;
 	int		right;
 	int		backward;
+	int		rotate_left;
+	int		rotate_right;
 }				t_player;
 
 typedef struct s_data

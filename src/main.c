@@ -83,7 +83,7 @@ int	main(int argc, char **argv)
 	if (init_pixels(&param) == 1)
 		return (free_all_param(&param),
 			mlx_destroy_display(param.mlx), free(param.mlx), 1);
-	ft_put_windows(&param);
+//	ft_put_windows(&param);
 	if (display_map(&param) == 1)
 		return (1);
 	mlx_hook(param.win, 02, 1L << 0, deal_key, &param);
