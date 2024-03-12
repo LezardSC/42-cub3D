@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:22:01 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/12 16:45:12 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/12 17:06:56 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,14 @@ void	put_pixel_to_image(t_data *gd, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = gd->pixel.addr + (y * gd->pixel.line_length + x
-			* (gd->pixel.bits_per_pixel / 8));
+	dst = gd->addr + (y * gd->sl + x * (gd->bpp / 8));
 	*(unsigned int *)dst = color;
 }
+
+/*void	put_pixel_to_image(t_data *gd, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = gd->addr + (y * gd->sl + x * (gd->bpp / 8));
+	*(unsigned int *)dst = color;
+}*/
