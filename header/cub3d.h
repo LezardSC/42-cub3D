@@ -37,8 +37,8 @@
 # define GREY_COLOR		0x646464
 # define ORANGE_COLOR	0xFF2D00
 
-# define SPEED			0.22
-# define ROTATION_SPEED	0.002
+# define SPEED			2.2
+# define ROTATION_SPEED	0.02
 
 # define WINDOW_WIDTH	1920
 # define WINDOW_HEIGHT	1080
@@ -61,11 +61,9 @@ enum e_keys
 {
 	ESC = 65307,
 	UP = 119,
-	LEFT = 97,
 	DOWN = 115,
-	RIGHT = 100,
-	ROTATE_LEFT = 106,
-	ROTATE_RIGHT = 107
+	ROTATE_LEFT = 97,
+	ROTATE_RIGHT = 100
 };
 
 typedef struct s_pixel {
@@ -84,8 +82,6 @@ typedef struct s_player
 	double	pos_y;
 	double	angle;
 	int		forward;
-	int		left;
-	int		right;
 	int		backward;
 	int		rotate_left;
 	int		rotate_right;

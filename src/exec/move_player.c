@@ -53,35 +53,3 @@ int	move_backward(t_data *param)
 	show_minimap(param);
 	return (0);
 }
-
-int	move_left(t_data *param)
-{
-	double	new_y;
-	double	new_x;
-
-	new_y = param->player.pos_y + SPEED * sin(param->player.angle + M_PI_2);
-	new_x = param->player.pos_x + SPEED * cos(param->player.angle + M_PI_2);
-	if (!check_collision(param, new_y, new_x))
-	{
-		param->player.pos_y = new_y;
-		param->player.pos_x = new_x;
-	}
-	show_minimap(param);
-	return (0);
-}
-
-int	move_right(t_data *param)
-{
-	double	new_y;
-	double	new_x;
-
-	new_y = param->player.pos_y - SPEED * sin(param->player.angle + M_PI_2);
-	new_x = param->player.pos_x - SPEED * cos(param->player.angle + M_PI_2);
-	if (!check_collision(param, new_y, new_x))
-	{
-		param->player.pos_y = new_y;
-		param->player.pos_x = new_x;
-	}
-	show_minimap(param);
-	return (0);
-}
