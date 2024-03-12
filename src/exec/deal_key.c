@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   deal_key.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 22:17:18 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/31 20:57:33 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/03/12 16:46:12 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	move_player(t_data *param)
 		rotate_left(param);
 	if (param->player.rotate_right == TRUE)
 		rotate_right(param);
+	draw_floor(param);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:02:43 by jrenault          #+#    #+#             */
-/*   Updated: 2024/02/27 21:15:48 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/12 16:45:47 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	end_program(t_data *param)
 static int	display_map(t_data *param)
 {
 	param->pixel.img = mlx_new_image(param->mlx,
-			MINIMAP_WIDTH, MINIMAP_HEIGHT);
+			WINDOW_WIDTH, WINDOW_HEIGHT);
 	param->pixel.addr = mlx_get_data_addr(param->pixel.img,
 			&param->pixel.bits_per_pixel,
 			&param->pixel.line_length, &param->pixel.endian);
@@ -83,7 +83,7 @@ int	main(int argc, char **argv)
 	if (init_pixels(&param) == 1)
 		return (free_all_param(&param),
 			mlx_destroy_display(param.mlx), free(param.mlx), 1);
-//	ft_put_windows(&param);
+	//ft_put_windows(&param);
 	if (display_map(&param) == 1)
 		return (1);
 	mlx_hook(param.win, 02, 1L << 0, deal_key, &param);
