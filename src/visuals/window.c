@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/12 18:23:40 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/12 18:31:46 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void ft_put_windows(t_data *game_data)
     //initilisation des données
     game_data->angle = 1 * M_PI / 180.0;
     game_data->copy_angle = 1 * 90/3 * M_PI / 180.0;
-    game_data->pos_x = game_data->player.pos_x * 1920 / (game_data->max_x * game_data->pixel.size);
-    game_data->pos_y = game_data->player.pos_y * 1080 / (game_data->max_y * game_data->pixel.size);
+    /*game_data->pos_x = game_data->player.pos_x * 1920 / (game_data->max_x * game_data->pixel.size);
+    game_data->pos_y = game_data->player.pos_y * 1080 / (game_data->max_y * game_data->pixel.size);*/
     game_data->x2 = game_data->pos_x + WINDOW_WIDTH;
     game_data->y2 = game_data->pos_y;
     
@@ -84,8 +84,6 @@ void ft_put_windows(t_data *game_data)
     //game_data->win2 = mlx_new_window(game_data->mlx,WINDOW_WIDTH,WINDOW_HEIGHT,"Cube3Drs");
     //game_data->win = mlx_new_window(game_data->mlx,WINDOW_WIDTH,WINDOW_HEIGHT,"Cube3Dls");
     //making_map(game_data);
-    draw_floor(game_data);
-    draw_player_view(game_data);
     mlx_key_hook(game_data->win, ft_key, game_data);
     mlx_hook(game_data->win, 17, 1l << 0, exit_game, game_data);
     //mlx_loop_hook(game_data->mlx, move_player, game_data);
