@@ -46,8 +46,6 @@ static void	init_player(t_data *param)
 	param->player.pos_x = 0;
 	param->player.pos_y = 0;
 	param->player.forward = FALSE;
-	param->player.left = FALSE;
-	param->player.right = FALSE;
 	param->player.backward = FALSE;
 	param->player.rotate_left = FALSE;
 	param->player.rotate_right = FALSE;
