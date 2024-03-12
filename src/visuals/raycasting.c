@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 19:13:58 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/01 15:22:33 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/12 16:46:35 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ float other_draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color)
     int err = dx - dy;
     while (1)
     {
-        if ((y1 < WINDOW_HEIGHT && y1 > 0))
+        if ((y1 < WINDOW_HEIGHT && y1 > 0) && (y1 > MINIMAP_HEIGHT || x1 > MINIMAP_WIDTH))
             put_pixel_to_image(gd,x1,y1,color);
         if ((x1 == x2 && y1 == y2))
             break;
