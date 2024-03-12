@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/02/27 21:05:40 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/01 15:20:08 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,14 @@
 # define YELLOW_COLOR	0x00FFFF00
 # define CYAN_COLOR		0x0000FFFF
 # define MAGENTA_COLOR	0x00FF00FF
+# define GREY_COLOR		0x646464
+# define ORANGE_COLOR	0xFF2D00
 
 # define SPEED			0.22
 # define ROTATION_SPEED	0.1
+
+# define WINDOW_WIDTH	1920
+# define WINDOW_HEIGHT	1080
 
 enum e_colors
 {
