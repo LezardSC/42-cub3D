@@ -36,7 +36,6 @@ int	move_player(t_data *param)
 		rotate_left(param);
 	if (param->player.rotate_right == TRUE)
 		rotate_right(param);
-	draw_floor(param);
 	return (0);
 }
 
