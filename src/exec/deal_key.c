@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 22:17:18 by jrenault          #+#    #+#             */
-/*   Updated: 2024/03/12 16:46:12 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/12 17:40:56 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	move_player(t_data *param)
 		rotate_left(param);
 	if (param->player.rotate_right == TRUE)
 		rotate_right(param);
-	draw_floor(param);
+	printf("OUIIIII\n");
 	return (0);
 }
 

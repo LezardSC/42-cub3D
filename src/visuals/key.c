@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 18:54:28 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/01 15:49:34 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/12 18:02:31 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,10 @@ int	ft_key(int key, t_data *gd)
 	mlx_clear_window(gd->mlx,gd->win);
 	draw_floor(gd);
 	draw_player_view(gd);
-	mlx_put_image_to_window(gd->mlx,gd->win,gd->gi,0,0);
+	gd->player.pos_x = gd->pos_x * (gd->max_x * gd->pixel.size)/1920;
+	gd->player.pos_y = gd->pos_y * (gd->max_y * gd->pixel.size)/1080;
+	//printf("%f | %f\n", gd->player.pos_x, gd->player.pos_x);
+	show_minimap(gd);
+	mlx_put_image_to_window(gd->mlx,gd->win,gd->pixel.img,0,0);
 	return (0);
 }

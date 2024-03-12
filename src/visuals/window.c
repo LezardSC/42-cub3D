@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/01 15:22:15 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/12 18:09:46 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ void ft_put_windows(t_data *game_data)
     draw_player_view(game_data);
     mlx_key_hook(game_data->win, ft_key, game_data);
     mlx_hook(game_data->win, 17, 1l << 0, exit_game, game_data);
+    //mlx_loop_hook(game_data->mlx, move_player, game_data);
     mlx_loop(game_data->mlx);
 }
