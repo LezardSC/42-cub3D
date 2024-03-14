@@ -68,28 +68,10 @@ char	*go_to_map(t_data *param)
 	return (buf);
 }
 
-int	assemble_numbers(int *array, int size)
+uint32_t	convert_into_hexa(int *array)
 {
-	int	result;
-	int	i;
-	int	tmp;
-	int	digits;
+	uint32_t	color;
 
-	result = 0;
-	i = 0;
-	tmp = 0;
-	digits = 0;
-	while (i < size)
-	{
-		tmp = array[i];
-		digits = 0;
-		while (tmp != 0)
-		{
-			digits++;
-			tmp /= 10;
-		}
-		result = result * pow(10, digits) + array[i];
-		i++;
-	}
-	return (result);
+	color = (array[0] << 16) + (array[1] << 8) + array[2];
+	return (color);
 }
