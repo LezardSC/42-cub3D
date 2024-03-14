@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/03/14 17:34:21 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/14 22:11:49 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@
 # define ORANGE_COLOR	0xFF2D00
 
 # define SPEED			0.02
-# define ROTATION_SPEED	0.02
+# define ROTATION_SPEED	1 * M_PI / 180.0
 
 # define WINDOW_WIDTH	1920
 # define WINDOW_HEIGHT	1080
+
 
 enum e_colors
 {
