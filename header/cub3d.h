@@ -96,37 +96,39 @@ typedef struct s_player
 
 typedef struct s_data
 {
-	int		nb_lines;
-	int		fd;
-	int		*check_colors;
-	int		*textures;
-	int		*floor_color;
-	int		*sky_color;
-	void	*mlx;
-	void	*win;
-	void	*win2;
-	char	*map_name;
-	char	**map;
-	char	**map_textures;
-	int		max_x;
-	int		max_y;
-	int		min_y;
-	int		pos_x;
-	int		pos_y;
-	double	x2;
-	double	y2;
-	double	angle;
-	double	copy_angle;
+	int			nb_lines;
+	int			fd;
+	int			*check_colors;
+	int			*textures;
+	int			*floor_color;
+	int			*sky_color;
+	uint32_t	floor_hexa;
+	uint32_t	sky_hexa;
+	void		*mlx;
+	void		*win;
+	void		*win2;
+	char		*map_name;
+	char		**map;
+	char		**map_textures;
+	int			max_x;
+	int			max_y;
+	int			min_y;
+	int			pos_x;
+	int			pos_y;
+	double		x2;
+	double		y2;
+	double		angle;
+	double		copy_angle;
 
-	void	*gi;
-	int 	sl;
-	int		bpp;
-	int		endian;
-	char	*addr;
+	void		*gi;
+	int 		sl;
+	int			bpp;
+	int			endian;
+	char		*addr;
 
-	double radius;
-	int		sx;
-	int		sy;
+	double		radius;
+	int			sx;
+	int			sy;
 	int			beginning_map;
 	char		direction;
 	t_pixel		pixel;
