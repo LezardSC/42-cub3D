@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/03/01 15:20:08 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/14 16:07:06 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,14 @@ enum e_keys
 {
 	ESC = 65307,
 	UP = 119,
+	UP2 = 100,
 	DOWN = 115,
+	DOWN2 = 113,
 	ROTATE_LEFT = 97,
-	ROTATE_RIGHT = 100
+	ROTATE_LEFT2 = 65361,
+	ROTATE_RIGHT = 100,
+	ROTATE_RIGHT2 = 65363
+	
 };
 
 typedef struct s_pixel {
@@ -85,6 +90,8 @@ typedef struct s_player
 	int		backward;
 	int		rotate_left;
 	int		rotate_right;
+	int		right;
+	int		left;
 }				t_player;
 
 typedef struct s_data
@@ -184,5 +191,6 @@ void put_pixel_to_image(t_data *gd, int x, int y, int color);
 float draw_line_for_wall(t_data *gd, int x1, int y1, int x2, int y2, int color);
 void making_map(t_data *gd);
 int collision(t_data *gd, int x, int y);
+void	front_back_move(int key, t_data *gd);
 
 #endif
