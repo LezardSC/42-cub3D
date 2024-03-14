@@ -51,12 +51,18 @@ void *new_display(t_data *game_data, char *wall_data,int width, int height)
 void	draw_floor(t_data *gd)
 {
 	int	i;
+	int	sky_color;
+	int	floor_color;
 
 	i = 0;
+	sky_color = assemble_numbers(gd->sky_color, 3);
+	printf("sky_color: %d\n", sky_color);
+	floor_color = assemble_numbers(gd->floor_color, 3);
+	printf("floor_color: %d\n", floor_color);
 	while (i < WINDOW_WIDTH)
 	{
-		other_draw_line(gd, i, 0, i, WINDOW_HEIGHT / 2, BLUE_COLOR);
-		other_draw_line(gd, i, WINDOW_HEIGHT / 2, i, WINDOW_HEIGHT, GREY_COLOR);
+		other_draw_line(gd, i, 0, i, WINDOW_HEIGHT / 2, sky_color);
+		other_draw_line(gd, i, WINDOW_HEIGHT / 2, i, WINDOW_HEIGHT, floor_color);
 		i++;
 	}
 }

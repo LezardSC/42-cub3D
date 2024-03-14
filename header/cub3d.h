@@ -173,6 +173,7 @@ void	print_double_char(char **str);
 int		ft_strlen_space(char *str);
 int		is_space_or_newline(char *buf);
 char	*go_to_map(t_data *param);
+int		assemble_numbers(int *array, int size);
 
 //visuals
 void ft_put_windows(t_data *game_data);
