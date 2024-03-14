@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/03/14 16:07:06 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/14 17:34:21 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define GREY_COLOR		0x646464
 # define ORANGE_COLOR	0xFF2D00
 
-# define SPEED			2.2
+# define SPEED			0.02
 # define ROTATION_SPEED	0.02
 
 # define WINDOW_WIDTH	1920
@@ -133,6 +133,17 @@ typedef struct s_data
 	t_player	player;
 }			t_data;
 
+typedef struct s_line_data
+{
+	int	dx;
+	int	dy;
+	int sx;
+	int	sy;
+	int e2;
+	int err;
+}				t_line_data;
+
+
 int		main(int argc, char **argv);
 int		init_param(t_data *param);
 int		init_pixels(t_data *param);
@@ -192,6 +203,6 @@ void put_pixel_to_image(t_data *gd, int x, int y, int color);
 float draw_line_for_wall(t_data *gd, int x1, int y1, int x2, int y2, int color);
 void making_map(t_data *gd);
 int collision(t_data *gd, int x, int y);
-void	front_back_move(int key, t_data *gd);
+void	left_right_move(int key, t_data *gd);
 
 #endif
