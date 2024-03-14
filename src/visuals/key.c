@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 18:54:28 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/12 18:28:43 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/14 16:24:06 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	front_back_move(int key, t_data *gd)
 {
-	if (key == 113)
+	if (key == ROTATE_LEFT)
 	{
 		gd->pos_y -= (gd->x2 * sin(120 * M_PI / 180.0)
 				+ gd->y2 * cos(120 * M_PI / 180.0)) / 100;
 		gd->pos_x -= (gd->x2 * cos(120 * M_PI / 180.0)
 				- gd->y2 * sin(120 * M_PI / 180.0)) / 100;
 	}
-	else if (key == 100)
+	else if (key == ROTATE_RIGHT)
 	{
 		gd->pos_y += (gd->x2 * sin(120 * M_PI / 180.0)
 				+ gd->y2 * cos(120 * M_PI / 180.0)) / 100;
@@ -67,9 +67,9 @@ int	ft_key(int key, t_data *gd)
 		gd->pos_x -= (gd->x2 * cos(gd->copy_angle)
 				- gd->y2 * sin(gd->copy_angle)) / 100;
 	}
-	else if (key == 65363 || key == 65361)
+	else if (key == ROTATE_LEFT2 || key == ROTATE_RIGHT2)
 		rotate_view(key,gd);
-	else if (key == 113 || key == 100)
+	else if (key == ROTATE_RIGHT || key == ROTATE_LEFT)
 		front_back_move(key, gd);
 	if (!collision(gd,gd->pos_x,gd->pos_y))
 	{
