@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/03/14 16:39:56 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/14 17:31:44 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,21 @@ typedef struct s_data
 	t_pixel		pixel;
 	t_player	player;
 }			t_data;
+
+typedef struct s_line_data
+{
+	int	dx;
+	int	dy;
+	int sx;
+	int	sy;
+	int e2;
+	int err;
+	int	x1;
+	int	x2;
+	int	y1;
+	int	y2;
+}				t_line_data;
+
 
 int		main(int argc, char **argv);
 int		init_param(t_data *param);
