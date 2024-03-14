@@ -70,8 +70,5 @@ char	*go_to_map(t_data *param)
 
 uint32_t	convert_into_hexa(int *array)
 {
-	uint32_t	color;
-
-	color = (array[0] << 16) + (array[1] << 8) + array[2];
-	return (color);
+	return ((array[0] << 16) + (array[1] << 8) + array[2]);
 }
