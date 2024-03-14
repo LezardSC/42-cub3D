@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 18:54:28 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/14 16:42:32 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/14 22:10:23 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ void	rotate_view(int key, t_data *gd)
 {
 	if (key == 65361)
 	{
-		gd->x2 = gd->x2 * cos(gd->angle) + gd->y2 * sin(gd->angle);
-		gd->y2 = -gd->x2 * sin(gd->angle) + gd->y2 * cos(gd->angle);
+		gd->x2 = gd->x2 * cos(ROTATION_SPEED) + gd->y2 * sin(ROTATION_SPEED);
+		gd->y2 = -gd->x2 * sin(ROTATION_SPEED) + gd->y2 * cos(ROTATION_SPEED);
 	}
 	else if (key == 65363)
 	{
-		gd->x2 = gd->x2 * cos(gd->angle) - gd->y2 * sin(gd->angle);
-		gd->y2 = gd->x2 * sin(gd->angle) + gd->y2 * cos(gd->angle);
+		gd->x2 = gd->x2 * cos(ROTATION_SPEED) - gd->y2 * sin(ROTATION_SPEED);
+		gd->y2 = gd->x2 * sin(ROTATION_SPEED) + gd->y2 * cos(ROTATION_SPEED);
 	}
 }
 
