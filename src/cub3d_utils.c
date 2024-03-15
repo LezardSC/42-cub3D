@@ -67,3 +67,8 @@ char	*go_to_map(t_data *param)
 	param->nb_lines--;
 	return (buf);
 }
+
+uint32_t	convert_into_hexa(int *array)
+{
+	return ((array[0] << 16) + (array[1] << 8) + array[2]);
+}

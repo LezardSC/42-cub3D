@@ -14,13 +14,17 @@
 
 void	draw_floor(t_data *gd)
 {
-	int	i;
+	int			i;
+	uint32_t	sky;
+	uint32_t	floor;
 
 	i = 0;
+	sky = convert_into_hexa(gd->sky_color);
+	floor = convert_into_hexa(gd->floor_color);
 	while (i < WINDOW_WIDTH)
 	{
-		other_draw_line(gd, i, 0, i, WINDOW_HEIGHT / 2, BLUE_COLOR);
-		other_draw_line(gd, i, WINDOW_HEIGHT / 2, i, WINDOW_HEIGHT, GREY_COLOR);
+		other_draw_line(gd, i, 0, i, WINDOW_HEIGHT / 2, sky);
+		other_draw_line(gd, i, WINDOW_HEIGHT / 2, i, WINDOW_HEIGHT, floor);
 		i++;
 	}
 }
