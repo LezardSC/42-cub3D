@@ -102,8 +102,6 @@ typedef struct s_data
 	int			*textures;
 	int			*floor_color;
 	int			*sky_color;
-	uint32_t	floor_hexa;
-	uint32_t	sky_hexa;
 	void		*mlx;
 	void		*win;
 	void		*win2;
@@ -182,11 +180,11 @@ int		free_all_param(t_data *param);
 //int		free_init(t_data *param);
 
 //utils
-void	print_double_char(char **str);
-int		ft_strlen_space(char *str);
-int		is_space_or_newline(char *buf);
-char	*go_to_map(t_data *param);
-int		assemble_numbers(int *array, int size);
+void		print_double_char(char **str);
+int			ft_strlen_space(char *str);
+int			is_space_or_newline(char *buf);
+char		*go_to_map(t_data *param);
+uint32_t	convert_into_hexa(int *array);
 
 //visuals
 void ft_put_windows(t_data *game_data);
