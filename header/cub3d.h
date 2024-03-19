@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/03/19 13:59:48 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/19 18:49:10 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,15 @@ typedef struct s_pixel {
 	int		radius;
 }				t_pixel;
 
+typedef struct s_tmp {
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		size;
+	void	*img;
+}				t_tmp;
+
 typedef struct s_player
 {
 	double	pos_x;
@@ -133,6 +142,7 @@ typedef struct s_data
 	char		direction;
 	t_pixel		pixel;
 	t_player	player;
+	t_tmp		tex;
 }			t_data;
 
 typedef struct s_line_data
@@ -206,7 +216,9 @@ float	draw_line_for_wall(t_data *gd, int x1, int y1, int x2, int y2, int color);
 void	making_map(t_data *gd);
 int		collision(t_data *gd, int x, int y);
 void	left_right_move(int key, t_data *gd);
-void 	*new_display(t_data *game_data, char *wall_data, int width, int height, int ray);
+char 	*new_display(t_data *game_data, char *wall_data, int width, int height, int ray);
+void	put_image_in_image(t_data *game_data, int x,int y, char *img_data);
+int		get_pixel_color(t_data *gd, int x, int y);
 
 
 
