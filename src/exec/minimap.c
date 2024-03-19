@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 02:38:40 by jrenault          #+#    #+#             */
-/*   Updated: 2024/03/12 18:33:28 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/18 17:06:20 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int	show_minimap(t_data *param)
 				|| param->map[y][x] == 'W' || param->map[y][x] == 'S')
 				{
 					player_first_position(param, y, x);
-					draw_floor(param);
-					draw_player_view(param);
+					/*draw_floor(param);
+					draw_player_view(param);*/
 				}
 			x++;
 		}

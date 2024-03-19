@@ -6,7 +6,7 @@
 #    By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:09:10 by lezard            #+#    #+#              #
-#    Updated: 2024/03/12 18:20:16 by tmalidi          ###   ########.fr        #
+#    Updated: 2024/03/19 14:04:59 by tmalidi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC			 			= 	init_param.c \
 							visuals/exit_view.c \
 							visuals/key.c \
 							visuals/raycasting.c \
+							visuals/texture.c \
 							main.c \
 							exec/close_win.c \
 							exec/deal_key.c \

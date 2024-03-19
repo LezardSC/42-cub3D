@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/15 14:39:02 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/19 14:15:17 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,18 @@ int collision(t_data *gd, int x, int y)
 void ft_put_windows(t_data *game_data)
 {
     //initilisation des données
+    int side = 72;
     game_data->angle = 0.036458333 * M_PI / 180.0;
     game_data->copy_angle = 34 * M_PI / 180.0;
-    game_data->x2 = game_data->pos_x + WINDOW_WIDTH;
+    game_data->x2 = game_data->pos_x - WINDOW_WIDTH;
     game_data->y2 = game_data->pos_y;
+    game_data->gi = mlx_xpm_file_to_image(game_data->mlx,"textures/wall_north.xpm",&side,&side);
+	game_data->gi_data = mlx_get_data_addr(game_data->gi,&game_data->bpp,&game_data->sl,&game_data->endian);
     
     //mlx_key_hook(game_data->win, ft_key, game_data);
     //mlx_hook(game_data->win, 17, 1l << 0, exit_game, game_data);
     mlx_hook(game_data->win, 02, 1L << 0, deal_key, game_data);
-	mlx_hook(game_data->win, 17, 0, close_win, game_data);
+    mlx_hook(game_data->win, 17, 0, close_win, game_data);
     mlx_key_hook(game_data->win, key_release, game_data);
     mlx_loop_hook(game_data->mlx, move_player, game_data);
     mlx_loop(game_data->mlx);
