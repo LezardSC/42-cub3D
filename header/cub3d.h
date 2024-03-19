@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/03/15 14:44:13 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/19 13:59:48 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ typedef struct s_data
 	double		copy_angle;
 
 	void		*gi;
+	char		*gi_data;
 	int 		sl;
 	int			bpp;
 	int			endian;
@@ -192,18 +193,21 @@ void ft_put_windows(t_data *game_data);
 void ft_put_3dview(t_data *game_data);
 
 //tools
-int	ft_key(int key, t_data *gd);  //prends les inputs
-void draw_player_view(t_data *game_data);  //print les rayon
-int exit_game(t_data *game_data);
-float draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color);
-float calc_dist(int x1, int y1, int x2, int y2);
-void draw_vertical_line(t_data *game_data, float dist, int ray);
-float other_draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color);
-void draw_floor(t_data *gd);
-void put_pixel_to_image(t_data *gd, int x, int y, int color);
-float draw_line_for_wall(t_data *gd, int x1, int y1, int x2, int y2, int color);
-void making_map(t_data *gd);
-int collision(t_data *gd, int x, int y);
+int		ft_key(int key, t_data *gd);  //prends les inputs
+void	draw_player_view(t_data *game_data);  //print les rayon
+int		exit_game(t_data *game_data);
+float 	draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color);
+float	calc_dist(int x1, int y1, int x2, int y2);
+void	draw_vertical_line(t_data *game_data, float dist, int ray);
+float	other_draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color);
+void	draw_floor(t_data *gd);
+void	put_pixel_to_image(t_data *gd, int x, int y, int color);
+float	draw_line_for_wall(t_data *gd, int x1, int y1, int x2, int y2, int color);
+void	making_map(t_data *gd);
+int		collision(t_data *gd, int x, int y);
 void	left_right_move(int key, t_data *gd);
+void 	*new_display(t_data *game_data, char *wall_data, int width, int height, int ray);
+
+
 
 #endif

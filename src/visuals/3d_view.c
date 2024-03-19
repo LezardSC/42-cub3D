@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:22:01 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/15 14:41:25 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/19 14:13:44 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ void	draw_floor(t_data *gd)
 void	draw_vertical_line(t_data *game_data, float dist, int ray)
 {
 	float	height;
-	float	y1;
+	int		y1;
 	int		x;
 	int		i;
+	//int side = 72;
 
 	if (dist == -1)
 		return ;
@@ -44,9 +45,11 @@ void	draw_vertical_line(t_data *game_data, float dist, int ray)
 	y1 = (WINDOW_HEIGHT / 2) - height / 2;
 	x = (WINDOW_WIDTH / 1920) * ray;
 	i = 0;
+	void *final = new_display(game_data,game_data->gi_data,72,height, ray);
 	while (i < 2)
 	{
-		other_draw_line(game_data, x + i, y1, x + i, y1 + height, ORANGE_COLOR);
+		//other_draw_line(game_data, x + i, y1, x + i, y1 + height, ORANGE_COLOR);
+		mlx_put_image_to_window(game_data->mlx,game_data->win,final,x+i,y1);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 22:17:18 by jrenault          #+#    #+#             */
-/*   Updated: 2024/03/14 16:18:36 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/18 15:58:11 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int	key_release(int key, t_data *param)
 
 int	deal_key(int key, t_data *param)
 {
-	printf("%d\n", key);
 	if (key == ESC)
 		close_win(param);
 	if (key == UP)
