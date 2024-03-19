@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:22:01 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/19 14:13:44 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/19 19:01:53 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,26 @@ void	draw_vertical_line(t_data *game_data, float dist, int ray)
 	int		y1;
 	int		x;
 	int		i;
-	//int side = 72;
+	int pixel;
 
 	if (dist == -1)
 		return ;
 	float ray_angle = (ray / (float)WINDOW_WIDTH - 0.5) * (69 * M_PI / 180);
-	height = (40 * WINDOW_HEIGHT) / (dist * cos(ray_angle));
-	//height = (30 * WINDOW_HEIGHT) / dist;
+	height = (30 * WINDOW_HEIGHT) / (dist * cos(ray_angle));
+	if (height >= 1080)
+		height = 1080;
 	y1 = (WINDOW_HEIGHT / 2) - height / 2;
 	x = (WINDOW_WIDTH / 1920) * ray;
 	i = 0;
-	void *final = new_display(game_data,game_data->gi_data,72,height, ray);
-	while (i < 2)
+	game_data->tex.img = new_display(game_data,game_data->gi_data,1,height, ray);
+	game_data->tex.addr = mlx_get_data_addr(game_data->tex.img,&game_data->tex.bits_per_pixel,&game_data->tex.line_length,&game_data->tex.endian);
+	while (i < height)
 	{
-		//other_draw_line(game_data, x + i, y1, x + i, y1 + height, ORANGE_COLOR);
-		mlx_put_image_to_window(game_data->mlx,game_data->win,final,x+i,y1);
+		pixel = get_pixel_color(game_data,0,i);
+		put_pixel_to_image(game_data,x,y1++,pixel);
 		i++;
 	}
+	mlx_destroy_image(game_data->mlx,game_data->tex.img);
 }
 
 void	put_pixel_to_image(t_data *gd, int x, int y, int color)
@@ -62,3 +65,13 @@ void	put_pixel_to_image(t_data *gd, int x, int y, int color)
 			+ x * (gd->pixel.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
+
+int	get_pixel_color(t_data *gd, int x, int y)
+{
+	char    *dst;
+
+    dst = gd->tex.addr + (y * gd->tex.line_length + x * (gd->tex.bits_per_pixel / 8));
+    return (*(unsigned int *)dst);
+}
+
+
