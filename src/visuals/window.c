@@ -6,35 +6,35 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/20 17:17:54 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/20 18:04:44 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3d.h"
 
-void	draw_player_view(t_data *game_data)
+void	draw_player_view(t_data *gd)
 {
 	int		i;
 	t_pview	view;
 
 	i = 0;
 	view.radius = WINDOW_WIDTH;
-	view.cp_y = game_data->y2;
-	view.cp_x = game_data->x2;
+	view.cp_y = gd->y2;
+	view.cp_x = gd->x2;
 	while (i < 1920)
 	{
 		view.temp_cp_x = view.cp_x;
 		view.temp_cp_y = view.cp_y;
-		view.cp_x = view.temp_cp_x * cos(game_data->angle)
-			- view.temp_cp_y * sin(game_data->angle);
-		view.cp_y = view.temp_cp_x * sin(game_data->angle)
-			+ view.temp_cp_y * cos(game_data->angle);
+		view.cp_x = view.temp_cp_x * cos(gd->angle)
+			- view.temp_cp_y * sin(gd->angle);
+		view.cp_y = view.temp_cp_x * sin(gd->angle)
+			+ view.temp_cp_y * cos(gd->angle);
 		view.cp_x = (view.cp_x / sqrt(view.cp_x * view.cp_x
 					+ view.cp_y * view.cp_y)) * view.radius;
 		view.cp_y = (view.cp_y / sqrt(view.cp_x * view.cp_x
 					+ view.cp_y * view.cp_y)) * view.radius;
-		draw_vertical_line(game_data, draw_line(game_data, game_data->pos_x
-				+ view.cp_x, game_data->pos_y + view.cp_y), i);
+		draw_vertical_line(gd, draw_line(gd, gd->pos_x
+				+ view.cp_x, gd->pos_y + view.cp_y), i);
 		i++;
 	}
 }
@@ -55,33 +55,31 @@ int	collision(t_data *gd, int x, int y)
 	return (1);
 }
 
-void	ft_put_windows(t_data *game_data)
+void	ft_put_windows(t_data *gd)
 {
-	int	side;
 	int	i;
 
-	side = 72;
-	game_data->angle = 0.036458333 * M_PI / 180.0;
-	game_data->copy_angle = 34 * M_PI / 180.0;
-	game_data->x2 = game_data->pos_x - WINDOW_WIDTH;
-	game_data->y2 = game_data->pos_y;
-	game_data->gi = mlx_xpm_file_to_image
-		(game_data->mlx, "textures/wall_north.xpm", &side, &side);
-	game_data->gi_data = mlx_get_data_addr
-		(game_data->gi, &game_data->bpp, &game_data->sl, &game_data->endian);
+	gd->tex_side = 72;
+	gd->angle = 0.036458333 * M_PI / 180.0;
+	gd->copy_angle = 34 * M_PI / 180.0;
+	gd->x2 = gd->pos_x - WINDOW_WIDTH;
+	gd->y2 = gd->pos_y;
+	gd->gi = mlx_xpm_file_to_image
+		(gd->mlx, "textures/wall_north.xpm", &gd->tex_side, &gd->tex_side);
+	gd->gi_data = mlx_get_data_addr
+		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
 	i = 0;
 	while (i < 72)
 	{
-		game_data->tex.img = new_display
-			(game_data, game_data->gi_data, 1, WINDOW_HEIGHT, i);
-		game_data->tex.addr[i] = mlx_get_data_addr(game_data->tex.img,
-				&game_data->tex.bits_per_pixel,
-				&game_data->tex.line_length, &game_data->tex.endian);
-		i++;
+		gd->tex.img = new_display
+			(gd, gd->gi_data, i);
+		gd->tex.addr[i++] = mlx_get_data_addr(gd->tex.img,
+				&gd->tex.bits_per_pixel,
+				&gd->tex.line_length, &gd->tex.endian);
 	}
-	mlx_hook(game_data->win, 02, 1L << 0, deal_key, game_data);
-	mlx_hook(game_data->win, 17, 0, close_win, game_data);
-	mlx_key_hook(game_data->win, key_release, game_data);
-	mlx_loop_hook(game_data->mlx, move_player, game_data);
-	mlx_loop(game_data->mlx);
+	mlx_hook(gd->win, 02, 1L << 0, deal_key, gd);
+	mlx_hook(gd->win, 17, 0, close_win, gd);
+	mlx_key_hook(gd->win, key_release, gd);
+	mlx_loop_hook(gd->mlx, move_player, gd);
+	mlx_loop(gd->mlx);
 }

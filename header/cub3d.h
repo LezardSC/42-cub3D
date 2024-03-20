@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/03/20 17:16:13 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/20 18:03:13 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ enum e_keys
 	ROTATE_RIGHT2 = 65363
 };
 
-typedef struct s_pixel {
+typedef struct s_pixel
+{
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -81,7 +82,8 @@ typedef struct s_pixel {
 	int		radius;
 }				t_pixel;
 
-typedef struct s_tmp {
+typedef struct s_tmp
+{
 	char	*addr[72];
 	int		bits_per_pixel;
 	int		line_length;
@@ -103,13 +105,29 @@ typedef struct s_player
 	int		left;
 }				t_player;
 
-typedef struct s_pview {
+typedef struct s_pview
+{
 	double	cp_x;
 	double	cp_y;
 	double	radius;
 	double	temp_cp_y;
 	double	temp_cp_x;
 }				t_pview;
+
+typedef struct s_tex_data
+{
+	int		bpp;
+	int		sl;
+	int		endian;
+	int		original_width;
+	int		original_height;
+	void	*enlarged_wall;
+	char	*enlarged_wall_data;
+	int		original_x;
+	int		original_y;
+	int		original_index;
+	int		enlarged_index;
+}				t_tex_data;
 
 typedef struct s_data
 {
@@ -134,19 +152,18 @@ typedef struct s_data
 	double		y2;
 	double		angle;
 	double		copy_angle;
-
 	void		*gi;
 	char		*gi_data;
-	int 		sl;
+	int			sl;
 	int			bpp;
 	int			endian;
 	char		*addr;
-
 	double		radius;
 	int			sx;
 	int			sy;
 	int			beginning_map;
 	char		direction;
+	int			tex_side;
 	t_pixel		pixel;
 	t_player	player;
 	t_tmp		tex;
@@ -156,78 +173,58 @@ typedef struct s_line_data
 {
 	int	dx;
 	int	dy;
-	int sx;
+	int	sx;
 	int	sy;
-	int e2;
-	int err;
+	int	e2;
+	int	err;
 	int	x1;
-	int y1;
+	int	y1;
 }				t_line_data;
 
-
-int		main(int argc, char **argv);
-int		init_param(t_data *param);
-int		init_pixels(t_data *param);
-
-//parsing
-int		is_name_correct(t_data *param);
-int		map_parsing(t_data *param);
-int		is_line_map(char *buf);
-int		check_infos(t_data *param);
-int		find_infos(t_data *param);
-int		fill_textures_colors(char *buf, t_data *param);
-int		check_error(t_data *param);
-int		fill_line_map(char *buf, t_data *param, int i);
-
-//exec
-int		close_win(t_data *param);
-int		deal_key(int key, t_data *param);
-int		key_release(int key, t_data *param);
-int		move_player(t_data *param);
-int		show_minimap(t_data *param);
-int		move_forward(t_data *param);
-int		move_backward(t_data *param);
-int		move_left(t_data *param);
-int		move_right(t_data *param);
-
-//draw
-
-void	my_mlx_pixel_put(t_pixel *pixel, int x, int y, int color);
-void	my_mlx_square_put(t_pixel *pixel, int x, int y, int color);
-void	my_mlx_circle_put(t_data *param, int color);
-
-//free
-int		free_all_param(t_data *param);
-//int		free_init(t_data *param);
-
-//utils
+int			main(int argc, char **argv);
+int			init_param(t_data *param);
+int			init_pixels(t_data *param);
+int			is_name_correct(t_data *param);
+int			map_parsing(t_data *param);
+int			is_line_map(char *buf);
+int			check_infos(t_data *param);
+int			find_infos(t_data *param);
+int			fill_textures_colors(char *buf, t_data *param);
+int			check_error(t_data *param);
+int			fill_line_map(char *buf, t_data *param, int i);
+int			close_win(t_data *param);
+int			deal_key(int key, t_data *param);
+int			key_release(int key, t_data *param);
+int			move_player(t_data *param);
+int			show_minimap(t_data *param);
+int			move_forward(t_data *param);
+int			move_backward(t_data *param);
+int			move_left(t_data *param);
+int			move_right(t_data *param);
+void		my_mlx_pixel_put(t_pixel *pixel, int x, int y, int color);
+void		my_mlx_square_put(t_pixel *pixel, int x, int y, int color);
+void		my_mlx_circle_put(t_data *param, int color);
+int			free_all_param(t_data *param);
 void		print_double_char(char **str);
 int			ft_strlen_space(char *str);
 int			is_space_or_newline(char *buf);
 char		*go_to_map(t_data *param);
 uint32_t	convert_into_hexa(int *array);
+void		ft_put_windows(t_data *game_data);
+void		ft_put_3dview(t_data *game_data);
+int			ft_key(int key, t_data *gd);
+void		draw_player_view(t_data *game_data);
+int			exit_game(t_data *game_data);
+float		draw_line(t_data *gd, int x2, int y2);
+float		calc_dist(int x1, int y1, int x2, int y2);
+void		draw_vertical_line(t_data *game_data, float dist, int ray);
+void		draw_floor(t_data *gd);
+void		put_pixel_to_image(t_data *gd, int x, int y, int color);
+void		making_map(t_data *gd);
+int			collision(t_data *gd, int x, int y);
+void		left_right_move(int key, t_data *gd);
+char		*new_display(t_data *game_data, char *wall_data, int ray);
+void		put_image_in_image(t_data *game_data, int x, int y, char *img_data);
+int			get_pixel_color(t_data *gd, int x, int y, int ray);
 
-//visuals
-void ft_put_windows(t_data *game_data);
-void ft_put_3dview(t_data *game_data);
-
-//tools
-int		ft_key(int key, t_data *gd);  //prends les inputs
-void	draw_player_view(t_data *game_data);  //print les rayon
-int		exit_game(t_data *game_data);
-float	draw_line(t_data *gd,int x2, int y2);
-float	calc_dist(int x1, int y1, int x2, int y2);
-void	draw_vertical_line(t_data *game_data, float dist, int ray);
-void	draw_floor(t_data *gd);
-void	put_pixel_to_image(t_data *gd, int x, int y, int color);
-float	draw_line_for_wall(t_data *gd, int x1, int y1, int x2, int y2, int color);
-void	making_map(t_data *gd);
-int		collision(t_data *gd, int x, int y);
-void	left_right_move(int key, t_data *gd);
-char 	*new_display(t_data *game_data, char *wall_data, int width, int height, int ray);
-void	put_image_in_image(t_data *game_data, int x,int y, char *img_data);
-int		get_pixel_color(t_data *gd, int x, int y, int ray);
-
-
-
-#endif
+#endif 
