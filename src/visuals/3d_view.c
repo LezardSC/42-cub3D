@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:22:01 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/19 19:01:53 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/20 01:05:37 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,14 @@ void	draw_vertical_line(t_data *game_data, float dist, int ray)
 	y1 = (WINDOW_HEIGHT / 2) - height / 2;
 	x = (WINDOW_WIDTH / 1920) * ray;
 	i = 0;
-	game_data->tex.img = new_display(game_data,game_data->gi_data,1,height, ray);
-	game_data->tex.addr = mlx_get_data_addr(game_data->tex.img,&game_data->tex.bits_per_pixel,&game_data->tex.line_length,&game_data->tex.endian);
 	while (i < height)
 	{
-		pixel = get_pixel_color(game_data,0,i);
+		pixel = get_pixel_color(game_data,0,i / height * 1080, ray % 72);
+		//printf("%d\n", pixel);
 		put_pixel_to_image(game_data,x,y1++,pixel);
 		i++;
 	}
-	mlx_destroy_image(game_data->mlx,game_data->tex.img);
+	//mlx_destroy_image(game_data->mlx,game_data->tex.img);
 }
 
 void	put_pixel_to_image(t_data *gd, int x, int y, int color)
@@ -66,11 +65,11 @@ void	put_pixel_to_image(t_data *gd, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	get_pixel_color(t_data *gd, int x, int y)
+int	get_pixel_color(t_data *gd, int x, int y, int ray)
 {
 	char    *dst;
 
-    dst = gd->tex.addr + (y * gd->tex.line_length + x * (gd->tex.bits_per_pixel / 8));
+    dst = gd->tex.addr[ray] + (y * gd->tex.line_length + x * (gd->tex.bits_per_pixel / 8));
     return (*(unsigned int *)dst);
 }
 

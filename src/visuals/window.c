@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/19 15:52:17 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/20 01:02:14 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,20 @@ void ft_put_windows(t_data *game_data)
 {
     //initilisation des données
     int side = 72;
+    int i;
     game_data->angle = 0.036458333 * M_PI / 180.0;
     game_data->copy_angle = 34 * M_PI / 180.0;
     game_data->x2 = game_data->pos_x - WINDOW_WIDTH;
     game_data->y2 = game_data->pos_y;
     game_data->gi = mlx_xpm_file_to_image(game_data->mlx,"textures/wall_north.xpm",&side,&side);
 	game_data->gi_data = mlx_get_data_addr(game_data->gi,&game_data->bpp,&game_data->sl,&game_data->endian);
-    
+    i = 0;
+    while (i < 72)
+    {
+        game_data->tex.img = new_display(game_data,game_data->gi_data,1,WINDOW_HEIGHT, i);
+	    game_data->tex.addr[i] = mlx_get_data_addr(game_data->tex.img,&game_data->tex.bits_per_pixel,&game_data->tex.line_length,&game_data->tex.endian);
+        i++;
+    }
     //mlx_key_hook(game_data->win, ft_key, game_data);
     //mlx_hook(game_data->win, 17, 1l << 0, exit_game, game_data);
     mlx_hook(game_data->win, 02, 1L << 0, deal_key, game_data);
