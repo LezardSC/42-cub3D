@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/03/20 01:08:11 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/20 16:24:33 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@
 # define WINDOW_WIDTH	1920
 # define WINDOW_HEIGHT	1080
 
-
 enum e_colors
 {
 	F = 0,
@@ -69,7 +68,6 @@ enum e_keys
 	ROTATE_LEFT2 = 65361,
 	ROTATE_RIGHT = 100,
 	ROTATE_RIGHT2 = 65363
-	
 };
 
 typedef struct s_pixel {
@@ -103,6 +101,14 @@ typedef struct s_player
 	int		right;
 	int		left;
 }				t_player;
+
+typedef struct s_pview {
+	double	cp_x;
+	double	cp_y;
+	double	radius;
+	double	temp_cp_y;
+	double	temp_cp_x;
+}				t_pview;
 
 typedef struct s_data
 {
@@ -153,6 +159,8 @@ typedef struct s_line_data
 	int	sy;
 	int e2;
 	int err;
+	int	x1;
+	int y1;
 }				t_line_data;
 
 
@@ -206,10 +214,9 @@ void ft_put_3dview(t_data *game_data);
 int		ft_key(int key, t_data *gd);  //prends les inputs
 void	draw_player_view(t_data *game_data);  //print les rayon
 int		exit_game(t_data *game_data);
-float 	draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color);
+float	draw_line(t_data *gd,int x2, int y2);
 float	calc_dist(int x1, int y1, int x2, int y2);
 void	draw_vertical_line(t_data *game_data, float dist, int ray);
-float	other_draw_line(t_data *gd, int x1, int y1, int x2, int y2, int color);
 void	draw_floor(t_data *gd);
 void	put_pixel_to_image(t_data *gd, int x, int y, int color);
 float	draw_line_for_wall(t_data *gd, int x1, int y1, int x2, int y2, int color);

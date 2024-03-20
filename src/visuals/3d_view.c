@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:22:01 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/20 01:05:37 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/20 16:12:46 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	draw_floor(t_data *gd)
 {
 	int			i;
+	int			j;
 	uint32_t	sky;
 	uint32_t	floor;
 
@@ -23,8 +24,11 @@ void	draw_floor(t_data *gd)
 	floor = convert_into_hexa(gd->floor_color);
 	while (i < WINDOW_WIDTH)
 	{
-		other_draw_line(gd, i, 0, i, WINDOW_HEIGHT / 2, sky);
-		other_draw_line(gd, i, WINDOW_HEIGHT / 2, i, WINDOW_HEIGHT, floor);
+		j = 0;
+		while (j < WINDOW_HEIGHT / 2)
+			put_pixel_to_image(gd, i, j++, sky);
+		while (j < WINDOW_HEIGHT)
+			put_pixel_to_image(gd, i, j++, floor);
 		i++;
 	}
 }
@@ -32,28 +36,24 @@ void	draw_floor(t_data *gd)
 void	draw_vertical_line(t_data *game_data, float dist, int ray)
 {
 	float	height;
-	int		y1;
-	int		x;
 	int		i;
-	int pixel;
+	int		pixel;
+	float	ray_angle;
 
 	if (dist == -1)
 		return ;
-	float ray_angle = (ray / (float)WINDOW_WIDTH - 0.5) * (69 * M_PI / 180);
+	ray_angle = (ray / (float)WINDOW_WIDTH - 0.5) * (69 * M_PI / 180);
 	height = (30 * WINDOW_HEIGHT) / (dist * cos(ray_angle));
 	if (height >= 1080)
 		height = 1080;
-	y1 = (WINDOW_HEIGHT / 2) - height / 2;
-	x = (WINDOW_WIDTH / 1920) * ray;
 	i = 0;
 	while (i < height)
 	{
-		pixel = get_pixel_color(game_data,0,i / height * 1080, ray % 72);
-		//printf("%d\n", pixel);
-		put_pixel_to_image(game_data,x,y1++,pixel);
+		pixel = get_pixel_color(game_data, 0, i / height * 1080, ray % 72);
+		put_pixel_to_image(game_data, (WINDOW_WIDTH / 1920) * ray,
+			((WINDOW_HEIGHT / 2) - height / 2) + i, pixel);
 		i++;
 	}
-	//mlx_destroy_image(game_data->mlx,game_data->tex.img);
 }
 
 void	put_pixel_to_image(t_data *gd, int x, int y, int color)
@@ -67,10 +67,9 @@ void	put_pixel_to_image(t_data *gd, int x, int y, int color)
 
 int	get_pixel_color(t_data *gd, int x, int y, int ray)
 {
-	char    *dst;
+	char	*dst;
 
-    dst = gd->tex.addr[ray] + (y * gd->tex.line_length + x * (gd->tex.bits_per_pixel / 8));
-    return (*(unsigned int *)dst);
+	dst = gd->tex.addr[ray] + (y * gd->tex.line_length
+			+ x * (gd->tex.bits_per_pixel / 8));
+	return (*(unsigned int *)dst);
 }
-
-
