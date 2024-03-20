@@ -6,7 +6,7 @@
 #    By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:09:10 by lezard            #+#    #+#              #
-#    Updated: 2024/03/19 19:05:56 by tmalidi          ###   ########.fr        #
+#    Updated: 2024/03/20 01:04:06 by tmalidi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ LIBFT					= libft.a
 LIB_DIR					= libft/
 
 GCC						= cc
-CFLAGS					= -Wall -Wextra -Werror -O2 #-fsanitize=address -g3
+CFLAGS					= -Wall -Wextra -Werror -O2 -fsanitize=address -g3
 
 RM 						= rm -rf
 CLEAR					= clear
