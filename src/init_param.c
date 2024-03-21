@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_param.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:09:29 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/31 17:11:30 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/03/21 10:13:39 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	init_map(t_data *param, int i)
 		return (1);
 	i = 3;
 	while (--i >= 0)
-	{	
+	{
 		param->floor_color[i] = 0;
 		param->sky_color[i] = 0;
 	}

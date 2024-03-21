@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/03/20 18:03:13 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/21 11:27:32 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,10 +164,19 @@ typedef struct s_data
 	int			beginning_map;
 	char		direction;
 	int			tex_side;
+	int			*x_wall;
 	t_pixel		pixel;
 	t_player	player;
 	t_tmp		tex;
 }			t_data;
+
+typedef struct s_ray_data
+{
+	int	x;
+	int	y;
+	int	dist;
+	int	id;
+}				t_ray_data;
 
 typedef struct s_line_data
 {
@@ -215,9 +224,9 @@ void		ft_put_3dview(t_data *game_data);
 int			ft_key(int key, t_data *gd);
 void		draw_player_view(t_data *game_data);
 int			exit_game(t_data *game_data);
-float		draw_line(t_data *gd, int x2, int y2);
+t_ray_data	draw_line(t_data *gd, int x2, int y2, int ray_id);
 float		calc_dist(int x1, int y1, int x2, int y2);
-void		draw_vertical_line(t_data *game_data, float dist, int ray);
+void		draw_vertical_line(t_data *game_data, t_ray_data *ray);
 void		draw_floor(t_data *gd);
 void		put_pixel_to_image(t_data *gd, int x, int y, int color);
 void		making_map(t_data *gd);
@@ -226,5 +235,6 @@ void		left_right_move(int key, t_data *gd);
 char		*new_display(t_data *game_data, char *wall_data, int ray);
 void		put_image_in_image(t_data *game_data, int x, int y, char *img_data);
 int			get_pixel_color(t_data *gd, int x, int y, int ray);
+int			is_x_wall(int x, t_data *gd);
 
 #endif 

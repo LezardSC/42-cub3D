@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 22:17:18 by jrenault          #+#    #+#             */
-/*   Updated: 2024/03/18 15:58:11 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/21 10:14:34 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,17 @@ static int	rotate_right(t_data *param)
 int	move_player(t_data *param)
 {
 	if (param->player.forward == TRUE)
-		ft_key(UP,param);
-		//move_forward(param);
+		ft_key(UP, param);
 	if (param->player.backward == TRUE)
 		ft_key(DOWN, param);
-		//move_backward(param);
 	if (param->player.rotate_left == TRUE)
-		ft_key(ROTATE_LEFT2,param);
-		//rotate_left(param);
+		ft_key(ROTATE_LEFT2, param);
 	if (param->player.rotate_right == TRUE)
-		ft_key(ROTATE_RIGHT2,param);
-		//rotate_right(param);
+		ft_key(ROTATE_RIGHT2, param);
 	if (param->player.right == TRUE)
 		ft_key(ROTATE_RIGHT, param);
 	if (param->player.left == TRUE)
 		ft_key(ROTATE_LEFT, param);
-	
 	return (0);
 }
 
