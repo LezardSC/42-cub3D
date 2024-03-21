@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:22:01 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/21 15:11:56 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/21 15:51:08 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,15 @@ void	draw_vertical_line(t_data *game_data, t_ray_data *ray)
 		if (!collision(game_data,ray->x, ray->y - 1) && !collision(game_data,ray->x, ray->y + 1))
 		{
 			if (!collision(game_data,ray->x + 1, ray->y))
-				pixel = BLACK_COLOR;//get_pixel_color(game_data, 0, i / height * 1080, ray->y  % 72);
+				pixel = get_pixel_color(game_data, i / height * 1080, ray->y  % 72, NO);
 			else
-				pixel = BLUE_COLOR;
+				pixel = get_pixel_color(game_data, i / height * 1080, ray->y  % 72, SO);
 		}
 		else
 			if (!collision(game_data,ray->x, ray->y + 1))
-				pixel = ORANGE_COLOR;
+				pixel = get_pixel_color(game_data, i / height * 1080, ray->x  % 72, EA);
 			else
-				pixel = MAGENTA_COLOR;
-			//pixel = get_pixel_color(game_data, 0, i / height * 1080, ray->x  % 72);
+				pixel = get_pixel_color(game_data, i / height * 1080, ray->x  % 72, WE);
 		put_pixel_to_image(game_data, (WINDOW_WIDTH / 1920) * ray->id ,
 			((WINDOW_HEIGHT / 2) - height / 2) + i, pixel);
 		i++;
@@ -77,11 +76,30 @@ void	put_pixel_to_image(t_data *gd, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	get_pixel_color(t_data *gd, int x, int y, int ray)
+int	get_pixel_color(t_data *gd, int y, int ray, int card)
 {
 	char	*dst;
 
-	dst = gd->tex.addr[ray] + (y * gd->tex.line_length
-			+ x * (gd->tex.bits_per_pixel / 8));
+	dst = 0;
+	if (card == NO)
+	{
+		dst = gd->tex_north.addr[ray] + (y * gd->tex_north.line_length
+				+ 0 * (gd->tex_north.bits_per_pixel / 8));
+	}
+	if (card == SO)
+	{
+		dst = gd->tex_south.addr[ray] + (y * gd->tex_south.line_length
+				+ 0 * (gd->tex_south.bits_per_pixel / 8));
+	}
+	if (card == EA)
+	{
+		dst = gd->tex_east.addr[ray] + (y * gd->tex_east.line_length
+				+ 0 * (gd->tex_east.bits_per_pixel / 8));
+	}
+	if (card == WE)
+	{
+		dst = gd->tex_west.addr[ray] + (y * gd->tex_west.line_length
+				+ 0 * (gd->tex_west.bits_per_pixel / 8));
+	}
 	return (*(unsigned int *)dst);
 }

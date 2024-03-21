@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/03/21 14:47:01 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/21 15:54:31 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define ORANGE_COLOR	0xFF2D00
 
 # define SPEED			0.02
-# define ROTATION_SPEED	1 * M_PI / 180.0
+# define ROTATION_SPEED	5 * M_PI / 180.0
 
 # define WINDOW_WIDTH	1920
 # define WINDOW_HEIGHT	1080
@@ -166,7 +166,10 @@ typedef struct s_data
 	int			tex_side;
 	t_pixel		pixel;
 	t_player	player;
-	t_tmp		tex;
+	t_tmp		tex_north;
+	t_tmp		tex_south;
+	t_tmp		tex_east;
+	t_tmp		tex_west;
 }			t_data;
 
 typedef struct s_ray_data
@@ -235,5 +238,9 @@ char		*new_display(t_data *game_data, char *wall_data, int ray);
 void		put_image_in_image(t_data *game_data, int x, int y, char *img_data);
 int			get_pixel_color(t_data *gd, int x, int y, int ray);
 int			is_x_wall(int x, t_data *gd);
+void		north_tex(t_data *gd);
+void 		south_tex(t_data *gd);
+void 		west_tex(t_data *gd);
+void 		east_tex(t_data *gd);
 
 #endif 
