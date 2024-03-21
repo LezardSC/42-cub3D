@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/21 14:46:38 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/21 15:49:33 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,28 +57,23 @@ int	collision(t_data *gd, int x, int y)
 	return (1);
 }
 
+
+void	init_tex(t_data *gd)
+{
+	north_tex(gd);
+	east_tex(gd);
+	south_tex(gd);
+	west_tex(gd);
+}
+
 void	ft_put_windows(t_data *gd)
 {
-	int	i;
-
 	gd->tex_side = 72;
 	gd->angle = 0.036458333 * M_PI / 180.0;
 	gd->copy_angle = 34 * M_PI / 180.0;
 	gd->x2 = gd->pos_x + WINDOW_WIDTH * gd->angle;
 	gd->y2 = gd->pos_y;
-	gd->gi = mlx_xpm_file_to_image
-		(gd->mlx, "textures/wall_north.xpm", &gd->tex_side, &gd->tex_side);
-	gd->gi_data = mlx_get_data_addr
-		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
-	i = 0;
-	while (i < 72)
-	{
-		gd->tex.img = new_display
-			(gd, gd->gi_data, i);
-		gd->tex.addr[i++] = mlx_get_data_addr(gd->tex.img,
-				&gd->tex.bits_per_pixel,
-				&gd->tex.line_length, &gd->tex.endian);
-	}
+	init_tex(gd);
 	mlx_hook(gd->win, 02, 1L << 0, deal_key, gd);
 	mlx_hook(gd->win, 17, 0, close_win, gd);
 	mlx_key_hook(gd->win, key_release, gd);
