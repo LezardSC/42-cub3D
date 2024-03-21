@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 19:13:58 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/20 16:15:43 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/21 10:27:27 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@ void	init_line_data(t_line_data *data, int x2, int y2, t_data *gd)
 	data->err = data->dx - data->dy;
 }
 
-float	draw_line(t_data *gd, int x2, int y2)
+t_ray_data	draw_line(t_data *gd, int x2, int y2, int ray_id)
 {
 	t_line_data	data;
+	t_ray_data	ray;
 
+	ray.id = ray_id;
 	init_line_data(&data, x2, y2, gd);
 	while (1)
 	{
@@ -56,7 +58,11 @@ float	draw_line(t_data *gd, int x2, int y2)
 			data.y1 += data.sy;
 		}
 	}
+	ray.x = data.x1;
+	ray.y = data.y1;
 	if (data.x1 != x2 || data.y1 != y2)
-		return (calc_dist(gd->pos_x, gd->pos_y, data.x1, data.y1));
-	return (-1);
+		ray.dist = calc_dist(gd->pos_x, gd->pos_y, data.x1, data.y1);
+	else
+		ray.dist = -1;
+	return (ray);
 }

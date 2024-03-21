@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/20 18:04:44 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/21 14:04:40 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	draw_player_view(t_data *gd)
 {
 	int		i;
 	t_pview	view;
+	t_ray_data ray;
 
 	i = 0;
 	view.radius = WINDOW_WIDTH;
@@ -33,8 +34,9 @@ void	draw_player_view(t_data *gd)
 					+ view.cp_y * view.cp_y)) * view.radius;
 		view.cp_y = (view.cp_y / sqrt(view.cp_x * view.cp_x
 					+ view.cp_y * view.cp_y)) * view.radius;
-		draw_vertical_line(gd, draw_line(gd, gd->pos_x
-				+ view.cp_x, gd->pos_y + view.cp_y), i);
+		ray = draw_line(gd, gd->pos_x
+				+ view.cp_x, gd->pos_y + view.cp_y, i);
+		draw_vertical_line(gd, &ray);
 		i++;
 	}
 }
@@ -55,14 +57,57 @@ int	collision(t_data *gd, int x, int y)
 	return (1);
 }
 
+void	x_wall(t_data *gd)
+{
+	int x;
+	int	y;
+	int	c;
+	
+	c = 0;
+	y = 0;
+	//printf("x == %d\n", x);
+	while (y < gd->max_y)
+	{
+		x = 0;
+		while (x < gd->max_x)
+		{
+			if ((((x + 1 < gd->max_x) && (x - 1 > 0)) && ((gd->map[y][x] == '1' && gd->map[y][x - 1] == '0') || (gd->map[y][x] == '1' && gd->map[y][x + 1] == '0'))) || x == 0 || x == gd->max_x - 1)
+			//if (gd->map[y][x] == '1')
+			{
+				gd->x_wall[c] = x;
+				c++;
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
+int is_x_wall(int x, t_data *gd)
+{
+	int i;
+
+	i = 0;
+	while (i < gd->max_x)
+	{
+		if (gd->x_wall[i] == x*gd->max_x / 1920)
+			return (1);
+		//printf("%d | %d\n", gd->x_wall[i], x*gd->max_x / 1920);
+		i++;
+	}
+	return (0);
+}
+
 void	ft_put_windows(t_data *gd)
 {
 	int	i;
 
 	gd->tex_side = 72;
+	gd->x_wall = malloc(sizeof(int) * (gd->max_x * gd->max_y));
+	x_wall(gd);
 	gd->angle = 0.036458333 * M_PI / 180.0;
 	gd->copy_angle = 34 * M_PI / 180.0;
-	gd->x2 = gd->pos_x - WINDOW_WIDTH;
+	gd->x2 = gd->pos_x + WINDOW_WIDTH * gd->angle;
 	gd->y2 = gd->pos_y;
 	gd->gi = mlx_xpm_file_to_image
 		(gd->mlx, "textures/wall_north.xpm", &gd->tex_side, &gd->tex_side);
