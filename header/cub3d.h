@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/03/21 11:27:32 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/21 14:47:01 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,6 @@ typedef struct s_data
 	int			beginning_map;
 	char		direction;
 	int			tex_side;
-	int			*x_wall;
 	t_pixel		pixel;
 	t_player	player;
 	t_tmp		tex;
