@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 15:41:33 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/21 15:45:32 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/22 14:02:14 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void north_tex(t_data *gd)
 	gd->gi_data = mlx_get_data_addr
 		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
 	i = 0;
-	while (i < 72)
+	while (i < TEX_SIDE)
 	{
 		gd->tex_north.img = new_display
 			(gd, gd->gi_data, i);
@@ -40,7 +40,7 @@ void south_tex(t_data *gd)
 	gd->gi_data = mlx_get_data_addr
 		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
 	i = 0;
-	while (i < 72)
+	while (i < TEX_SIDE)
 	{
 		gd->tex_south.img = new_display
 			(gd, gd->gi_data, i);
@@ -59,7 +59,7 @@ void west_tex(t_data *gd)
 	gd->gi_data = mlx_get_data_addr
 		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
 	i = 0;
-	while (i < 72)
+	while (i < TEX_SIDE)
 	{
 		gd->tex_west.img = new_display
 			(gd, gd->gi_data, i);
@@ -78,7 +78,7 @@ void east_tex(t_data *gd)
 	gd->gi_data = mlx_get_data_addr
 		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
 	i = 0;
-	while (i < 72)
+	while (i < TEX_SIDE)
 	{
 		gd->tex_east.img = new_display
 			(gd, gd->gi_data, i);
