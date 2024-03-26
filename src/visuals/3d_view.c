@@ -42,7 +42,7 @@ void	draw_vertical_line(t_data *game_data, t_ray_data *ray)
 
 	if (ray->dist == -1)
 		return ;
-	ray_angle = (ray->id / (float)WINDOW_WIDTH - 0.5) * (69 * M_PI / 180);
+	ray_angle = (ray->id / (float)WINDOW_WIDTH - 0.5) * (70 * M_PI / 180);
 	height = (100 * WINDOW_HEIGHT) / (ray->dist * cos(ray_angle));
 	if (height >= 1080)
 		height = 1080;
