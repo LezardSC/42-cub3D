@@ -26,16 +26,11 @@ void	draw_player_view(t_data *gd)
 	{
 		view.temp_cp_x = view.cp_x;
 		view.temp_cp_y = view.cp_y;
-		view.cp_x = view.temp_cp_x * cos(gd->angle)
-			- view.temp_cp_y * sin(gd->angle);
-		view.cp_y = view.temp_cp_x * sin(gd->angle)
-			+ view.temp_cp_y * cos(gd->angle);
-		view.cp_x = (view.cp_x / sqrt(view.cp_x * view.cp_x
-					+ view.cp_y * view.cp_y)) * view.radius;
-		view.cp_y = (view.cp_y / sqrt(view.cp_x * view.cp_x
-					+ view.cp_y * view.cp_y)) * view.radius;
-		ray = draw_line(gd, gd->pos_x
-				+ view.cp_x, gd->pos_y + view.cp_y, i);
+		view.cp_x = view.temp_cp_x * cos(gd->angle) - view.temp_cp_y * sin(gd->angle);
+		view.cp_y = view.temp_cp_x * sin(gd->angle)+ view.temp_cp_y * cos(gd->angle);
+		view.cp_x = (view.cp_x / sqrt(view.cp_x * view.cp_x+ view.cp_y * view.cp_y)) * view.radius;
+		view.cp_y = (view.cp_y / sqrt(view.cp_x * view.cp_x + view.cp_y * view.cp_y)) * view.radius;
+		ray = draw_line(gd, gd->pos_x + view.cp_x, gd->pos_y + view.cp_y, i);
 		draw_vertical_line(gd, &ray);
 		i++;
 	}
@@ -67,7 +62,7 @@ void	init_tex(t_data *gd)
 	ft_key(0, gd);
 }
 
-void init_pos(t_data *gd)
+/*void init_pos(t_data *gd)
 {
 	if (gd->card == 'N')
 	{
@@ -86,16 +81,42 @@ void init_pos(t_data *gd)
 	}
 	if (gd->card == 'E')
 	{
-		gd->x2 = (gd->pos_x + 1920) - gd->copy_angle;
+		gd->x2 = gd->pos_x + 1920;
 		gd->y2 = gd->pos_y;
 	}
+}*/
+
+void init_pos(t_data *gd)
+{
+    double angle = 36 * M_PI / 180.0; // Conversion degrés en radians
+
+    if (gd->card == 'N')
+    {
+        gd->x2 = gd->pos_x;
+        gd->y2 = gd->pos_y - 1920 * cos(angle);
+    }
+    else if (gd->card == 'S')
+    {
+        gd->x2 = gd->pos_x;
+        gd->y2 = gd->pos_y + 1920 * cos(angle);
+    }
+    else if (gd->card == 'W')
+    {
+        gd->x2 = gd->pos_x - 1920 * sin(angle);
+        gd->y2 = gd->pos_y;
+    }
+    else if (gd->card == 'E')
+    {
+        gd->x2 = gd->pos_x + 1920;
+        gd->y2 = gd->pos_y;
+    }
 }
 
 void	ft_put_windows(t_data *gd)
 {
 	gd->tex_side = TEX_SIDE;
 	gd->angle = 0.036458333 * M_PI / 180.0;
-	gd->copy_angle = 36 * M_PI / 180.0;
+	gd->copy_angle = 35 * M_PI / 180.0;
 	init_pos(gd);
 	init_tex(gd);
 	mlx_hook(gd->win, 02, 1L << 0, deal_key, gd);
