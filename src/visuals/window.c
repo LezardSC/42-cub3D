@@ -22,7 +22,6 @@ void	draw_player_view(t_data *gd)
 	view.radius = WINDOW_WIDTH;
 	view.cp_y = gd->y2;
 	view.cp_x = gd->x2;
-	printf("%d | %d\n%d | %d\n", gd->pos_x, gd->pos_y, gd->x2, gd->y2);
 	while (i < 1920)
 	{
 		view.temp_cp_x = view.cp_x;
@@ -96,7 +95,7 @@ void	ft_put_windows(t_data *gd)
 {
 	gd->tex_side = TEX_SIDE;
 	gd->angle = 0.036458333 * M_PI / 180.0;
-	gd->copy_angle = 34 * M_PI / 180.0;
+	gd->copy_angle = 36 * M_PI / 180.0;
 	init_pos(gd);
 	init_tex(gd);
 	mlx_hook(gd->win, 02, 1L << 0, deal_key, gd);
