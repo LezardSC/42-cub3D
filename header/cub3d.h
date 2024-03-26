@@ -38,7 +38,7 @@
 # define ORANGE_COLOR	0xFF2D00
 
 # define SPEED			0.02
-# define ROTATION_SPEED	1 * M_PI / 180.0
+# define ROTATION_SPEED	5 * M_PI / 180.0
 
 # define WINDOW_WIDTH	1920
 # define WINDOW_HEIGHT	1080
