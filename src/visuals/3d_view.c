@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:22:01 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/21 15:51:08 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/22 14:02:20 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,15 @@ void	draw_vertical_line(t_data *game_data, t_ray_data *ray)
 		if (!collision(game_data,ray->x, ray->y - 1) && !collision(game_data,ray->x, ray->y + 1))
 		{
 			if (!collision(game_data,ray->x + 1, ray->y))
-				pixel = get_pixel_color(game_data, i / height * 1080, ray->y  % 72, NO);
+				pixel = get_pixel_color(game_data, i / height * 1080, ray->y  % TEX_SIDE, NO);
 			else
-				pixel = get_pixel_color(game_data, i / height * 1080, ray->y  % 72, SO);
+				pixel = get_pixel_color(game_data, i / height * 1080, ray->y  % TEX_SIDE, SO);
 		}
 		else
 			if (!collision(game_data,ray->x, ray->y + 1))
-				pixel = get_pixel_color(game_data, i / height * 1080, ray->x  % 72, EA);
+				pixel = get_pixel_color(game_data, i / height * 1080, ray->x  % TEX_SIDE, EA);
 			else
-				pixel = get_pixel_color(game_data, i / height * 1080, ray->x  % 72, WE);
+				pixel = get_pixel_color(game_data, i / height * 1080, ray->x  % TEX_SIDE, WE);
 		put_pixel_to_image(game_data, (WINDOW_WIDTH / 1920) * ray->id ,
 			((WINDOW_HEIGHT / 2) - height / 2) + i, pixel);
 		i++;

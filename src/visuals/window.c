@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/21 15:49:33 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/25 14:17:59 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	draw_player_view(t_data *gd)
 	view.radius = WINDOW_WIDTH;
 	view.cp_y = gd->y2;
 	view.cp_x = gd->x2;
+	printf("%d | %d\n%d | %d\n", gd->pos_x, gd->pos_y, gd->x2, gd->y2);
 	while (i < 1920)
 	{
 		view.temp_cp_x = view.cp_x;
@@ -64,15 +65,39 @@ void	init_tex(t_data *gd)
 	east_tex(gd);
 	south_tex(gd);
 	west_tex(gd);
+	ft_key(0, gd);
+}
+
+void init_pos(t_data *gd)
+{
+	if (gd->card == 'N')
+	{
+		gd->x2 = gd->pos_x;
+		gd->y2 = gd->pos_y - 1920;
+	}
+	if (gd->card == 'S')
+	{
+		gd->x2 = gd->pos_x;
+		gd->y2 = gd->pos_y + 1920;
+	}
+	if (gd->card == 'W')
+	{
+		gd->x2 = gd->pos_x - 1920;
+		gd->y2 = gd->pos_y;
+	}
+	if (gd->card == 'E')
+	{
+		gd->x2 = (gd->pos_x + 1920) - gd->copy_angle;
+		gd->y2 = gd->pos_y;
+	}
 }
 
 void	ft_put_windows(t_data *gd)
 {
-	gd->tex_side = 72;
+	gd->tex_side = TEX_SIDE;
 	gd->angle = 0.036458333 * M_PI / 180.0;
 	gd->copy_angle = 34 * M_PI / 180.0;
-	gd->x2 = gd->pos_x + WINDOW_WIDTH * gd->angle;
-	gd->y2 = gd->pos_y;
+	init_pos(gd);
 	init_tex(gd);
 	mlx_hook(gd->win, 02, 1L << 0, deal_key, gd);
 	mlx_hook(gd->win, 17, 0, close_win, gd);

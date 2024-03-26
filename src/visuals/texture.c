@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:43:07 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/20 18:07:34 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/22 14:03:18 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	init_tex_data(t_tex_data *data, t_data *game_data, int ray)
 	data->bpp = 0;
 	data->sl = 0;
 	data->endian = 0;
-	data->original_width = 72;
-	data->original_height = 72;
+	data->original_width = TEX_SIDE;
+	data->original_height = TEX_SIDE;
 	data->enlarged_wall = mlx_new_image
 		(game_data->mlx, 1, 1080);
 	data->enlarged_wall_data = mlx_get_data_addr
 		(data->enlarged_wall, &data->bpp, &data->sl, &data->endian);
-	data->original_x = ray % 72;
+	data->original_x = ray % TEX_SIDE;
 }
 
 char	*new_display(t_data *game_data, char *wall_data, int ray)

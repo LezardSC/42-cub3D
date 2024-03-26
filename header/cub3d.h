@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/03/21 15:54:31 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/03/25 13:55:54 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define ORANGE_COLOR	0xFF2D00
 
 # define SPEED			0.02
-# define ROTATION_SPEED	5 * M_PI / 180.0
+# define ROTATION_SPEED	1 * M_PI / 180.0
 
 # define WINDOW_WIDTH	1920
 # define WINDOW_HEIGHT	1080
@@ -84,7 +84,7 @@ typedef struct s_pixel
 
 typedef struct s_tmp
 {
-	char	*addr[72];
+	char	*addr[1080];
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -148,8 +148,8 @@ typedef struct s_data
 	int			min_y;
 	int			pos_x;
 	int			pos_y;
-	double		x2;
-	double		y2;
+	int			x2;
+	int			y2;
 	double		angle;
 	double		copy_angle;
 	void		*gi;
@@ -164,6 +164,7 @@ typedef struct s_data
 	int			beginning_map;
 	char		direction;
 	int			tex_side;
+	int			card;
 	t_pixel		pixel;
 	t_player	player;
 	t_tmp		tex_north;
