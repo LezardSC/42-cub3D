@@ -12,11 +12,11 @@
 
 #include "cub3d.h"
 
-void north_tex(t_data *gd)
+void	north_tex(t_data *gd)
 {
-    int i;
-    
-    gd->gi = mlx_xpm_file_to_image
+	int	i;
+
+	gd->gi = mlx_xpm_file_to_image
 		(gd->mlx, "textures/wall_north.xpm", &gd->tex_side, &gd->tex_side);
 	gd->gi_data = mlx_get_data_addr
 		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
@@ -31,11 +31,11 @@ void north_tex(t_data *gd)
 	}
 }
 
-void south_tex(t_data *gd)
+void	south_tex(t_data *gd)
 {
-    int i;
-    
-    gd->gi = mlx_xpm_file_to_image
+	int	i;
+
+	gd->gi = mlx_xpm_file_to_image
 		(gd->mlx, "textures/wall_south.xpm", &gd->tex_side, &gd->tex_side);
 	gd->gi_data = mlx_get_data_addr
 		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
@@ -50,11 +50,11 @@ void south_tex(t_data *gd)
 	}
 }
 
-void west_tex(t_data *gd)
+void	west_tex(t_data *gd)
 {
-    int i;
-    
-    gd->gi = mlx_xpm_file_to_image
+	int	i;
+
+	gd->gi = mlx_xpm_file_to_image
 		(gd->mlx, "textures/wall_west.xpm", &gd->tex_side, &gd->tex_side);
 	gd->gi_data = mlx_get_data_addr
 		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
@@ -69,11 +69,11 @@ void west_tex(t_data *gd)
 	}
 }
 
-void east_tex(t_data *gd)
+void	east_tex(t_data *gd)
 {
-    int i;
-    
-    gd->gi = mlx_xpm_file_to_image
+	int	i;
+
+	gd->gi = mlx_xpm_file_to_image
 		(gd->mlx, "textures/wall_east.xpm", &gd->tex_side, &gd->tex_side);
 	gd->gi_data = mlx_get_data_addr
 		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
@@ -87,4 +87,3 @@ void east_tex(t_data *gd)
 				&gd->tex_east.line_length, &gd->tex_east.endian);
 	}
 }
-
