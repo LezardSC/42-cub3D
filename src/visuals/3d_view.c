@@ -33,11 +33,37 @@ void	draw_floor(t_data *gd)
 	}
 }
 
+void	draw_texture(t_data *game_data, t_ray_data *ray, int i, float height)
+{
+	int		pixel;
+
+	if (!collision(game_data, ray->x, ray->y - 1)
+		&& !collision(game_data, ray->x, ray->y + 1))
+	{
+		if (!collision(game_data, ray->x + 1, ray->y))
+			pixel = get_pixel_color(game_data, i
+					/ height * 1080, ray->y % TEX_SIDE, NO);
+		else
+			pixel = get_pixel_color(game_data, i
+					/ height * 1080, ray->y % TEX_SIDE, SO);
+	}
+	else
+	{
+		if (!collision(game_data, ray->x, ray->y + 1))
+			pixel = get_pixel_color(game_data, i
+					/ height * 1080, ray->x % TEX_SIDE, EA);
+		else
+			pixel = get_pixel_color(game_data, i
+					/ height * 1080, ray->x % TEX_SIDE, WE);
+	}
+	put_pixel_to_image(game_data, (WINDOW_WIDTH / 1920) * ray->id,
+		((WINDOW_HEIGHT / 2) - height / 2) + i, pixel);
+}
+
 void	draw_vertical_line(t_data *game_data, t_ray_data *ray)
 {
 	float	height;
 	int		i;
-	int		pixel;
 	float	ray_angle;
 
 	if (ray->dist == -1)
@@ -49,20 +75,7 @@ void	draw_vertical_line(t_data *game_data, t_ray_data *ray)
 	i = 0;
 	while (i < height)
 	{
-		if (!collision(game_data,ray->x, ray->y - 1) && !collision(game_data,ray->x, ray->y + 1))
-		{
-			if (!collision(game_data,ray->x + 1, ray->y))
-				pixel = get_pixel_color(game_data, i / height * 1080, ray->y  % TEX_SIDE, NO);
-			else
-				pixel = get_pixel_color(game_data, i / height * 1080, ray->y  % TEX_SIDE, SO);
-		}
-		else
-			if (!collision(game_data,ray->x, ray->y + 1))
-				pixel = get_pixel_color(game_data, i / height * 1080, ray->x  % TEX_SIDE, EA);
-			else
-				pixel = get_pixel_color(game_data, i / height * 1080, ray->x  % TEX_SIDE, WE);
-		put_pixel_to_image(game_data, (WINDOW_WIDTH / 1920) * ray->id ,
-			((WINDOW_HEIGHT / 2) - height / 2) + i, pixel);
+		draw_texture(game_data, ray, i, height);
 		i++;
 	}
 }
