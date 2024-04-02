@@ -14,9 +14,9 @@
 
 void	draw_player_view(t_data *gd)
 {
-	int		i;
-	t_pview	view;
-	t_ray_data ray;
+	int			i;
+	t_pview		view;
+	t_ray_data	ray;
 
 	i = 0;
 	view.radius = WINDOW_WIDTH;

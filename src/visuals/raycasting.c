@@ -34,12 +34,19 @@ void	init_line_data(t_line_data *data, int x2, int y2, t_data *gd)
 	data->err = data->dx - data->dy;
 }
 
+void	ray_value(t_ray_data *ray, t_line_data *data, int ray_id)
+{
+	ray->x = data->x1;
+	ray->y = data->y1;
+	ray->id = ray_id;
+	ray->dist = -1;
+}
+
 t_ray_data	draw_line(t_data *gd, int x2, int y2, int ray_id)
 {
 	t_line_data	data;
 	t_ray_data	ray;
 
-	ray.id = ray_id;
 	init_line_data(&data, x2, y2, gd);
 	while (1)
 	{
@@ -58,11 +65,8 @@ t_ray_data	draw_line(t_data *gd, int x2, int y2, int ray_id)
 			data.y1 += data.sy;
 		}
 	}
-	ray.x = data.x1;
-	ray.y = data.y1;
+	ray_value(&ray, &data, ray_id);
 	if (data.x1 != x2 || data.y1 != y2)
 		ray.dist = calc_dist(gd->pos_x, gd->pos_y, data.x1, data.y1);
-	else
-		ray.dist = -1;
 	return (ray);
 }
