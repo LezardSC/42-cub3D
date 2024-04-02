@@ -89,11 +89,11 @@ void	init_tex(t_data *gd)
 	}
 }*/
 
-void	init_pos(t_data *gd)
+/*void	init_pos(t_data *gd)
 {
 	double	angle;
 
-	angle = 36 * M_PI / 180.0;
+	angle = 180 * M_PI / 180.0;
 	if (gd->card == 'N')
 	{
 		gd->x2 = gd->pos_x;
@@ -111,17 +111,19 @@ void	init_pos(t_data *gd)
 	}
 	else if (gd->card == 'E')
 	{
-		gd->x2 = gd->pos_x + 1920;
-		gd->y2 = gd->pos_y;
+		gd->x2 = gd->pos_x - 1920 * cos(gd->copy_angle + angle);
+		gd->y2 = gd->pos_y - 1920 * sin(gd->copy_angle + angle);
 	}
-}
+}*/
 
 void	ft_put_windows(t_data *gd)
 {
 	gd->tex_side = TEX_SIDE;
 	gd->angle = 0.036458333 * M_PI / 180.0;
 	gd->copy_angle = 35 * M_PI / 180.0;
-	init_pos(gd);
+	gd->x2 = gd->pos_y + 1920 * cos(gd->copy_angle + 270 * M_PI / 180);
+	gd->y2 = gd->pos_x + 1920 * sin(gd->copy_angle + 270 * M_PI / 180);
+	//init_pos(gd);
 	init_tex(gd);
 	mlx_hook(gd->win, 02, 1L << 0, deal_key, gd);
 	mlx_hook(gd->win, 17, 0, close_win, gd);
