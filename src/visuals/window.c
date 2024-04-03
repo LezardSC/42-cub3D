@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/25 14:17:59 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/03 17:26:18 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	draw_player_view(t_data *gd)
 	view.radius = WINDOW_WIDTH;
 	view.cp_y = gd->y2;
 	view.cp_x = gd->x2;
+	//mlx_clear_window(gd->mlx, gd->win2);
 	while (i < 1920)
 	{
 		view.temp_cp_x = view.cp_x;
@@ -89,41 +90,40 @@ void	init_tex(t_data *gd)
 	}
 }*/
 
-/*void	init_pos(t_data *gd)
+void	init_pos(t_data *gd)
 {
 	double	angle;
+	int		tmp;
+	int		i;
 
-	angle = 180 * M_PI / 180.0;
+	angle = 0;
+	i = 0;
 	if (gd->card == 'N')
-	{
-		gd->x2 = gd->pos_x;
-		gd->y2 = gd->pos_y - 1920 * cos(angle);
-	}
-	else if (gd->card == 'S')
-	{
-		gd->x2 = gd->pos_x;
-		gd->y2 = gd->pos_y + 1920 * cos(angle);
-	}
+		angle = 273;
 	else if (gd->card == 'W')
-	{
-		gd->x2 = gd->pos_x - 1920 * sin(angle);
-		gd->y2 = gd->pos_y;
-	}
+		angle = 162;
 	else if (gd->card == 'E')
+		angle = 88;
+	while (i < angle && angle != 0)
 	{
-		gd->x2 = gd->pos_x - 1920 * cos(gd->copy_angle + angle);
-		gd->y2 = gd->pos_y - 1920 * sin(gd->copy_angle + angle);
+		tmp = gd->x2;
+		gd->copy_angle += 0.000000001 * M_PI / 180;
+		gd->x2 = gd->x2 * cos(gd->copy_angle * 35 * M_PI / 180.0 / 3)
+			- gd->y2 * sin(gd->copy_angle * 35 * M_PI / 180.0 / 3);
+		gd->y2 = tmp * sin(gd->copy_angle * 35 * M_PI / 180.0 / 3)
+			+ gd->y2 * cos(gd->copy_angle * 35 * M_PI / 180.0 / 3);
+		i++;
 	}
-}*/
+}
 
 void	ft_put_windows(t_data *gd)
 {
 	gd->tex_side = TEX_SIDE;
 	gd->angle = 0.036458333 * M_PI / 180.0;
-	gd->copy_angle = 35 * M_PI / 180.0;
-	gd->x2 = gd->pos_y + 1920 * cos(gd->copy_angle + 270 * M_PI / 180);
-	gd->y2 = gd->pos_x + 1920 * sin(gd->copy_angle + 270 * M_PI / 180);
-	//init_pos(gd);
+	gd->copy_angle = 35.5 * M_PI / 180.0;
+	gd->x2 = gd->pos_y + 1920 * cos(gd->copy_angle);
+	gd->y2 = gd->pos_x + 1920 * sin(gd->copy_angle);
+	init_pos(gd);
 	init_tex(gd);
 	mlx_hook(gd->win, 02, 1L << 0, deal_key, gd);
 	mlx_hook(gd->win, 17, 0, close_win, gd);
