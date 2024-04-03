@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/03 17:26:18 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/03 17:34:17 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	draw_player_view(t_data *gd)
 	view.radius = WINDOW_WIDTH;
 	view.cp_y = gd->y2;
 	view.cp_x = gd->x2;
-	//mlx_clear_window(gd->mlx, gd->win2);
 	while (i < 1920)
 	{
 		view.temp_cp_x = view.cp_x;
@@ -65,30 +64,6 @@ void	init_tex(t_data *gd)
 	west_tex(gd);
 	ft_key(0, gd);
 }
-
-/*void init_pos(t_data *gd)
-{
-	if (gd->card == 'N')
-	{
-		gd->x2 = gd->pos_x;
-		gd->y2 = gd->pos_y - 1920;
-	}
-	if (gd->card == 'S')
-	{
-		gd->x2 = gd->pos_x;
-		gd->y2 = gd->pos_y + 1920;
-	}
-	if (gd->card == 'W')
-	{
-		gd->x2 = gd->pos_x - 1920;
-		gd->y2 = gd->pos_y;
-	}
-	if (gd->card == 'E')
-	{
-		gd->x2 = gd->pos_x + 1920;
-		gd->y2 = gd->pos_y;
-	}
-}*/
 
 void	init_pos(t_data *gd)
 {
