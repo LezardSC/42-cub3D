@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/03/25 13:55:54 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/03 18:28:38 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_pixel
 
 typedef struct s_tmp
 {
-	char	*addr[1080];
+	char	*addr[WINDOW_HEIGHT];
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;

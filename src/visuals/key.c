@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 18:54:28 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/03 17:02:03 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/03 18:35:42 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ int	ft_key(int key, t_data *gd)
 	}
 	draw_floor(gd);
 	draw_player_view(gd);
-	gd->player.pos_x = gd->pos_x * (gd->max_x * gd->pixel.size) / 1920;
-	gd->player.pos_y = gd->pos_y * (gd->max_y * gd->pixel.size) / 1080;
+	gd->player.pos_x = gd->pos_x * (gd->max_x * gd->pixel.size) / WINDOW_WIDTH;
+	gd->player.pos_y = gd->pos_y * (gd->max_y * gd->pixel.size) / WINDOW_HEIGHT;
 	show_minimap(gd);
 	mlx_put_image_to_window(gd->mlx, gd->win, gd->pixel.img, 0, 0);
 	return (0);
