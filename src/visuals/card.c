@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 15:41:33 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/22 14:02:14 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/03 18:29:22 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	north_tex(t_data *gd)
 	int	i;
 
 	gd->gi = mlx_xpm_file_to_image
-		(gd->mlx, "textures/wall_north.xpm", &gd->tex_side, &gd->tex_side);
+		(gd->mlx, gd->map_textures[NO], &gd->tex_side, &gd->tex_side);
 	gd->gi_data = mlx_get_data_addr
 		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
 	i = 0;
@@ -36,7 +36,7 @@ void	south_tex(t_data *gd)
 	int	i;
 
 	gd->gi = mlx_xpm_file_to_image
-		(gd->mlx, "textures/wall_south.xpm", &gd->tex_side, &gd->tex_side);
+		(gd->mlx, gd->map_textures[SO], &gd->tex_side, &gd->tex_side);
 	gd->gi_data = mlx_get_data_addr
 		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
 	i = 0;
@@ -55,7 +55,7 @@ void	west_tex(t_data *gd)
 	int	i;
 
 	gd->gi = mlx_xpm_file_to_image
-		(gd->mlx, "textures/wall_west.xpm", &gd->tex_side, &gd->tex_side);
+		(gd->mlx, gd->map_textures[WE], &gd->tex_side, &gd->tex_side);
 	gd->gi_data = mlx_get_data_addr
 		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
 	i = 0;
@@ -74,7 +74,7 @@ void	east_tex(t_data *gd)
 	int	i;
 
 	gd->gi = mlx_xpm_file_to_image
-		(gd->mlx, "textures/wall_east.xpm", &gd->tex_side, &gd->tex_side);
+		(gd->mlx, gd->map_textures[EA], &gd->tex_side, &gd->tex_side);
 	gd->gi_data = mlx_get_data_addr
 		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
 	i = 0;
