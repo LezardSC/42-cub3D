@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 19:13:58 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/03 17:00:47 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/03 17:34:36 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ t_ray_data	draw_line(t_data *gd, int x2, int y2, int ray_id)
 			data.err += data.dx;
 			data.y1 += data.sy;
 		}
-		/*if (data.x1 < 1920 && data.y1 < 1080)
-			mlx_pixel_put(gd->mlx, gd->win2,  data.x1 * (gd->max_x * gd->pixel.size) / 1920, data.y1 * (gd->max_y * gd->pixel.size) / 1080, BLUE_COLOR);*/
 	}
 	ray_value(&ray, &data, ray_id);
 	if (data.x1 != x2 || data.y1 != y2)
