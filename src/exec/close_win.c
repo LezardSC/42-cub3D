@@ -14,6 +14,10 @@
 
 int	close_win(t_data *param)
 {
+	mlx_destroy_image(param->mlx, param->gi_e);
+	mlx_destroy_image(param->mlx, param->gi_n);
+	mlx_destroy_image(param->mlx, param->gi_s);
+	mlx_destroy_image(param->mlx, param->gi_w);
 	mlx_destroy_window(param->mlx, param->win);
 	free_all_param(param);
 	mlx_destroy_image(param->mlx, param->pixel.img);

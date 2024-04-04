@@ -16,10 +16,10 @@ void	north_tex(t_data *gd)
 {
 	int	i;
 
-	gd->gi = mlx_xpm_file_to_image
+	gd->gi_n = mlx_xpm_file_to_image
 		(gd->mlx, gd->map_textures[NO], &gd->tex_side, &gd->tex_side);
 	gd->gi_data = mlx_get_data_addr
-		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
+		(gd->gi_n, &gd->bpp, &gd->sl, &gd->endian);
 	i = 0;
 	while (i < TEX_SIDE)
 	{
@@ -35,10 +35,10 @@ void	south_tex(t_data *gd)
 {
 	int	i;
 
-	gd->gi = mlx_xpm_file_to_image
+	gd->gi_s = mlx_xpm_file_to_image
 		(gd->mlx, gd->map_textures[SO], &gd->tex_side, &gd->tex_side);
 	gd->gi_data = mlx_get_data_addr
-		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
+		(gd->gi_s, &gd->bpp, &gd->sl, &gd->endian);
 	i = 0;
 	while (i < TEX_SIDE)
 	{
@@ -54,10 +54,10 @@ void	west_tex(t_data *gd)
 {
 	int	i;
 
-	gd->gi = mlx_xpm_file_to_image
+	gd->gi_w = mlx_xpm_file_to_image
 		(gd->mlx, gd->map_textures[WE], &gd->tex_side, &gd->tex_side);
 	gd->gi_data = mlx_get_data_addr
-		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
+		(gd->gi_w, &gd->bpp, &gd->sl, &gd->endian);
 	i = 0;
 	while (i < TEX_SIDE)
 	{
@@ -73,10 +73,10 @@ void	east_tex(t_data *gd)
 {
 	int	i;
 
-	gd->gi = mlx_xpm_file_to_image
+	gd->gi_e = mlx_xpm_file_to_image
 		(gd->mlx, gd->map_textures[EA], &gd->tex_side, &gd->tex_side);
 	gd->gi_data = mlx_get_data_addr
-		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
+		(gd->gi_e, &gd->bpp, &gd->sl, &gd->endian);
 	i = 0;
 	while (i < TEX_SIDE)
 	{

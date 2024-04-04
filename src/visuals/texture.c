@@ -26,7 +26,7 @@ void	init_tex_data(t_tex_data *data, t_data *game_data, int ray)
 	data->original_x = ray % TEX_SIDE;
 }
 
-char	*new_display(t_data *game_data, char *wall_data, int ray)
+void	*new_display(t_data *game_data, char *wall_data, int ray)
 {
 	t_tex_data	data;
 	int			y;
