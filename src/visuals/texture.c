@@ -6,34 +6,33 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:43:07 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/03 17:52:45 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/08 15:58:03 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_tex_data(t_tex_data *data, t_data *game_data, int ray)
+void	init_tex_data(t_tex_data *data, t_data *game_data, int ray, void *tex)
 {
+	(void)game_data;
 	data->bpp = 0;
 	data->sl = 0;
 	data->endian = 0;
 	data->original_width = TEX_SIDE;
 	data->original_height = TEX_SIDE;
-	data->enlarged_wall = mlx_new_image
-		(game_data->mlx, 1, WINDOW_HEIGHT);
 	data->enlarged_wall_data = mlx_get_data_addr
-		(data->enlarged_wall, &data->bpp, &data->sl, &data->endian);
+		(tex, &data->bpp, &data->sl, &data->endian);
 	data->original_x = ray % TEX_SIDE;
 }
 
-void	*new_display(t_data *game_data, char *wall_data, int ray)
+void	new_display(t_data *game_data, char *wall_data, int ray, void *tex)
 {
 	t_tex_data	data;
 	int			y;
 	int			i;
 
 	y = 0;
-	init_tex_data(&data, game_data, ray);
+	init_tex_data(&data, game_data, ray, tex);
 	while (y < WINDOW_HEIGHT)
 	{
 		data.original_y = y * data.original_height / WINDOW_HEIGHT;
@@ -52,5 +51,4 @@ void	*new_display(t_data *game_data, char *wall_data, int ray)
 		}
 		y++;
 	}
-	return (data.enlarged_wall);
 }

@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/04/08 11:17:24 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/08 15:11:21 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ typedef struct s_tmp
 	int		line_length;
 	int		endian;
 	int		size;
-	void	*img;
+	void	*img[TEX_SIDE];
 }				t_tmp;
 
 typedef struct s_player
@@ -238,7 +238,7 @@ void		put_pixel_to_image(t_data *gd, int x, int y, int color);
 void		making_map(t_data *gd);
 int			collision(t_data *gd, int x, int y);
 void		left_right_move(int key, t_data *gd);
-void		*new_display(t_data *game_data, char *wall_data, int ray);
+void		new_display(t_data *game_data, char *wall_data, int ray, void *tex);
 void		put_image_in_image(t_data *game_data, int x, int y, char *img_data);
 int			get_pixel_color(t_data *gd, int x, int y, int ray);
 int			is_x_wall(int x, t_data *gd);

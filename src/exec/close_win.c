@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   close_win.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrenault <jrenault@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 22:15:53 by jrenault          #+#    #+#             */
-/*   Updated: 2024/01/27 03:50:49 by jrenault         ###   ########lyon.fr   */
+/*   Updated: 2024/04/08 15:57:52 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3d.h"
+
+void	destroy_img(t_data *param)
+{
+	int	i;
+
+	i = 0;
+	while (i < TEX_SIDE)
+	{
+		mlx_destroy_image(param->mlx, param->tex_north.img[i]);
+		mlx_destroy_image(param->mlx, param->tex_south.img[i]);
+		mlx_destroy_image(param->mlx, param->tex_west.img[i]);
+		mlx_destroy_image(param->mlx, param->tex_east.img[i]);
+		i++;
+	}
+}
 
 int	close_win(t_data *param)
 {
@@ -19,6 +34,7 @@ int	close_win(t_data *param)
 	mlx_destroy_image(param->mlx, param->gi_s);
 	mlx_destroy_image(param->mlx, param->gi_w);
 	mlx_destroy_window(param->mlx, param->win);
+	destroy_img(param);
 	free_all_param(param);
 	mlx_destroy_image(param->mlx, param->pixel.img);
 	mlx_destroy_display(param->mlx);

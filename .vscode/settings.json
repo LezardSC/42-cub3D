@@ -2,5 +2,6 @@
     "files.associations": {
         "random": "c",
         "libft.h": "c"
-    }
+    },
+    "makefile.clearOutputBeforeBuild": true
 }
