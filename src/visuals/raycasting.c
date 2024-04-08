@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 19:13:58 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/03 17:34:36 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/08 11:17:56 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ float	calc_dist(int x1, int y1, int x2, int y2)
 
 void	init_line_data(t_line_data *data, int x2, int y2, t_data *gd)
 {
-	data->dx = abs(x2 - gd->pos_x);
-	data->dy = abs(y2 - gd->pos_y);
+	data->dx = abs((int)x2 - (int)gd->pos_x);
+	data->dy = abs((int)y2 - (int)gd->pos_y);
 	data->x1 = gd->pos_x;
 	data->y1 = gd->pos_y;
 	if (gd->pos_x < x2)
