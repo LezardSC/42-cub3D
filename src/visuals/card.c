@@ -6,11 +6,11 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 15:41:33 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/03 18:29:22 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/08 15:55:38 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../header/cub3d.h"
 
 void	north_tex(t_data *gd)
 {
@@ -23,11 +23,12 @@ void	north_tex(t_data *gd)
 	i = 0;
 	while (i < TEX_SIDE)
 	{
-		gd->tex_north.img = new_display
-			(gd, gd->gi_data, i);
-		gd->tex_north.addr[i++] = mlx_get_data_addr(gd->tex_north.img,
+		gd->tex_north.img[i] = mlx_new_image(gd->mlx, 1, WINDOW_WIDTH);
+		new_display(gd, gd->gi_data, i, gd->tex_north.img[i]);
+		gd->tex_north.addr[i] = mlx_get_data_addr(gd->tex_north.img[i],
 				&gd->tex_north.bits_per_pixel,
 				&gd->tex_north.line_length, &gd->tex_north.endian);
+		i++;
 	}
 }
 
@@ -42,11 +43,12 @@ void	south_tex(t_data *gd)
 	i = 0;
 	while (i < TEX_SIDE)
 	{
-		gd->tex_south.img = new_display
-			(gd, gd->gi_data, i);
-		gd->tex_south.addr[i++] = mlx_get_data_addr(gd->tex_south.img,
+		gd->tex_south.img[i] = mlx_new_image(gd->mlx, 1, WINDOW_WIDTH);
+		new_display(gd, gd->gi_data, i, gd->tex_south.img[i]);
+		gd->tex_south.addr[i] = mlx_get_data_addr(gd->tex_south.img[i],
 				&gd->tex_south.bits_per_pixel,
 				&gd->tex_south.line_length, &gd->tex_south.endian);
+		i++;
 	}
 }
 
@@ -61,11 +63,12 @@ void	west_tex(t_data *gd)
 	i = 0;
 	while (i < TEX_SIDE)
 	{
-		gd->tex_west.img = new_display
-			(gd, gd->gi_data, i);
-		gd->tex_west.addr[i++] = mlx_get_data_addr(gd->tex_west.img,
+		gd->tex_west.img[i] = mlx_new_image(gd->mlx, 1, WINDOW_WIDTH);
+		new_display(gd, gd->gi_data, i, gd->tex_west.img[i]);
+		gd->tex_west.addr[i] = mlx_get_data_addr(gd->tex_west.img[i],
 				&gd->tex_west.bits_per_pixel,
 				&gd->tex_west.line_length, &gd->tex_west.endian);
+		i++;
 	}
 }
 
@@ -80,10 +83,11 @@ void	east_tex(t_data *gd)
 	i = 0;
 	while (i < TEX_SIDE)
 	{
-		gd->tex_east.img = new_display
-			(gd, gd->gi_data, i);
-		gd->tex_east.addr[i++] = mlx_get_data_addr(gd->tex_east.img,
+		gd->tex_east.img[i] = mlx_new_image(gd->mlx, 1, WINDOW_WIDTH);
+		new_display(gd, gd->gi_data, i, gd->tex_east.img[i]);
+		gd->tex_east.addr[i] = mlx_get_data_addr(gd->tex_east.img[i],
 				&gd->tex_east.bits_per_pixel,
 				&gd->tex_east.line_length, &gd->tex_east.endian);
+		i++;
 	}
 }
