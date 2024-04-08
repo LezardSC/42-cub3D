@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/04/03 18:28:38 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/08 11:17:24 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,10 +146,10 @@ typedef struct s_data
 	int			max_x;
 	int			max_y;
 	int			min_y;
-	int			pos_x;
-	int			pos_y;
-	int			x2;
-	int			y2;
+	double			pos_x;
+	double			pos_y;
+	double			x2;
+	double			y2;
 	double		angle;
 	double		copy_angle;
 	void		*gi_n;
