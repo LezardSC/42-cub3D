@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/08 15:58:50 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/10 09:57:18 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw_player_view(t_data *gd)
 	t_ray_data	ray;
 
 	i = 0;
-	view.radius = WINDOW_WIDTH;
+	view.radius = WINDOW_WIDTH * 2;
 	view.cp_y = gd->y2;
 	view.cp_x = gd->x2;
 	while (i < WINDOW_WIDTH)
@@ -58,11 +58,20 @@ int	collision(t_data *gd, int x, int y)
 
 void	init_tex(t_data *gd)
 {
-	north_tex(gd);
-	east_tex(gd);
-	south_tex(gd);
-	west_tex(gd);
-	ft_key(0, gd);
+	if (north_tex(gd) && east_tex(gd) && south_tex(gd) && west_tex(gd))
+		ft_key(0, gd);
+	else
+	{
+		destroy_img(gd);
+		free_all_param(gd);
+		mlx_destroy_window(gd->mlx, gd->win);
+		mlx_destroy_image(gd->mlx, gd->pixel.img);
+		mlx_destroy_display(gd->mlx);
+		free(gd->mlx);
+		close(gd->fd);
+		printf("Error\ntexture can't be load");
+		exit(0);
+	}
 }
 
 void	init_pos(t_data *gd)
