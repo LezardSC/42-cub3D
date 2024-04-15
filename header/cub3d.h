@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/03/25 13:55:54 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/10 09:41:54 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define ORANGE_COLOR	0xFF2D00
 
 # define SPEED			0.02
-# define ROTATION_SPEED	5 * M_PI / 180.0
+# define ROTATION_SPEED	1 * M_PI / 180.0
 
 # define WINDOW_WIDTH	1920
 # define WINDOW_HEIGHT	1080
@@ -84,12 +84,12 @@ typedef struct s_pixel
 
 typedef struct s_tmp
 {
-	char	*addr[1080];
+	char	*addr[WINDOW_HEIGHT];
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
 	int		size;
-	void	*img;
+	void	*img[TEX_SIDE];
 }				t_tmp;
 
 typedef struct s_player
@@ -166,13 +166,16 @@ typedef struct s_data
 	int			max_x;
 	int			max_y;
 	int			min_y;
-	int			pos_x;
-	int			pos_y;
-	int			x2;
-	int			y2;
+	double			pos_x;
+	double			pos_y;
+	double			x2;
+	double			y2;
 	double		angle;
 	double		copy_angle;
-	void		*gi;
+	void		*gi_n;
+	void		*gi_e;
+	void		*gi_s;
+	void		*gi_w;
 	char		*gi_data;
 	int			sl;
 	int			bpp;
@@ -238,13 +241,14 @@ void		put_pixel_to_image(t_data *gd, int x, int y, int color);
 void		making_map(t_data *gd);
 int			collision(t_data *gd, int x, int y);
 void		left_right_move(int key, t_data *gd);
-char		*new_display(t_data *game_data, char *wall_data, int ray);
+void		new_display(t_data *game_data, char *wall_data, int ray, void *tex);
 void		put_image_in_image(t_data *game_data, int x, int y, char *img_data);
 int			get_pixel_color(t_data *gd, int x, int y, int ray);
 int			is_x_wall(int x, t_data *gd);
-void		north_tex(t_data *gd);
-void 		south_tex(t_data *gd);
-void 		west_tex(t_data *gd);
-void 		east_tex(t_data *gd);
+int			north_tex(t_data *gd);
+int 		south_tex(t_data *gd);
+int 		west_tex(t_data *gd);
+int			east_tex(t_data *gd);
+void		destroy_img(t_data *param);
 
 #endif 

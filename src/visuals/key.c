@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 18:54:28 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/14 22:10:23 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/03 18:35:42 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,42 +16,41 @@ void	left_right_move(int key, t_data *gd)
 {
 	if (key == ROTATE_LEFT)
 	{
-		gd->pos_y -= (gd->x2 * sin(gd->copy_angle + 90 * M_PI/180)
-				+ gd->y2 * cos(gd->copy_angle + 90 * M_PI/180)) / 50;
-		gd->pos_x -= (gd->x2 * cos(gd->copy_angle + 90 * M_PI/180)
-				- gd->y2 * sin(gd->copy_angle + 90 * M_PI/180)) / 50;
+		gd->pos_y -= (gd->x2 * sin(gd->copy_angle + 90 * M_PI / 180)
+				+ gd->y2 * cos(gd->copy_angle + 90 * M_PI / 180)) / 200;
+		gd->pos_x -= (gd->x2 * cos(gd->copy_angle + 90 * M_PI / 180)
+				- gd->y2 * sin(gd->copy_angle + 90 * M_PI / 180)) / 200;
 	}
 	else if (key == ROTATE_RIGHT)
 	{
-		gd->pos_y += (gd->x2 * sin(gd->copy_angle + 90 * M_PI/180)
-				+ gd->y2 * cos(gd->copy_angle + 90 * M_PI/180)) / 50;
-		gd->pos_x += (gd->x2 * cos(gd->copy_angle + 90 * M_PI/180)
-				- gd->y2 * sin(gd->copy_angle + 90 * M_PI/180)) / 50;
+		gd->pos_y += (gd->x2 * sin(gd->copy_angle + 90 * M_PI / 180)
+				+ gd->y2 * cos(gd->copy_angle + 90 * M_PI / 180)) / 200;
+		gd->pos_x += (gd->x2 * cos(gd->copy_angle + 90 * M_PI / 180)
+				- gd->y2 * sin(gd->copy_angle + 90 * M_PI / 180)) / 200;
 	}
 }
 
 void	rotate_view(int key, t_data *gd)
 {
-	int tmp;
+	int	tmp;
 
 	tmp = gd->x2;
 	if (key == 65361)
 	{
 		gd->copy_angle -= 0.000000001 * M_PI / 180;
-		gd->x2 = gd->x2 * cos(gd->copy_angle * (35 * M_PI / 180.0)) + gd->y2 * sin(gd->copy_angle * (35 * M_PI / 180.0));
-		gd->y2 = -tmp * sin(gd->copy_angle * (35 * M_PI / 180.0)) + gd->y2 * cos(gd->copy_angle * (35 * M_PI / 180.0));
+		gd->x2 = gd->x2 * cos(gd->copy_angle * (35 * M_PI / 180.0) / 3)
+			+ gd->y2 * sin(gd->copy_angle * (35 * M_PI / 180.0) / 3);
+		gd->y2 = -tmp * sin(gd->copy_angle * (35 * M_PI / 180.0) / 3)
+			+ gd->y2 * cos(gd->copy_angle * (35 * M_PI / 180.0) / 3);
 	}
 	else if (key == 65363)
 	{
 		gd->copy_angle += 0.000000001 * M_PI / 180;
-		gd->x2 = gd->x2 * cos(gd->copy_angle * 35 * M_PI / 180.0) - gd->y2 * sin(gd->copy_angle * 35 * M_PI / 180.0);
-		gd->y2 = tmp * sin(gd->copy_angle * 35 * M_PI / 180.0) + gd->y2 * cos(gd->copy_angle * 35 * M_PI / 180.0);
+		gd->x2 = gd->x2 * cos(gd->copy_angle * 35 * M_PI / 180.0 / 3)
+			- gd->y2 * sin(gd->copy_angle * 35 * M_PI / 180.0 / 3);
+		gd->y2 = tmp * sin(gd->copy_angle * 35 * M_PI / 180.0 / 3)
+			+ gd->y2 * cos(gd->copy_angle * 35 * M_PI / 180.0 / 3);
 	}
-	/*if (gd->copy_angle * 180 / M_PI >= 360)
-		gd->copy_angle = 0 * M_PI / 180;
-	else if (gd->copy_angle * 180 / M_PI <= 0)
-		gd->copy_angle = 360 * M_PI / 180;*/
-	printf("%f\n", gd->copy_angle * 180 / M_PI);
 }
 
 void	front_back_move(int key, t_data *gd)
@@ -59,16 +58,16 @@ void	front_back_move(int key, t_data *gd)
 	if (key == 119)
 	{
 		gd->pos_y += (gd->x2 * sin(gd->copy_angle)
-				+ gd->y2 * cos(gd->copy_angle)) / 50;
+				+ gd->y2 * cos(gd->copy_angle)) / 200;
 		gd->pos_x += (gd->x2 * cos(gd->copy_angle)
-				- gd->y2 * sin(gd->copy_angle)) / 50;
+				- gd->y2 * sin(gd->copy_angle)) / 200;
 	}
 	else if (key == 115)
 	{
 		gd->pos_y -= (gd->x2 * sin(gd->copy_angle)
-				+ gd->y2 * cos(gd->copy_angle)) / 50;
+				+ gd->y2 * cos(gd->copy_angle)) / 200;
 		gd->pos_x -= (gd->x2 * cos(gd->copy_angle)
-				- gd->y2 * sin(gd->copy_angle)) / 50;
+				- gd->y2 * sin(gd->copy_angle)) / 200;
 	}
 }
 
@@ -94,8 +93,8 @@ int	ft_key(int key, t_data *gd)
 	}
 	draw_floor(gd);
 	draw_player_view(gd);
-	gd->player.pos_x = gd->pos_x * (gd->max_x * gd->pixel.size) / 1920;
-	gd->player.pos_y = gd->pos_y * (gd->max_y * gd->pixel.size) / 1080;
+	gd->player.pos_x = gd->pos_x * (gd->max_x * gd->pixel.size) / WINDOW_WIDTH;
+	gd->player.pos_y = gd->pos_y * (gd->max_y * gd->pixel.size) / WINDOW_HEIGHT;
 	show_minimap(gd);
 	mlx_put_image_to_window(gd->mlx, gd->win, gd->pixel.img, 0, 0);
 	return (0);
