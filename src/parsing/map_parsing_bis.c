@@ -43,5 +43,6 @@ int	is_name_correct(t_data *param)
 		&& param->map_name[size - 2] == 'u' && param->map_name[size - 3] == 'c'
 		&& param->map_name[size - 4] == '.')
 		return (0);
+	ft_printf("Error\nThe map is not a valid \".cub\"");
 	return (1);
 }

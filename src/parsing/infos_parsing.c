@@ -61,7 +61,7 @@ int	find_infos(t_data *param)
 
 	buf = get_next_line(param->fd);
 	if (!buf)
-		return (ft_printf("Error\nThe map is empty\n"), 1);
+		return (ft_printf("Error\nget_next_line error\n"), 1);
 	while (!is_line_map(buf))
 	{
 		param->nb_lines++;
