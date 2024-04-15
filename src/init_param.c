@@ -62,9 +62,9 @@ static void	init_player(t_data *param)
 int	init_pixels(t_data *param)
 {
 	if (param->max_x > param->max_y)
-		param->pixel.size = (MINIMAP_WIDTH / (param->max_x + 1));
+		param->pixel.size = ((double)MINIMAP_WIDTH / (param->max_x + 1));
 	else
-		param->pixel.size = (MINIMAP_HEIGHT / (param->max_y + 1));
+		param->pixel.size = ((double)MINIMAP_HEIGHT / (param->max_y + 1));
 	param->pixel.radius = param->pixel.size / 2;
 	init_player(param);
 	return (0);
