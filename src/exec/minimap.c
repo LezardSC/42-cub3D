@@ -67,7 +67,7 @@ int	show_minimap(t_data *param)
 		}
 		x = 0;
 	}
-	my_mlx_circle_put(param, BLUE_COLOR);
+	my_mlx_circle_put(param, WHITE_COLOR);
 	mlx_put_image_to_window(param->mlx, param->win, param->pixel.img, 0, 0);
 	return (0);
 }
