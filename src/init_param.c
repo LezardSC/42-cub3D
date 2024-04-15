@@ -49,6 +49,8 @@ static void	init_player(t_data *param)
 	param->player.left = FALSE;
 	param->player.right = FALSE;
 	param->player.backward = FALSE;
+	param->player.rotate_left = FALSE;
+	param->player.rotate_right = FALSE;
 	if (param->direction == 'N')
 		param->player.angle = 90 * M_PI / 180.0;
 	else if (param->direction == 'S')
