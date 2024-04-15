@@ -42,7 +42,7 @@ int	move_forward(t_data *param)
 		param->player.pos_y = new_y;
 		param->player.pos_x = new_x;
 	}
-	show_minimap(param);
+	show_map(param);
 	return (0);
 }
 
@@ -58,7 +58,7 @@ int	move_backward(t_data *param)
 		param->player.pos_y = new_y;
 		param->player.pos_x = new_x;
 	}
-	show_minimap(param);
+	show_map(param);
 	return (0);
 }
 
@@ -74,7 +74,7 @@ int	move_left(t_data *param)
 		param->player.pos_y = new_y;
 		param->player.pos_x = new_x;
 	}
-	show_minimap(param);
+	show_map(param);
 	return (0);
 }
 
@@ -90,6 +90,6 @@ int	move_right(t_data *param)
 		param->player.pos_y = new_y;
 		param->player.pos_x = new_x;
 	}
-	show_minimap(param);
+	show_map(param);
 	return (0);
 }
