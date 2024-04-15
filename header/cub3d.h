@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/04/10 09:41:54 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/15 18:37:19 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ typedef struct s_ray_data
 {
 	int	x;
 	int	y;
-	int	dist;
+	double	dist;
 	int	id;
 }				t_ray_data;
 

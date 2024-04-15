@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:22:01 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/03 18:34:37 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/15 19:05:58 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ void	draw_floor(t_data *gd)
 void	draw_texture(t_data *game_data, t_ray_data *ray, int i, float height)
 {
 	int		pixel;
-
+	double	x;
+	double	y;
+ 
 	if (!collision(game_data, ray->x, ray->y - 1)
 		&& !collision(game_data, ray->x, ray->y + 1))
 	{
@@ -56,22 +58,27 @@ void	draw_texture(t_data *game_data, t_ray_data *ray, int i, float height)
 			pixel = get_pixel_color(game_data, i
 					/ height * WINDOW_HEIGHT, ray->x % TEX_SIDE, WE);
 	}
-	put_pixel_to_image(game_data, (WINDOW_WIDTH / WINDOW_WIDTH) * ray->id,
-		((WINDOW_HEIGHT / 2) - height / 2) + i, pixel);
+	x = (WINDOW_WIDTH / WINDOW_WIDTH) * ray->id;
+	y = ((WINDOW_HEIGHT / 2) - height / 2) + i;
+	if (y < 1080 && y > 0)
+		put_pixel_to_image(game_data, x,y, pixel);
 }
 
 void	draw_vertical_line(t_data *game_data, t_ray_data *ray)
 {
-	float	height;
+	double	height;
 	int		i;
-	float	ray_angle;
+	double	ray_angle;
 
 	if (ray->dist == -1)
 		return ;
-	ray_angle = (ray->id / (float)WINDOW_WIDTH - 0.5) * (70 * M_PI / 180);
-	height = (70 * WINDOW_HEIGHT) / (ray->dist * cos(ray_angle));
-	if (height >= WINDOW_HEIGHT)
+	ray_angle = (ray->id / (double)WINDOW_WIDTH - 0.5) * (70.0 * M_PI / 180.0);
+	height = (70.0 * (double)WINDOW_HEIGHT) / (ray->dist * cos(ray_angle));
+	/*if (height >= WINDOW_HEIGHT)
+	{
+		printf("%f\n", height);
 		height = WINDOW_HEIGHT;
+	}*/
 	i = 0;
 	while (i < height)
 	{
