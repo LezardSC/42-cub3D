@@ -26,18 +26,18 @@
 # define WIN_HEIGHT		1080
 # define WIN_WIDTH		1920
 
-# define WHITE_COLOR		0x00FFFFFF
-# define RED_COLOR			0x00FF0000
-# define GREEN_COLOR		0x0000FF00
-# define BLUE_COLOR 		0x000000FF
-# define BLACK_COLOR		0x00000000
-# define YELLOW_COLOR		0x00FFFF00
-# define CYAN_COLOR			0x0000FFFF
-# define MAGENTA_COLOR		0x00FF00FF
+# define WHITE_COLOR	0x00FFFFFF
+# define RED_COLOR		0x00FF0000
+# define GREEN_COLOR	0x0000FF00
+# define BLUE_COLOR 	0x000000FF
+# define BLACK_COLOR	0x00000000
+# define YELLOW_COLOR	0x00FFFF00
+# define CYAN_COLOR		0x0000FFFF
+# define MAGENTA_COLOR	0x00FF00FF
 
 //define the speed of the player and the rotation speed. The speed has to be adjust if using valgrind because it slow the program.
-# define SPEED			0.22
-# define ROTATION_SPEED	0.01
+# define SPEED			1
+# define ROTATION_SPEED	0.06
 
 //for the color of the floor and sky
 enum e_colors
