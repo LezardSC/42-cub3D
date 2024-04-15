@@ -129,6 +129,26 @@ typedef struct s_tex_data
 	int		enlarged_index;
 }				t_tex_data;
 
+typedef struct s_ray_data
+{
+	int	x;
+	int	y;
+	int	dist;
+	int	id;
+}				t_ray_data;
+
+typedef struct s_line_data
+{
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	e2;
+	int	err;
+	int	x1;
+	int	y1;
+}				t_line_data;
+
 typedef struct s_data
 {
 	int			nb_lines;
@@ -171,27 +191,10 @@ typedef struct s_data
 	t_tmp		tex_south;
 	t_tmp		tex_east;
 	t_tmp		tex_west;
+	t_tex_data	tdata;
+	t_line_data	ldata;
 }			t_data;
 
-typedef struct s_ray_data
-{
-	int	x;
-	int	y;
-	int	dist;
-	int	id;
-}				t_ray_data;
-
-typedef struct s_line_data
-{
-	int	dx;
-	int	dy;
-	int	sx;
-	int	sy;
-	int	e2;
-	int	err;
-	int	x1;
-	int	y1;
-}				t_line_data;
 
 int			main(int argc, char **argv);
 int			init_param(t_data *param);
