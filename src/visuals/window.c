@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/25 14:17:59 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/10 09:57:18 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,26 @@
 
 void	draw_player_view(t_data *gd)
 {
-	int		i;
-	t_pview	view;
-	t_ray_data ray;
+	int			i;
+	t_pview		view;
+	t_ray_data	ray;
 
 	i = 0;
-	view.radius = WINDOW_WIDTH;
+	view.radius = WINDOW_WIDTH * 2;
 	view.cp_y = gd->y2;
 	view.cp_x = gd->x2;
-	while (i < 1920)
+	while (i < WINDOW_WIDTH)
 	{
 		view.temp_cp_x = view.cp_x;
 		view.temp_cp_y = view.cp_y;
-		view.cp_x = view.temp_cp_x * cos(gd->angle) - view.temp_cp_y * sin(gd->angle);
-		view.cp_y = view.temp_cp_x * sin(gd->angle)+ view.temp_cp_y * cos(gd->angle);
-		view.cp_x = (view.cp_x / sqrt(view.cp_x * view.cp_x+ view.cp_y * view.cp_y)) * view.radius;
-		view.cp_y = (view.cp_y / sqrt(view.cp_x * view.cp_x + view.cp_y * view.cp_y)) * view.radius;
+		view.cp_x = view.temp_cp_x * cos(gd->angle)
+			- view.temp_cp_y * sin(gd->angle);
+		view.cp_y = view.temp_cp_x * sin(gd->angle)
+			+ view.temp_cp_y * cos(gd->angle);
+		view.cp_x = (view.cp_x / sqrt(view.cp_x * view.cp_x
+					+ view.cp_y * view.cp_y)) * view.radius;
+		view.cp_y = (view.cp_y / sqrt(view.cp_x * view.cp_x
+					+ view.cp_y * view.cp_y)) * view.radius;
 		ray = draw_line(gd, gd->pos_x + view.cp_x, gd->pos_y + view.cp_y, i);
 		draw_vertical_line(gd, &ray);
 		i++;
@@ -52,71 +56,57 @@ int	collision(t_data *gd, int x, int y)
 	return (1);
 }
 
-
 void	init_tex(t_data *gd)
 {
-	north_tex(gd);
-	east_tex(gd);
-	south_tex(gd);
-	west_tex(gd);
-	ft_key(0, gd);
+	if (north_tex(gd) && east_tex(gd) && south_tex(gd) && west_tex(gd))
+		ft_key(0, gd);
+	else
+	{
+		destroy_img(gd);
+		free_all_param(gd);
+		mlx_destroy_window(gd->mlx, gd->win);
+		mlx_destroy_image(gd->mlx, gd->pixel.img);
+		mlx_destroy_display(gd->mlx);
+		free(gd->mlx);
+		close(gd->fd);
+		printf("Error\ntexture can't be load");
+		exit(0);
+	}
 }
 
-/*void init_pos(t_data *gd)
+void	init_pos(t_data *gd)
 {
+	double	angle;
+	int		tmp;
+	int		i;
+
+	angle = 0;
+	i = 0;
 	if (gd->card == 'N')
+		angle = 273;
+	else if (gd->card == 'W')
+		angle = 162;
+	else if (gd->card == 'E')
+		angle = 88;
+	while (i < angle && angle != 0)
 	{
-		gd->x2 = gd->pos_x;
-		gd->y2 = gd->pos_y - 1920;
+		tmp = gd->x2;
+		gd->copy_angle += 0.000000001 * M_PI / 180;
+		gd->x2 = gd->x2 * cos(gd->copy_angle * 35 * M_PI / 180.0 / 3)
+			- gd->y2 * sin(gd->copy_angle * 35 * M_PI / 180.0 / 3);
+		gd->y2 = tmp * sin(gd->copy_angle * 35 * M_PI / 180.0 / 3)
+			+ gd->y2 * cos(gd->copy_angle * 35 * M_PI / 180.0 / 3);
+		i++;
 	}
-	if (gd->card == 'S')
-	{
-		gd->x2 = gd->pos_x;
-		gd->y2 = gd->pos_y + 1920;
-	}
-	if (gd->card == 'W')
-	{
-		gd->x2 = gd->pos_x - 1920;
-		gd->y2 = gd->pos_y;
-	}
-	if (gd->card == 'E')
-	{
-		gd->x2 = gd->pos_x + 1920;
-		gd->y2 = gd->pos_y;
-	}
-}*/
-
-void init_pos(t_data *gd)
-{
-    double angle = 36 * M_PI / 180.0; // Conversion degrés en radians
-
-    if (gd->card == 'N')
-    {
-        gd->x2 = gd->pos_x;
-        gd->y2 = gd->pos_y - 1920 * cos(angle);
-    }
-    else if (gd->card == 'S')
-    {
-        gd->x2 = gd->pos_x;
-        gd->y2 = gd->pos_y + 1920 * cos(angle);
-    }
-    else if (gd->card == 'W')
-    {
-        gd->x2 = gd->pos_x - 1920 * sin(angle);
-        gd->y2 = gd->pos_y;
-    }
-    else if (gd->card == 'E')
-    {
-        gd->x2 = gd->pos_x + 1920;
-        gd->y2 = gd->pos_y;
-    }
 }
 
 void	ft_put_windows(t_data *gd)
 {
 	gd->tex_side = TEX_SIDE;
-	gd->angle = 0.036458333 * M_PI / 180.0;
+	gd->angle = ((double)70 / (double)WINDOW_WIDTH) * M_PI / 180.0;
 	gd->copy_angle = 35 * M_PI / 180.0;
+	gd->x2 = gd->pos_y + WINDOW_WIDTH * cos(gd->copy_angle);
+	gd->y2 = gd->pos_x + WINDOW_WIDTH * sin(gd->copy_angle);
 	init_pos(gd);
 	init_tex(gd);
 	mlx_hook(gd->win, 02, 1L << 0, deal_key, gd);

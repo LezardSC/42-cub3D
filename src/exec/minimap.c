@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 02:38:40 by jrenault          #+#    #+#             */
-/*   Updated: 2024/03/25 13:41:01 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/03 17:53:05 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ static void	player_first_position(t_data *param, int y, int x)
 		+ param->pixel.radius;
 	param->player.pos_y = y * param->pixel.size
 		+ param->pixel.radius;
-	param->pos_x = param->player.pos_x * 1920
+	param->pos_x = param->player.pos_x * WINDOW_WIDTH
 		/ (param->max_x * param->pixel.size);
-	param->pos_y = param->player.pos_y * 1080
+	param->pos_y = param->player.pos_y * WINDOW_HEIGHT
 		/ (param->max_y * param->pixel.size);
 }
 

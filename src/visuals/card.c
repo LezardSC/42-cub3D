@@ -6,85 +6,100 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 15:41:33 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/03/22 14:02:14 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/10 10:00:27 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../header/cub3d.h"
 
-void north_tex(t_data *gd)
+int	north_tex(t_data *gd)
 {
-    int i;
-    
-    gd->gi = mlx_xpm_file_to_image
-		(gd->mlx, "textures/wall_north.xpm", &gd->tex_side, &gd->tex_side);
+	int	i;
+
+	gd->gi_n = mlx_xpm_file_to_image
+		(gd->mlx, gd->map_textures[NO], &gd->tex_side, &gd->tex_side);
+	if (!gd->gi_n)
+		return (0);
 	gd->gi_data = mlx_get_data_addr
-		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
+		(gd->gi_n, &gd->bpp, &gd->sl, &gd->endian);
 	i = 0;
 	while (i < TEX_SIDE)
 	{
-		gd->tex_north.img = new_display
-			(gd, gd->gi_data, i);
-		gd->tex_north.addr[i++] = mlx_get_data_addr(gd->tex_north.img,
+		gd->tex_north.img[i] = mlx_new_image(gd->mlx, 1, WINDOW_WIDTH);
+		new_display(gd, gd->gi_data, i, gd->tex_north.img[i]);
+		gd->tex_north.addr[i] = mlx_get_data_addr(gd->tex_north.img[i],
 				&gd->tex_north.bits_per_pixel,
 				&gd->tex_north.line_length, &gd->tex_north.endian);
+		i++;
 	}
+	return (1);
 }
 
-void south_tex(t_data *gd)
+int	south_tex(t_data *gd)
 {
-    int i;
-    
-    gd->gi = mlx_xpm_file_to_image
-		(gd->mlx, "textures/wall_south.xpm", &gd->tex_side, &gd->tex_side);
+	int	i;
+
+	gd->gi_s = mlx_xpm_file_to_image
+		(gd->mlx, gd->map_textures[SO], &gd->tex_side, &gd->tex_side);
+	if (!gd->gi_s)
+		return (0);
 	gd->gi_data = mlx_get_data_addr
-		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
+		(gd->gi_s, &gd->bpp, &gd->sl, &gd->endian);
 	i = 0;
 	while (i < TEX_SIDE)
 	{
-		gd->tex_south.img = new_display
-			(gd, gd->gi_data, i);
-		gd->tex_south.addr[i++] = mlx_get_data_addr(gd->tex_south.img,
+		gd->tex_south.img[i] = mlx_new_image(gd->mlx, 1, WINDOW_WIDTH);
+		new_display(gd, gd->gi_data, i, gd->tex_south.img[i]);
+		gd->tex_south.addr[i] = mlx_get_data_addr(gd->tex_south.img[i],
 				&gd->tex_south.bits_per_pixel,
 				&gd->tex_south.line_length, &gd->tex_south.endian);
+		i++;
 	}
+	return (1);
 }
 
-void west_tex(t_data *gd)
+int	west_tex(t_data *gd)
 {
-    int i;
-    
-    gd->gi = mlx_xpm_file_to_image
-		(gd->mlx, "textures/wall_west.xpm", &gd->tex_side, &gd->tex_side);
+	int	i;
+
+	gd->gi_w = mlx_xpm_file_to_image
+		(gd->mlx, gd->map_textures[WE], &gd->tex_side, &gd->tex_side);
+	if (!gd->gi_w)
+		return (0);
 	gd->gi_data = mlx_get_data_addr
-		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
+		(gd->gi_w, &gd->bpp, &gd->sl, &gd->endian);
 	i = 0;
 	while (i < TEX_SIDE)
 	{
-		gd->tex_west.img = new_display
-			(gd, gd->gi_data, i);
-		gd->tex_west.addr[i++] = mlx_get_data_addr(gd->tex_west.img,
+		gd->tex_west.img[i] = mlx_new_image(gd->mlx, 1, WINDOW_WIDTH);
+		new_display(gd, gd->gi_data, i, gd->tex_west.img[i]);
+		gd->tex_west.addr[i] = mlx_get_data_addr(gd->tex_west.img[i],
 				&gd->tex_west.bits_per_pixel,
 				&gd->tex_west.line_length, &gd->tex_west.endian);
+		i++;
 	}
+	return (1);
 }
 
-void east_tex(t_data *gd)
+int	east_tex(t_data *gd)
 {
-    int i;
-    
-    gd->gi = mlx_xpm_file_to_image
-		(gd->mlx, "textures/wall_east.xpm", &gd->tex_side, &gd->tex_side);
+	int	i;
+
+	gd->gi_e = mlx_xpm_file_to_image
+		(gd->mlx, gd->map_textures[EA], &gd->tex_side, &gd->tex_side);
+	if (!gd->gi_e)
+		return (0);
 	gd->gi_data = mlx_get_data_addr
-		(gd->gi, &gd->bpp, &gd->sl, &gd->endian);
+		(gd->gi_e, &gd->bpp, &gd->sl, &gd->endian);
 	i = 0;
 	while (i < TEX_SIDE)
 	{
-		gd->tex_east.img = new_display
-			(gd, gd->gi_data, i);
-		gd->tex_east.addr[i++] = mlx_get_data_addr(gd->tex_east.img,
+		gd->tex_east.img[i] = mlx_new_image(gd->mlx, 1, WINDOW_WIDTH);
+		new_display(gd, gd->gi_data, i, gd->tex_east.img[i]);
+		gd->tex_east.addr[i] = mlx_get_data_addr(gd->tex_east.img[i],
 				&gd->tex_east.bits_per_pixel,
 				&gd->tex_east.line_length, &gd->tex_east.endian);
+		i++;
 	}
+	return (1);
 }
-

@@ -1,14 +1,14 @@
-NO textures/Tile_1.xpm
-SO textures/Tile_2.xpm
-WE textures/Tile_3.xpm
-EA textures/Bricks_1.xpm
+NO textures/wall_north.xpm
+SO textures/wall_south.xpm
+WE textures/wall_west.xpm
+EA textures/wall_east.xpm
 
 F 255,255,255
 C 0,255,0
 
 111111111111111111
 100000000000000001
-100010000000E00001
+100010000000W00001
 100100001101000001
 100000001101000001
 100010001001000001
