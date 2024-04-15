@@ -59,7 +59,8 @@ int	collision(t_data *gd, int x, int y)
 		line_index = gd->max_y;
 	if (line_index < 0)
 		line_index = 0;
-	if (gd->map[line_index][column_index] && gd->map[line_index][column_index] == '1')
+	if (gd->map[line_index][column_index]
+		&& gd->map[line_index][column_index] == '1')
 		return (0);
 	return (1);
 }
