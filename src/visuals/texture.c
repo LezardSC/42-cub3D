@@ -27,6 +27,7 @@ void	init_tex_data(t_tex_data *data, t_data *game_data, int ray, void *tex)
 
 void	new_display(t_data *game_data, char *wall_data, int ray, void *tex)
 {
+	t_tex_data	data;
 	int			y;
 	int			i;
 
@@ -39,7 +40,7 @@ void	new_display(t_data *game_data, char *wall_data, int ray, void *tex)
 			* (data.bpp / 8) + data.original_x * (data.bpp / 8);
 		data.enlarged_index = y * data.sl;
 		i = 0;
-		while (i < gd->tdata.bpp / 8)
+		while (i < data.bpp / 8)
 		{
 			if (data.original_index + i < data.original_width
 				* data.original_height * (data.bpp / 8)
