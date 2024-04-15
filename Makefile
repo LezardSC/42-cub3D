@@ -29,17 +29,13 @@ SRC			 			= 	init_param.c \
 							parsing/infos_parsing.c \
 							parsing/fill_infos.c \
 							parsing/check_error.c \
-							visuals/window.c \
-							visuals/3d_view.c \
-							visuals/exit_view.c \
-							visuals/key.c \
-							visuals/raycasting.c \
 							main.c \
 							exec/close_win.c \
 							exec/deal_key.c \
 							exec/minimap.c \
 							exec/move_player.c \
 							exec/draw_pixels.c \
+							exec/show_map.c \
 
 OBJECTS			    	= ${addprefix ${BUILD_DIR},${SRC:.c=.o}}
 

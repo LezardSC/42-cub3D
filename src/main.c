@@ -63,11 +63,11 @@ static void	end_program(t_data *param)
 static int	display_map(t_data *param)
 {
 	param->pixel.img = mlx_new_image(param->mlx,
-			MINIMAP_WIDTH, MINIMAP_HEIGHT);
+			WIN_WIDTH, WIN_HEIGHT);
 	param->pixel.addr = mlx_get_data_addr(param->pixel.img,
 			&param->pixel.bits_per_pixel,
 			&param->pixel.line_length, &param->pixel.endian);
-	if (show_minimap(param) == 1)
+	if (show_map(param) == 1)
 		return (free_all_param(param), mlx_destroy_display(param->mlx),
 			free(param->mlx), 1);
 	return (0);
@@ -114,6 +114,5 @@ int	main(int argc, char **argv)
 
 
 /*
--clean rotation for smoothness
 -try to do a big image green then put the minimap image on it
 */
