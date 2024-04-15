@@ -93,10 +93,6 @@ int	ft_key(int key, t_data *gd)
 	}
 	draw_floor(gd);
 	draw_player_view(gd);
-	/*gd->player.pos_x = gd->pos_x * (gd->max_x * gd->pixel.size) / (double)WINDOW_WIDTH;
-	gd->player.pos_y = gd->pos_y * (gd->max_y * gd->pixel.size) / (double)WINDOW_HEIGHT;
-	printf("pos y: %f pos x: %f\n", gd->player.pos_y, gd->player.pos_x);
-	show_minimap(gd);*/
 	mlx_put_image_to_window(gd->mlx, gd->win, gd->pixel.img, 0, 0);
 	return (0);
 }
