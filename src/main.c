@@ -111,3 +111,9 @@ int	main(int argc, char **argv)
 	mlx_loop(param.mlx);
 	return (end_program(&param), 0);
 }
+
+
+/*
+-clean rotation for smoothness
+-try to do a big image green then put the minimap image on it
+*/

@@ -35,7 +35,7 @@
 
 //define the speed of the player and the rotation speed. The speed has to be adjust if using valgrind because it slow the program.
 # define SPEED			0.22
-# define ROTATION_SPEED	0.1
+# define ROTATION_SPEED	0.01
 
 //for the color of the floor and sky
 enum e_colors
@@ -60,8 +60,8 @@ enum e_keys
 	LEFT = 97,
 	DOWN = 115,
 	RIGHT = 100,
-	ROTATE_LEFT = 106,
-	ROTATE_RIGHT = 107
+	ROTATE_LEFT = 65361,
+	ROTATE_RIGHT = 65363
 };
 
 //classic struct for the pixels
@@ -85,6 +85,8 @@ typedef struct s_player
 	int		left;
 	int		right;
 	int		backward;
+	int		rotate_left;
+	int		rotate_right;
 }				t_player;
 
 typedef struct s_data
