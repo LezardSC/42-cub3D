@@ -38,7 +38,8 @@ void	draw_texture(t_data *game_data, t_ray_data *ray, int i, float height)
 	int		pixel;
 	double	x;
 	double	y;
- 
+
+	pixel = BLACK_COLOR;
 	if (!collision(game_data, ray->x, ray->y - 1)
 		&& !collision(game_data, ray->x, ray->y + 1))
 	{
@@ -73,7 +74,7 @@ void	draw_vertical_line(t_data *game_data, t_ray_data *ray)
 	if (ray->dist == -1)
 		return ;
 	ray_angle = (ray->id / (double)WINDOW_WIDTH - 0.5) * (70.0 * M_PI / 180.0);
-	height = (70.0 * (double)WINDOW_HEIGHT) / (ray->dist * cos(ray_angle));
+	height = (80.0 * (double)WINDOW_HEIGHT) / (ray->dist * cos(ray_angle));
 	i = 0;
 	while (i < height)
 	{
