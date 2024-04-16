@@ -13,7 +13,7 @@ n = False
 while i < height:
     j = 0
     while j < width:
-        random_number = random.randint(1, 100)
+        random_number = random.randint(1, 30)
         if i == 0 or i == height - 1 or j == 0 or j == width - 1:
             file.write("1")
         elif random_number == 1:
