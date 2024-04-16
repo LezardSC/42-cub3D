@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:22:01 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/15 19:13:12 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/16 08:58:29 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,19 @@ void	draw_texture(t_data *game_data, t_ray_data *ray, int i, float height)
 	{
 		if (!collision(game_data, ray->x + 1, ray->y))
 			pixel = get_pixel_color(game_data, i
-					/ height * WINDOW_HEIGHT, ray->y % TEX_SIDE, NO);
+					/ height * WINDOW_HEIGHT, ray->y % TEX_SIDE, EA);
 		else
 			pixel = get_pixel_color(game_data, i
-					/ height * WINDOW_HEIGHT, ray->y % TEX_SIDE, SO);
+					/ height * WINDOW_HEIGHT, ray->y % TEX_SIDE, WE);
 	}
 	else
 	{
 		if (!collision(game_data, ray->x, ray->y + 1))
 			pixel = get_pixel_color(game_data, i
-					/ height * WINDOW_HEIGHT, ray->x % TEX_SIDE, EA);
+					/ height * WINDOW_HEIGHT, ray->x % TEX_SIDE, SO);
 		else
 			pixel = get_pixel_color(game_data, i
-					/ height * WINDOW_HEIGHT, ray->x % TEX_SIDE, WE);
+					/ height * WINDOW_HEIGHT, ray->x % TEX_SIDE, NO);
 	}
 	x = (WINDOW_WIDTH / WINDOW_WIDTH) * ray->id;
 	y = ((WINDOW_HEIGHT / 2) - height / 2) + i;
