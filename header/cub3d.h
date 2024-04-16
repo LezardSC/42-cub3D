@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/04/08 15:11:21 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/15 18:37:19 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ typedef struct s_pixel
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	int		size;
-	int		radius;
+	double		size;
+	double		radius;
 }				t_pixel;
 
 typedef struct s_tmp
@@ -133,7 +133,7 @@ typedef struct s_ray_data
 {
 	int	x;
 	int	y;
-	int	dist;
+	double	dist;
 	int	id;
 }				t_ray_data;
 
@@ -245,9 +245,10 @@ void		new_display(t_data *game_data, char *wall_data, int ray, void *tex);
 void		put_image_in_image(t_data *game_data, int x, int y, char *img_data);
 int			get_pixel_color(t_data *gd, int x, int y, int ray);
 int			is_x_wall(int x, t_data *gd);
-void		north_tex(t_data *gd);
-void 		south_tex(t_data *gd);
-void 		west_tex(t_data *gd);
-void 		east_tex(t_data *gd);
+int			north_tex(t_data *gd);
+int 		south_tex(t_data *gd);
+int 		west_tex(t_data *gd);
+int			east_tex(t_data *gd);
+void		destroy_img(t_data *param);
 
 #endif 

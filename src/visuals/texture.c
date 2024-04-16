@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:43:07 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/08 15:58:03 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/15 18:42:08 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	new_display(t_data *game_data, char *wall_data, int ray, void *tex)
 
 	y = 0;
 	init_tex_data(&data, game_data, ray, tex);
-	while (y < WINDOW_HEIGHT)
+	while (y < WINDOW_HEIGHT * 2)
 	{
 		data.original_y = y * data.original_height / WINDOW_HEIGHT;
 		data.original_index = data.original_y * data.original_width
