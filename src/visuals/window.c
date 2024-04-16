@@ -78,7 +78,7 @@ void	init_tex(t_data *gd)
 		mlx_destroy_display(gd->mlx);
 		free(gd->mlx);
 		close(gd->fd);
-		printf("Error\ntexture can't be load");
+		ft_printf("Error\ntexture can't be load.\n");
 		exit(0);
 	}
 }
