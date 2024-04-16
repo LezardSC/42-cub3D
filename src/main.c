@@ -58,9 +58,9 @@ static int	display_map(t_data *param)
 	param->pixel.addr = mlx_get_data_addr(param->pixel.img,
 			&param->pixel.bits_per_pixel,
 			&param->pixel.line_length, &param->pixel.endian);
-//	if (show_minimap(param) == 1)
-//		return (free_all_param(param), mlx_destroy_display(param->mlx),
-//			free(param->mlx), 1);
+	if (show_minimap(param) == 1)
+		return (free_all_param(param), mlx_destroy_display(param->mlx),
+			free(param->mlx), 1);
 	return (0);
 }
 
