@@ -16,10 +16,6 @@ int	north_tex(t_data *gd)
 {
 	int	i;
 
-	gd->gi_n = mlx_xpm_file_to_image
-		(gd->mlx, gd->map_textures[NO], &gd->tex_side, &gd->tex_side);
-	if (!gd->gi_n)
-		return (0);
 	gd->gi_data = mlx_get_data_addr
 		(gd->gi_n, &gd->bpp, &gd->sl, &gd->endian);
 	i = 0;
@@ -39,10 +35,6 @@ int	south_tex(t_data *gd)
 {
 	int	i;
 
-	gd->gi_s = mlx_xpm_file_to_image
-		(gd->mlx, gd->map_textures[SO], &gd->tex_side, &gd->tex_side);
-	if (!gd->gi_s)
-		return (0);
 	gd->gi_data = mlx_get_data_addr
 		(gd->gi_s, &gd->bpp, &gd->sl, &gd->endian);
 	i = 0;
@@ -62,10 +54,6 @@ int	west_tex(t_data *gd)
 {
 	int	i;
 
-	gd->gi_w = mlx_xpm_file_to_image
-		(gd->mlx, gd->map_textures[WE], &gd->tex_side, &gd->tex_side);
-	if (!gd->gi_w)
-		return (0);
 	gd->gi_data = mlx_get_data_addr
 		(gd->gi_w, &gd->bpp, &gd->sl, &gd->endian);
 	i = 0;
@@ -85,10 +73,6 @@ int	east_tex(t_data *gd)
 {
 	int	i;
 
-	gd->gi_e = mlx_xpm_file_to_image
-		(gd->mlx, gd->map_textures[EA], &gd->tex_side, &gd->tex_side);
-	if (!gd->gi_e)
-		return (0);
 	gd->gi_data = mlx_get_data_addr
 		(gd->gi_e, &gd->bpp, &gd->sl, &gd->endian);
 	i = 0;

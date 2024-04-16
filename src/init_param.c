@@ -59,6 +59,27 @@ static void	init_player(t_data *param)
 		param->player.angle = 180 * M_PI / 180.0;
 }
 
+static int	init_textures(t_data *param)
+{
+	param->gi_n = mlx_xpm_file_to_image
+	(param->mlx, param->map_textures[NO], &param->tex_side, &param->tex_side);
+	if (!param->gi_n)
+		return (1);
+	param->gi_s = mlx_xpm_file_to_image
+	(param->mlx, param->map_textures[SO], &param->tex_side, &param->tex_side);
+	if (!param->gi_s)
+		return (1);
+	param->gi_w = mlx_xpm_file_to_image
+	(param->mlx, param->map_textures[WE], &param->tex_side, &param->tex_side);
+	if (!param->gi_w)
+		return (1);
+	param->gi_e = mlx_xpm_file_to_image
+	(param->mlx, param->map_textures[EA], &param->tex_side, &param->tex_side);
+	if (!param->gi_e)
+		return (1);
+	return (0);
+}
+
 int	init_pixels(t_data *param)
 {
 	if (param->max_x > param->max_y)
@@ -66,9 +87,12 @@ int	init_pixels(t_data *param)
 	else
 		param->pixel.size = ((double)MINIMAP_HEIGHT / (param->max_y + 1));
 	param->pixel.radius = param->pixel.size / 2;
+	if (init_textures(param) == 1)
+		return (ft_printf("Error\ntexture can't be load.\n"), 1);
 	init_player(param);
 	return (0);
 }
+
 
 int	init_param(t_data *param)
 {
