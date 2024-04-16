@@ -66,7 +66,7 @@ t_ray_data	draw_line(t_data *gd, int x2, int y2, int ray_id)
 		}
 	}
 	ray_value(&ray, &data, ray_id);
-	if (data.x1 != x2 && data.y1 != y2)
+	if (data.x1 != x2 || data.y1 != y2)
 		ray.dist = calc_dist(gd->pos_x, gd->pos_y, data.x1, data.y1);
 	return (ray);
 }

@@ -19,7 +19,7 @@ void	draw_player_view(t_data *gd)
 	t_ray_data	ray;
 
 	i = 0;
-	view.radius = WINDOW_WIDTH * 2;
+	view.radius = WINDOW_WIDTH;
 	view.cp_y = gd->y2;
 	view.cp_x = gd->x2;
 	while (i < WINDOW_WIDTH)
