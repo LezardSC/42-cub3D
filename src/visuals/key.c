@@ -71,6 +71,25 @@ void	front_back_move(int key, t_data *gd)
 	}
 }
 
+int	not_to_close(int centre_x, int centre_y, double rayon, t_data *gd) 
+{
+    double	angle_degrees;
+	double	angle_radians;
+	int		x;
+	int		y;
+
+	angle_degrees = 0;
+    while (angle_degrees < 360) {
+        angle_radians = angle_degrees * (M_PI / 180.0);
+        x = centre_x + (int)(rayon * cos(angle_radians));
+        y = centre_y + (int)(rayon * sin(angle_radians));
+		if (!collision(gd,x,y))
+			return (printf("conasse: %d | %d\n", x,y), 0);
+        angle_degrees += 1;
+    }
+	return (1);
+}
+
 int	ft_key(int key, t_data *gd)
 {
 	int	tmp_x;
@@ -86,7 +105,7 @@ int	ft_key(int key, t_data *gd)
 		rotate_view(key, gd);
 	else if (key == ROTATE_RIGHT || key == ROTATE_LEFT)
 		left_right_move(key, gd);
-	if (!collision(gd, gd->pos_x, gd->pos_y))
+	if (!not_to_close(gd->pos_x, gd->pos_y, 10, gd))
 	{
 		gd->pos_x = tmp_x;
 		gd->pos_y = tmp_y;
