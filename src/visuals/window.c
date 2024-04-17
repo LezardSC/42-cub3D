@@ -19,7 +19,7 @@ void	draw_player_view(t_data *gd)
 	t_ray_data	ray;
 
 	i = 0;
-	view.radius = WINDOW_WIDTH * 2;
+	view.radius = WINDOW_WIDTH;
 	view.cp_y = gd->y2;
 	view.cp_x = gd->x2;
 	while (i < WINDOW_WIDTH)
@@ -47,8 +47,8 @@ int	collision(t_data *gd, int x, int y)
 	int		column_index;
 	int		line_index;
 
-	case_width = (double)WINDOW_WIDTH / gd->max_x;
-	case_height = (double)WINDOW_HEIGHT / gd->max_y;
+	case_width = (double)TEX_SIDE;
+	case_height = (double)TEX_SIDE;
 	column_index = (x / case_width);
 	line_index = (y / case_height);
 	if (column_index >= gd->max_x)
@@ -100,7 +100,7 @@ void	init_pos(t_data *gd)
 	while (i < angle && angle != 0)
 	{
 		tmp = gd->x2;
-		gd->copy_angle += 0.000000001 * M_PI / 180;
+		//gd->copy_angle += 0.000000001 * M_PI / 180;
 		gd->x2 = gd->x2 * cos(gd->copy_angle * 35 * M_PI / 180.0 / 3)
 			- gd->y2 * sin(gd->copy_angle * 35 * M_PI / 180.0 / 3);
 		gd->y2 = tmp * sin(gd->copy_angle * 35 * M_PI / 180.0 / 3)
