@@ -39,9 +39,9 @@ static void	player_first_position(t_data *param, int y, int x)
 		+ param->pixel.radius;
 	param->player.pos_y = y * param->pixel.size
 		+ param->pixel.radius;
-	param->pos_x = param->player.pos_x * WINDOW_WIDTH
+	param->pos_x = param->player.pos_x * (TEX_SIDE * param->max_x)
 		/ (param->max_x * param->pixel.size);
-	param->pos_y = param->player.pos_y * WINDOW_HEIGHT
+	param->pos_y = param->player.pos_y * (TEX_SIDE * param->max_y)
 		/ (param->max_y * param->pixel.size);
 }
 
