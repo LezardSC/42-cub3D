@@ -62,7 +62,7 @@ void	draw_texture(t_data *game_data, t_ray_data *ray, int i, float height)
 	x = (WINDOW_WIDTH / WINDOW_WIDTH) * ray->id;
 	y = ((WINDOW_HEIGHT / 2) - height / 2) + i;
 	if (y < 1080 && y > 0)
-		put_pixel_to_image(game_data, x,y, pixel);
+		put_pixel_to_image(game_data, x, y, pixel);
 }
 
 void	draw_vertical_line(t_data *game_data, t_ray_data *ray)
@@ -74,7 +74,7 @@ void	draw_vertical_line(t_data *game_data, t_ray_data *ray)
 	if (ray->dist == -1)
 		return ;
 	ray_angle = (ray->id / (double)WINDOW_WIDTH - 0.5) * (70.0 * M_PI / 180.0);
-	height = (80.0 * (double)WINDOW_HEIGHT) / (ray->dist * cos(ray_angle));
+	height = (100.0 * (double)WINDOW_HEIGHT) / (ray->dist * cos(ray_angle));
 	i = 0;
 	while (i < height)
 	{
