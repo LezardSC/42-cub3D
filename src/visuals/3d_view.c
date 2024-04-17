@@ -33,6 +33,17 @@ void	draw_floor(t_data *gd)
 	}
 }
 
+static int	give_color(t_data *game_data, t_ray_data *ray, int i, float height)
+{
+	if (!collision(game_data, ray->x + 1, ray->y))
+		return (get_pixel_color(game_data, i
+				/ height * WINDOW_HEIGHT, ray->y % TEX_SIDE, EA));
+	else
+		return (get_pixel_color(game_data, i
+				/ height * WINDOW_HEIGHT, ray->y % TEX_SIDE, WE));
+	return (BLACK_COLOR);
+}
+
 void	draw_texture(t_data *game_data, t_ray_data *ray, int i, float height)
 {
 	int		pixel;
@@ -43,12 +54,7 @@ void	draw_texture(t_data *game_data, t_ray_data *ray, int i, float height)
 	if (!collision(game_data, ray->x, ray->y - 1)
 		&& !collision(game_data, ray->x, ray->y + 1))
 	{
-		if (!collision(game_data, ray->x + 1, ray->y))
-			pixel = get_pixel_color(game_data, i
-					/ height * WINDOW_HEIGHT, ray->y % TEX_SIDE, EA);
-		else
-			pixel = get_pixel_color(game_data, i
-					/ height * WINDOW_HEIGHT, ray->y % TEX_SIDE, WE);
+		pixel = give_color(game_data, ray, i, height);
 	}
 	else
 	{
@@ -81,15 +87,6 @@ void	draw_vertical_line(t_data *game_data, t_ray_data *ray)
 		draw_texture(game_data, ray, i, height);
 		i++;
 	}
-}
-
-void	put_pixel_to_image(t_data *gd, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = gd->pixel.addr + (y * gd->pixel.line_length
-			+ x * (gd->pixel.bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
 }
 
 int	get_pixel_color(t_data *gd, int y, int ray, int card)
