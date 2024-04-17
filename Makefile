@@ -21,7 +21,8 @@ HEADER_FILE				= cub3d.h
 HEADERS_WITH_PATH		= $(addprefix $(HEADER_DIR),$(HEADER_FILE))
 
 DIR						= src/
-SRC			 			= 	init_param.c \
+SRC			 			= 	main.c \
+							init_param.c \
 							free_param.c \
 							cub3d_utils.c \
 							parsing/map_parsing.c \
@@ -36,11 +37,9 @@ SRC			 			= 	init_param.c \
 							visuals/raycasting.c \
 							visuals/texture.c \
 							visuals/card.c \
-							main.c \
 							exec/close_win.c \
 							exec/deal_key.c \
 							exec/minimap.c \
-							exec/move_player.c \
 							exec/draw_pixels.c \
 
 OBJECTS			    	= ${addprefix ${BUILD_DIR},${SRC:.c=.o}}

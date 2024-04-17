@@ -12,6 +12,15 @@
 
 #include "../../header/cub3d.h"
 
+void	put_pixel_to_image(t_data *gd, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = gd->pixel.addr + (y * gd->pixel.line_length
+			+ x * (gd->pixel.bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
+
 void	my_mlx_pixel_put(t_pixel *pixel, int x, int y, int color)
 {
 	char	*dst;

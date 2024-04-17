@@ -62,19 +62,23 @@ static void	init_player(t_data *param)
 static int	init_textures(t_data *param)
 {
 	param->gi_n = mlx_xpm_file_to_image
-	(param->mlx, param->map_textures[NO], &param->tex_side, &param->tex_side);
+		(param->mlx, param->map_textures[NO],
+			&param->tex_side, &param->tex_side);
 	if (!param->gi_n)
 		return (1);
 	param->gi_s = mlx_xpm_file_to_image
-	(param->mlx, param->map_textures[SO], &param->tex_side, &param->tex_side);
+		(param->mlx, param->map_textures[SO],
+			&param->tex_side, &param->tex_side);
 	if (!param->gi_s)
 		return (1);
 	param->gi_w = mlx_xpm_file_to_image
-	(param->mlx, param->map_textures[WE], &param->tex_side, &param->tex_side);
+		(param->mlx, param->map_textures[WE],
+			&param->tex_side, &param->tex_side);
 	if (!param->gi_w)
 		return (1);
 	param->gi_e = mlx_xpm_file_to_image
-	(param->mlx, param->map_textures[EA], &param->tex_side, &param->tex_side);
+		(param->mlx, param->map_textures[EA],
+			&param->tex_side, &param->tex_side);
 	if (!param->gi_e)
 		return (1);
 	return (0);
@@ -92,7 +96,6 @@ int	init_pixels(t_data *param)
 	init_player(param);
 	return (0);
 }
-
 
 int	init_param(t_data *param)
 {

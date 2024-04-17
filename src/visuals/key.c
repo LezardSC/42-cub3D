@@ -71,22 +71,23 @@ void	front_back_move(int key, t_data *gd)
 	}
 }
 
-int	not_to_close(int centre_x, int centre_y, double rayon, t_data *gd) 
+int	not_to_close(int centre_x, int centre_y, double rayon, t_data *gd)
 {
-    double	angle_degrees;
+	double	angle_degrees;
 	double	angle_radians;
 	int		x;
 	int		y;
 
 	angle_degrees = 0;
-    while (angle_degrees < 360) {
-        angle_radians = angle_degrees * (M_PI / 180.0);
-        x = centre_x + (int)(rayon * cos(angle_radians));
-        y = centre_y + (int)(rayon * sin(angle_radians));
-		if (!collision(gd,x,y))
-			return (printf("conasse: %d | %d\n", x,y), 0);
-        angle_degrees += 1;
-    }
+	while (angle_degrees < 360)
+	{
+		angle_radians = angle_degrees * (M_PI / 180.0);
+		x = centre_x + (int)(rayon * cos(angle_radians));
+		y = centre_y + (int)(rayon * sin(angle_radians));
+		if (!collision(gd, x, y))
+			return (printf("connasse: %d | %d\n", x, y), 0);
+		angle_degrees += 1;
+	}
 	return (1);
 }
 
