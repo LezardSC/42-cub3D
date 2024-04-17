@@ -36,8 +36,6 @@ int	fill_line_map(char *buf, t_data *param, int i)
 	int	j;
 
 	j = 0;
-	if (!is_line_map(buf))
-		return (1);
 	while (buf[j] && buf[j] != '\n')
 	{
 		param->map[i][j] = buf[j];
