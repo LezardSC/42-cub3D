@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:22:01 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/18 11:59:01 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/18 22:32:19 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,17 @@ void	draw_floor(t_data *gd)
 static int	give_color(t_data *game_data, t_ray_data *ray, int i, float height)
 {
 	if (!collision(game_data, ray->x + 1, ray->y))
-		return (get_pixel_color(game_data, i
-				/ height * WINDOW_HEIGHT, ray->y % TEX_SIDE, EA));
+		return get_pixel_color(game_data, i
+				/ height * WINDOW_HEIGHT, ray->y % TEX_SIDE, EA);
 	else
-		return (get_pixel_color(game_data, i
-				/ height * WINDOW_HEIGHT, ray->y % TEX_SIDE, WE));
+		return get_pixel_color(game_data, i
+				/ height * WINDOW_HEIGHT, (TEX_SIDE - 1) - (ray->y % TEX_SIDE), WE);
 	return (BLACK_COLOR);
+}
+
+static int	corner(void)
+{
+	return (YELLOW_COLOR);
 }
 
 void	draw_texture(t_data *game_data, t_ray_data *ray, int i, float height)
@@ -50,20 +55,24 @@ void	draw_texture(t_data *game_data, t_ray_data *ray, int i, float height)
 	double	x;
 	double	y;
 
+	pixel = -1;
 	if (!collision(game_data, ray->x, ray->y - 1)
 		&& !collision(game_data, ray->x, ray->y + 1))
 	{
 		pixel = give_color(game_data, ray, i, height);
 	}
-	else
+	else if (!collision(game_data, ray->x - 1, ray->y)
+		&& !collision(game_data, ray->x + 1, ray->y))
 	{
 		if (!collision(game_data, ray->x, ray->y + 1))
 			pixel = get_pixel_color(game_data, i
-					/ height * WINDOW_HEIGHT, ray->x % TEX_SIDE, SO);
+					/ height * WINDOW_HEIGHT, (TEX_SIDE - 1) - (ray->x % TEX_SIDE), SO);
 		else
 			pixel = get_pixel_color(game_data, i
 					/ height * WINDOW_HEIGHT, ray->x % TEX_SIDE, NO);
 	}
+	if (pixel == -1)
+		pixel = corner();
 	x = (WINDOW_WIDTH / WINDOW_WIDTH) * ray->id;
 	y = ((WINDOW_HEIGHT / 2) - height / 2) + i;
 	if (y < 1080 && y > 0)

@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 18:54:28 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/18 12:14:09 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/18 22:25:34 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	ft_key(int key, t_data *gd)
 		rotate_view(key, gd);
 	else if (key == ROTATE_RIGHT || key == ROTATE_LEFT)
 		left_right_move(key, gd);
-	if (!not_to_close(gd->pos_x, gd->pos_y, 20, gd))
+	if (!not_to_close(gd->pos_x, gd->pos_y, 10, gd))
 	{
 		gd->pos_x = tmp_x;
 		gd->pos_y = tmp_y;
