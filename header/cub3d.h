@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/04/15 18:37:19 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/18 11:42:44 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 # define MINIMAP_HEIGHT	400
 # define MINIMAP_WIDTH	400
+# define RAY_DISTANCE	40000
 
 # define WHITE_COLOR	0x00FFFFFF
 # define RED_COLOR		0x00FF0000
