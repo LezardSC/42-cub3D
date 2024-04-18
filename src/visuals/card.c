@@ -41,7 +41,7 @@ int	south_tex(t_data *gd)
 	while (i < TEX_SIDE)
 	{
 		gd->tex_south.img[i] = mlx_new_image(gd->mlx, 1, WINDOW_WIDTH);
-		new_display(gd, gd->gi_data, i, gd->tex_south.img[i]);
+		new_display_mirror(gd, gd->gi_data, i, gd->tex_south.img[i]);
 		gd->tex_south.addr[i] = mlx_get_data_addr(gd->tex_south.img[i],
 				&gd->tex_south.bits_per_pixel,
 				&gd->tex_south.line_length, &gd->tex_south.endian);
@@ -60,7 +60,7 @@ int	west_tex(t_data *gd)
 	while (i < TEX_SIDE)
 	{
 		gd->tex_west.img[i] = mlx_new_image(gd->mlx, 1, WINDOW_WIDTH);
-		new_display(gd, gd->gi_data, i, gd->tex_west.img[i]);
+		new_display_mirror(gd, gd->gi_data, i, gd->tex_west.img[i]);
 		gd->tex_west.addr[i] = mlx_get_data_addr(gd->tex_west.img[i],
 				&gd->tex_west.bits_per_pixel,
 				&gd->tex_west.line_length, &gd->tex_west.endian);

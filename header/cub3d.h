@@ -241,6 +241,7 @@ void		making_map(t_data *gd);
 int			collision(t_data *gd, int x, int y);
 void		left_right_move(int key, t_data *gd);
 void		new_display(t_data *game_data, char *wall_data, int ray, void *tex);
+void		new_display_mirror(t_data *gd, char *wall_data, int ray, void *tex);
 void		put_image_in_image(t_data *game_data, int x, int y, char *img_data);
 int			get_pixel_color(t_data *gd, int x, int y, int ray);
 int			is_x_wall(int x, t_data *gd);
