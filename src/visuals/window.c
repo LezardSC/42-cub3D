@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/18 12:00:04 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/18 12:16:40 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,22 +89,22 @@ void	init_pos(t_data *gd)
 	int		tmp;
 	int		i;
 
-	angle = 0;
+	angle = 88;
 	i = 0;
 	if (gd->card == 'N')
-		angle = 0;
+		angle = 47;
 	else if (gd->card == 'W')
-		angle = 162;
+		angle = 279;
 	else if (gd->card == 'E')
-		angle = 88;
-	while (i < angle && angle != 0)
+		angle = 68;
+	while (i < angle)
 	{
 		tmp = gd->x2;
 		//gd->copy_angle += 0.000000001 * M_PI / 180;
-		gd->x2 = gd->x2 * cos(gd->copy_angle * 35 * M_PI / 180.0 / 3)
-			- gd->y2 * sin(gd->copy_angle * 35 * M_PI / 180.0 / 3);
-		gd->y2 = tmp * sin(gd->copy_angle * 35 * M_PI / 180.0 / 3)
-			+ gd->y2 * cos(gd->copy_angle * 35 * M_PI / 180.0 / 3);
+		gd->x2 = gd->x2 * cos(gd->copy_angle * 35 * M_PI / 180.0 / 5)
+			- gd->y2 * sin(gd->copy_angle * 35 * M_PI / 180.0 / 5);
+		gd->y2 = tmp * sin(gd->copy_angle * 35 * M_PI / 180.0 / 5)
+			+ gd->y2 * cos(gd->copy_angle * 35 * M_PI / 180.0 / 5);
 		i++;
 	}
 }
