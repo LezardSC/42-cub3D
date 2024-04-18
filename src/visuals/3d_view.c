@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:22:01 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/16 08:58:29 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/18 11:59:01 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	draw_texture(t_data *game_data, t_ray_data *ray, int i, float height)
 	double	x;
 	double	y;
 
-	pixel = BLACK_COLOR;
 	if (!collision(game_data, ray->x, ray->y - 1)
 		&& !collision(game_data, ray->x, ray->y + 1))
 	{
