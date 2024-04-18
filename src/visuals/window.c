@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/10 09:57:18 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/18 12:00:04 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw_player_view(t_data *gd)
 	t_ray_data	ray;
 
 	i = 0;
-	view.radius = WINDOW_WIDTH;
+	view.radius = RAY_DISTANCE;
 	view.cp_y = gd->y2;
 	view.cp_x = gd->x2;
 	while (i < WINDOW_WIDTH)
@@ -92,7 +92,7 @@ void	init_pos(t_data *gd)
 	angle = 0;
 	i = 0;
 	if (gd->card == 'N')
-		angle = 273;
+		angle = 0;
 	else if (gd->card == 'W')
 		angle = 162;
 	else if (gd->card == 'E')
@@ -114,8 +114,8 @@ void	ft_put_windows(t_data *gd)
 	gd->tex_side = TEX_SIDE;
 	gd->angle = ((double)70 / (double)WINDOW_WIDTH) * M_PI / 180.0;
 	gd->copy_angle = 35 * M_PI / 180.0;
-	gd->x2 = gd->pos_y + WINDOW_WIDTH * cos(gd->copy_angle);
-	gd->y2 = gd->pos_x + WINDOW_WIDTH * sin(gd->copy_angle);
+	gd->x2 = gd->pos_y + RAY_DISTANCE * cos(gd->copy_angle);
+	gd->y2 = gd->pos_x + RAY_DISTANCE * sin(gd->copy_angle);
 	init_pos(gd);
 	init_tex(gd);
 	mlx_hook(gd->win, 02, 1L << 0, deal_key, gd);
