@@ -6,7 +6,7 @@
 #    By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:09:10 by lezard            #+#    #+#              #
-#    Updated: 2024/04/18 21:45:19 by tmalidi          ###   ########.fr        #
+#    Updated: 2024/04/19 16:24:49 by tmalidi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC			 			= 	main.c \
 							visuals/raycasting.c \
 							visuals/texture.c \
 							visuals/card.c \
+							visuals/corner.c \
 							exec/close_win.c \
 							exec/deal_key.c \
 							exec/minimap.c \

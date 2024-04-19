@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/04/18 11:42:44 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/19 16:35:37 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,7 +241,7 @@ void		making_map(t_data *gd);
 int			collision(t_data *gd, int x, int y);
 void		left_right_move(int key, t_data *gd);
 void		new_display(t_data *game_data, char *wall_data, int ray, void *tex);
-void		new_display_mirror(t_data *gd, char *wall_data, int ray, void *tex);
+//void		new_display_mirror(t_data *gd, char *wall_data, int ray, void *tex);
 void		put_image_in_image(t_data *game_data, int x, int y, char *img_data);
 int			get_pixel_color(t_data *gd, int x, int y, int ray);
 int			is_x_wall(int x, t_data *gd);
@@ -250,5 +250,6 @@ int			south_tex(t_data *gd);
 int			west_tex(t_data *gd);
 int			east_tex(t_data *gd);
 void		destroy_img(t_data *param);
+int			corner(t_data *game_data, t_ray_data *ray, int i, float height);
 
 #endif 
