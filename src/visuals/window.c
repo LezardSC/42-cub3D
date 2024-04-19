@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/18 12:16:40 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/19 16:36:56 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void	init_pos(t_data *gd)
 	while (i < angle)
 	{
 		tmp = gd->x2;
-		//gd->copy_angle += 0.000000001 * M_PI / 180;
 		gd->x2 = gd->x2 * cos(gd->copy_angle * 35 * M_PI / 180.0 / 5)
 			- gd->y2 * sin(gd->copy_angle * 35 * M_PI / 180.0 / 5);
 		gd->y2 = tmp * sin(gd->copy_angle * 35 * M_PI / 180.0 / 5)
