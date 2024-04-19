@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 18:54:28 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/19 16:29:53 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/19 17:00:46 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ void	rotate_view(int key, t_data *gd)
 	tmp = gd->x2;
 	if (key == 65361)
 	{
-		gd->x2 = gd->x2 * cos(gd->copy_angle * (35 * M_PI / 180.0) / 5)
-			+ gd->y2 * sin(gd->copy_angle * (35 * M_PI / 180.0) / 5);
-		gd->y2 = -tmp * sin(gd->copy_angle * (35 * M_PI / 180.0) / 5)
-			+ gd->y2 * cos(gd->copy_angle * (35 * M_PI / 180.0) / 5);
+		gd->x2 = gd->x2 * cos(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 5)
+			+ gd->y2 * sin(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 5);
+		gd->y2 = -tmp * sin(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 5)
+			+ gd->y2 * cos(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 5);
 	}
 	else if (key == 65363)
 	{
-		gd->x2 = gd->x2 * cos(gd->copy_angle * 55 * M_PI / 180.0 / 5)
-			- gd->y2 * sin(gd->copy_angle * 55 * M_PI / 180.0 / 5);
-		gd->y2 = tmp * sin(gd->copy_angle * 55 * M_PI / 180.0 / 5)
-			+ gd->y2 * cos(gd->copy_angle * 55 * M_PI / 180.0 / 5);
+		gd->x2 = gd->x2 * cos(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 5)
+			- gd->y2 * sin(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 5);
+		gd->y2 = tmp * sin(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 5)
+			+ gd->y2 * cos(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 5);
 	}
 }
 
