@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:22:01 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/19 16:56:46 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/19 18:34:10 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,18 +79,21 @@ void	draw_vertical_line(t_data *game_data, t_ray_data *ray)
 	double	height;
 	int		i;
 	double	new_dist;
+	double	angle;
 
+	angle = 0;
 	if (ray->dist == -1)
 		return ;
-	//ray_angle = (ray->id / (double)WINDOW_WIDTH - 0.5) * (70.0 * M_PI / 180.0);
-	if (ray->id > WINDOW_WIDTH / 2)
-		new_dist = ray->dist * cos(game_data->angle * (WINDOW_WIDTH / 2 - ray->id));
+	if (game_data->angle < 0)
+		game_data->angle += 2 * M_PI;
+	else if (game_data->angle > (2 * M_PI))
+		game_data->angle -= 2 * M_PI;
+	if (ray->id > (WINDOW_WIDTH - 1) / 2)
+		angle = game_data->angle * ((double)(WINDOW_WIDTH / (double)2 - (double)ray->id));
 	else
-	{
-		new_dist = ray->dist * cos(game_data->angle * ((WINDOW_WIDTH - ray->id) - (WINDOW_WIDTH / 2)));
-		//printf("%d\n", );
-	}
-	height = (100.0 * (double)WINDOW_HEIGHT) / (new_dist);
+		angle = game_data->angle * ((((double)WINDOW_WIDTH - (double)ray->id) - ((double)WINDOW_WIDTH / (double)2)));
+	new_dist = ray->dist * cos(angle);
+	height = (120.0 * (double)WINDOW_HEIGHT) / (new_dist);
 	i = 0;
 	while (i < height)
 	{
