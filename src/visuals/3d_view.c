@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:22:01 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/18 22:32:19 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/19 15:10:20 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,45 @@ static int	give_color(t_data *game_data, t_ray_data *ray, int i, float height)
 	return (BLACK_COLOR);
 }
 
-static int	corner(void)
+static int	corner(t_data *game_data, t_ray_data *ray, int i, float height)
 {
+	if (!collision(game_data, ray->x, ray->y - 1)
+		&& collision(game_data, ray->x, ray->y + 1) 
+		&& collision(game_data, ray->x + 1, ray->y)
+		&& !collision(game_data, ray->x - 1, ray->y))
+	{
+		if (game_data->pos_x < ray->x)
+			return (get_pixel_color(game_data, i / height * WINDOW_HEIGHT, ray->x % TEX_SIDE, NO));
+		else
+			return (get_pixel_color(game_data, i / height * WINDOW_HEIGHT, (TEX_SIDE - 1) - (ray->y % TEX_SIDE), WE));
+	}
+	else if (collision(game_data, ray->x, ray->y - 1)
+		&& !collision(game_data, ray->x, ray->y + 1) 
+		&& collision(game_data, ray->x + 1, ray->y)
+		&& !collision(game_data, ray->x - 1, ray->y))
+	{
+		if (game_data->pos_y < ray->y && game_data->pos_x < ray->x)
+			return (get_pixel_color(game_data, i / height * WINDOW_HEIGHT, (TEX_SIDE - 1) - (ray->x % TEX_SIDE), SO));
+		else
+			return (get_pixel_color(game_data, i / height * WINDOW_HEIGHT, (TEX_SIDE - 1) - (ray->y % TEX_SIDE), WE));
+	}
+	else if (collision(game_data, ray->x, ray->y - 1)
+		&& !collision(game_data, ray->x, ray->y + 1) 
+		&& !collision(game_data, ray->x + 1, ray->y)
+		&& collision(game_data, ray->x - 1, ray->y))
+	{
+		if (game_data->pos_y < ray->y && game_data->pos_x > ray->x)
+			return (get_pixel_color(game_data, i / height * WINDOW_HEIGHT, (TEX_SIDE - 1) - (ray->x % TEX_SIDE), SO));
+		else
+			return (get_pixel_color(game_data, i / height * WINDOW_HEIGHT, ray->y % TEX_SIDE, EA));
+	}
+	else
+	{
+		if (game_data->pos_y > ray->y && game_data->pos_x > ray->x)
+			return (get_pixel_color(game_data, i / height * WINDOW_HEIGHT, ray->x % TEX_SIDE, NO));
+		else
+			return (get_pixel_color(game_data, i / height * WINDOW_HEIGHT, ray->y % TEX_SIDE, EA));
+	}
 	return (YELLOW_COLOR);
 }
 
@@ -72,7 +109,7 @@ void	draw_texture(t_data *game_data, t_ray_data *ray, int i, float height)
 					/ height * WINDOW_HEIGHT, ray->x % TEX_SIDE, NO);
 	}
 	if (pixel == -1)
-		pixel = corner();
+		pixel = corner(game_data, ray, i, height);
 	x = (WINDOW_WIDTH / WINDOW_WIDTH) * ray->id;
 	y = ((WINDOW_HEIGHT / 2) - height / 2) + i;
 	if (y < 1080 && y > 0)
