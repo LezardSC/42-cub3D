@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/04/19 16:35:37 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/19 17:03:47 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@
 # define WINDOW_WIDTH	1920
 # define WINDOW_HEIGHT	1080
 # define TEX_SIDE		72
+
+# define ANGLE			70
 
 enum e_colors
 {

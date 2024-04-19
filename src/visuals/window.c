@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/19 16:36:56 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/19 17:01:27 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,10 @@ void	init_pos(t_data *gd)
 	while (i < angle)
 	{
 		tmp = gd->x2;
-		gd->x2 = gd->x2 * cos(gd->copy_angle * 35 * M_PI / 180.0 / 5)
-			- gd->y2 * sin(gd->copy_angle * 35 * M_PI / 180.0 / 5);
-		gd->y2 = tmp * sin(gd->copy_angle * 35 * M_PI / 180.0 / 5)
-			+ gd->y2 * cos(gd->copy_angle * 35 * M_PI / 180.0 / 5);
+		gd->x2 = gd->x2 * cos(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 5)
+			- gd->y2 * sin(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 5);
+		gd->y2 = tmp * sin(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 5)
+			+ gd->y2 * cos(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 5);
 		i++;
 	}
 }
@@ -111,8 +111,8 @@ void	init_pos(t_data *gd)
 void	ft_put_windows(t_data *gd)
 {
 	gd->tex_side = TEX_SIDE;
-	gd->angle = ((double)70 / (double)WINDOW_WIDTH) * M_PI / 180.0;
-	gd->copy_angle = 35 * M_PI / 180.0;
+	gd->angle = ((double)ANGLE / (double)WINDOW_WIDTH) * M_PI / 180.0;
+	gd->copy_angle = (ANGLE / 2) * M_PI / 180.0;
 	gd->x2 = gd->pos_y + RAY_DISTANCE * cos(gd->copy_angle);
 	gd->y2 = gd->pos_x + RAY_DISTANCE * sin(gd->copy_angle);
 	init_pos(gd);
