@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:22:01 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/22 11:56:23 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/22 16:29:44 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	give_color(t_data *game_data, t_ray_data *ray, int i, float height)
 	return (BLACK_COLOR);
 }
 
-void	draw_texture(t_data *game_data, t_ray_data *ray, int i, float height, int y)
+void	draw_texture(t_data *game_data, t_ray_data *ray, int i, float height)
 {
 	int		pixel;
 
@@ -70,43 +70,31 @@ void	draw_texture(t_data *game_data, t_ray_data *ray, int i, float height, int y
 		pixel = corner(game_data, ray, i, height);
 	if (((WINDOW_HEIGHT / 2) - height / 2) + i < 1080
 		&& ((WINDOW_HEIGHT / 2) - height / 2) + i > 0)
-		put_pixel_to_image(game_data, y,
+		put_pixel_to_image(game_data, game_data->c,
 			((WINDOW_HEIGHT / 2) - height / 2) + i, pixel);
 }
 
 void	draw_vertical_line(t_data *game_data, t_ray_data *ray)
 {
 	double	height;
-	int		i;
 	double	new_dist;
 	double	angle;
-	double	len;
-	double	c;
 
-	angle = 0;
 	if (ray->dist == -1)
 		return ;
 	if (ray->id > (WINDOW_WIDTH - 1) / 2)
-		angle = game_data->angle * ((double)(WINDOW_WIDTH / (double)2 - (double)ray->id));
+		angle = game_data->angle * ((double)(WINDOW_WIDTH
+					/ (double)2 - (double)ray->id));
 	else
-		angle = game_data->angle * ((((double)WINDOW_WIDTH - (double)ray->id) - ((double)WINDOW_WIDTH / (double)2)));
-	if (angle < 0)
-		angle += 2 * M_PI;
-	else if (angle > (2 * M_PI))
-		angle -= 2 * M_PI;
+		angle = game_data->angle * ((((double)WINDOW_WIDTH
+						- (double)ray->id)
+					- ((double)WINDOW_WIDTH / (double)2)));
 	new_dist = ray->dist * cos(angle);
 	height = (100.0 * (double)WINDOW_HEIGHT) / (new_dist);
-	i = 0;
-	c = anti_fisheye(ray, game_data);
-	len = c - game_data->prev_column;
-	while (i < height)
-	{
-		draw_texture(game_data, ray, i, height, c);
-		if (len >= 1)
-			draw_texture(game_data, ray, i, height, c + 1);
-		i++;
-	}
-	game_data->prev_column = c;
+	game_data->c = anti_fisheye(ray, game_data);
+	game_data->len = game_data->c - game_data->prev_column;
+	draw_tex_process(game_data, height, ray);
+	game_data->prev_column = game_data->c;
 }
 
 int	get_pixel_color(t_data *gd, int y, int ray, int card)

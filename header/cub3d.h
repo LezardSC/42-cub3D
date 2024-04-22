@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/04/22 11:39:31 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/22 16:26:51 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,8 @@ typedef struct s_data
 	int			tex_side;
 	int			card;
 	int			prev_column;
+	double		len;
+	double		c;
 	t_pixel		pixel;
 	t_player	player;
 	t_tmp		tex_north;
@@ -255,5 +257,7 @@ int			east_tex(t_data *gd);
 void		destroy_img(t_data *param);
 int			corner(t_data *game_data, t_ray_data *ray, int i, float height);
 int 		anti_fisheye(t_ray_data *ray, t_data *gd);
+void		draw_tex_process(t_data *game_data, int height, t_ray_data *ray);
+void		draw_texture(t_data *game_data, t_ray_data *ray, int i, float height);
 
 #endif 

@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 18:54:28 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/19 17:00:46 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/22 15:56:28 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,16 @@ void	front_back_move(int key, t_data *gd)
 	if (key == 119)
 	{
 		gd->pos_y += (gd->x2 * sin(gd->copy_angle)
-				+ gd->y2 * cos(gd->copy_angle)) / (RAY_DISTANCE / 2) * 5;
+				+ gd->y2 * cos(gd->copy_angle)) / (RAY_DISTANCE / 2) * 8;
 		gd->pos_x += (gd->x2 * cos(gd->copy_angle)
-				- gd->y2 * sin(gd->copy_angle)) / (RAY_DISTANCE / 2) * 5;
+				- gd->y2 * sin(gd->copy_angle)) / (RAY_DISTANCE / 2) * 8;
 	}
 	else if (key == 115)
 	{
 		gd->pos_y -= (gd->x2 * sin(gd->copy_angle)
-				+ gd->y2 * cos(gd->copy_angle)) / (RAY_DISTANCE / 2) * 5;
+				+ gd->y2 * cos(gd->copy_angle)) / (RAY_DISTANCE / 2) * 8;
 		gd->pos_x -= (gd->x2 * cos(gd->copy_angle)
-				- gd->y2 * sin(gd->copy_angle)) / (RAY_DISTANCE / 2) * 5;
+				- gd->y2 * sin(gd->copy_angle)) / (RAY_DISTANCE / 2) * 8;
 	}
 }
 
@@ -87,7 +87,7 @@ int	not_to_close(int centre_x, int centre_y, double rayon, t_data *gd)
 		x = centre_x + (int)(rayon * cos(angle_radians));
 		y = centre_y + (int)(rayon * sin(angle_radians));
 		if (!collision(gd, x, y))
-			return (printf("ca touche: %d | %d\n", x, y), 0);
+			return (0);
 		angle_degrees += 1;
 	}
 	return (1);
