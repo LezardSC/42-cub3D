@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:28:46 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/19 17:01:27 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/21 22:35:35 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,9 @@ void	ft_put_windows(t_data *gd)
 {
 	gd->tex_side = TEX_SIDE;
 	gd->angle = ((double)ANGLE / (double)WINDOW_WIDTH) * M_PI / 180.0;
-	gd->copy_angle = (ANGLE / 2) * M_PI / 180.0;
-	gd->x2 = gd->pos_y + RAY_DISTANCE * cos(gd->copy_angle);
-	gd->y2 = gd->pos_x + RAY_DISTANCE * sin(gd->copy_angle);
+	gd->copy_angle = ((double)ANGLE / (double)2) * M_PI / 180.0;
+	gd->x2 = gd->pos_y + (double)RAY_DISTANCE * cos(gd->copy_angle);
+	gd->y2 = gd->pos_x + (double)RAY_DISTANCE * sin(gd->copy_angle);
 	init_pos(gd);
 	init_tex(gd);
 	mlx_hook(gd->win, 02, 1L << 0, deal_key, gd);
