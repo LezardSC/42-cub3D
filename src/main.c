@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:02:43 by jrenault          #+#    #+#             */
-/*   Updated: 2024/04/08 15:58:26 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/22 16:38:02 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,5 @@ int	main(int argc, char **argv)
 	if (display_map(&param) == 1)
 		return (1);
 	ft_put_windows(&param);
-	mlx_hook(param.win, 02, 1L << 0, deal_key, &param);
-	mlx_hook(param.win, 17, 0, close_win, &param);
-	mlx_key_hook(param.win, key_release, &param);
-	mlx_loop_hook(param.mlx, move_player, &param);
-	mlx_loop(param.mlx);
 	return (end_program(&param), 0);
 }
