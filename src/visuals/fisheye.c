@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 22:48:10 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/22 16:30:33 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/22 16:42:03 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void	draw_tex_process(t_data *game_data, int height, t_ray_data *ray)
 	i = 0;
 	while (i < height)
 	{
-		draw_texture(game_data, ray, i, height);
+		draw_tex(game_data, ray, i, height);
 		if (game_data->len == 1)
 		{
 			game_data->c++;
-			draw_texture(game_data, ray, i, height);
+			draw_tex(game_data, ray, i, height);
 			game_data->c--;
 		}
 		i++;

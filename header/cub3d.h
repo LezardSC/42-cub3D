@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:47:44 by jrenault          #+#    #+#             */
-/*   Updated: 2024/04/22 16:26:51 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/22 16:56:51 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 # define MINIMAP_HEIGHT	400
 # define MINIMAP_WIDTH	400
-# define RAY_DISTANCE	40000
+# define RAY_DISTANCE	20000
 
 # define WHITE_COLOR	0x00FFFFFF
 # define RED_COLOR		0x00FF0000
@@ -37,8 +37,6 @@
 # define MAGENTA_COLOR	0x00FF00FF
 # define GREY_COLOR		0x646464
 # define ORANGE_COLOR	0xFF2D00
-
-# define SPEED			0.02
 
 # define WINDOW_WIDTH	1920
 # define WINDOW_HEIGHT	1080
@@ -246,7 +244,6 @@ void		making_map(t_data *gd);
 int			collision(t_data *gd, int x, int y);
 void		left_right_move(int key, t_data *gd);
 void		new_display(t_data *game_data, char *wall_data, int ray, void *tex);
-//void		new_display_mirror(t_data *gd, char *wall_data, int ray, void *tex);
 void		put_image_in_image(t_data *game_data, int x, int y, char *img_data);
 int			get_pixel_color(t_data *gd, int x, int y, int ray);
 int			is_x_wall(int x, t_data *gd);
@@ -256,8 +253,8 @@ int			west_tex(t_data *gd);
 int			east_tex(t_data *gd);
 void		destroy_img(t_data *param);
 int			corner(t_data *game_data, t_ray_data *ray, int i, float height);
-int 		anti_fisheye(t_ray_data *ray, t_data *gd);
+int			anti_fisheye(t_ray_data *ray, t_data *gd);
 void		draw_tex_process(t_data *game_data, int height, t_ray_data *ray);
-void		draw_texture(t_data *game_data, t_ray_data *ray, int i, float height);
+void		draw_tex(t_data *game_data, t_ray_data *ray, int i, float height);
 
 #endif 

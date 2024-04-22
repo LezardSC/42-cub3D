@@ -6,30 +6,11 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 02:38:40 by jrenault          #+#    #+#             */
-/*   Updated: 2024/04/03 17:53:05 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/22 16:39:38 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3d.h"
-
-static void	fill_minimap(t_data *param, int color)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	while (y < MINIMAP_HEIGHT)
-	{
-		while (x < MINIMAP_WIDTH)
-		{
-			my_mlx_pixel_put(&param->pixel, x, y, color);
-			x++;
-		}
-		x = 0;
-		y++;
-	}
-}
 
 static void	player_first_position(t_data *param, int y, int x)
 {
@@ -52,7 +33,6 @@ int	show_minimap(t_data *param)
 
 	x = 0;
 	y = -1;
-	fill_minimap(param, BLACK_COLOR);
 	while (param->map[++y])
 	{
 		while (param->map[y][x])
@@ -67,7 +47,5 @@ int	show_minimap(t_data *param)
 		}
 		x = 0;
 	}
-	my_mlx_circle_put(param, WHITE_COLOR);
-	mlx_put_image_to_window(param->mlx, param->win, param->pixel.img, 0, 0);
 	return (0);
 }

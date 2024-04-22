@@ -6,7 +6,7 @@
 /*   By: tmalidi <tmalidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:22:01 by tmalidi           #+#    #+#             */
-/*   Updated: 2024/04/22 16:29:44 by tmalidi          ###   ########.fr       */
+/*   Updated: 2024/04/22 16:42:03 by tmalidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	give_color(t_data *game_data, t_ray_data *ray, int i, float height)
 	return (BLACK_COLOR);
 }
 
-void	draw_texture(t_data *game_data, t_ray_data *ray, int i, float height)
+void	draw_tex(t_data *game_data, t_ray_data *ray, int i, float height)
 {
 	int		pixel;
 
