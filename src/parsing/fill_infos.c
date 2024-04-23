@@ -26,7 +26,7 @@ static int	fill_texture(char *buf, t_data *param, int which)
 	size = ft_strlen_space(&(buf[i]));
 	param->map_textures[which] = malloc(sizeof(char *) * (size + 1));
 	if (!param->map_textures[which])
-		return (1);
+		return (ft_printf("Error\nMalloc error in textures.\n"), 1);
 	j = 0;
 	while (buf[i] && buf[i] != ' ' && buf[i] != '\n')
 	{
@@ -73,22 +73,22 @@ static int	check_to_fill_textures(char *buf, t_data *param)
 	if (buf[0] == 'N' && buf[1] == 'O')
 	{
 		if (fill_texture(buf, param, NO) == 1)
-			return (ft_printf("Error\nTexture invalid\n"), 1);
+			return (1);
 	}
 	else if (buf[0] == 'S' && buf[1] == 'O')
 	{
 		if (fill_texture(buf, param, SO) == 1)
-			return (ft_printf("Error\nTexture invalid\n"), 1);
+			return (1);
 	}
 	else if (buf[0] == 'W' && buf[1] == 'E')
 	{
 		if (fill_texture(buf, param, WE) == 1)
-			return (ft_printf("Error\nTexture invalid\n"), 1);
+			return (1);
 	}
 	else if (buf[0] == 'E' && buf[1] == 'A')
 	{
 		if (fill_texture(buf, param, EA) == 1)
-			return (ft_printf("Error\nTexture invalid\n"), 1);
+			return (1);
 	}
 	return (0);
 }
@@ -117,6 +117,6 @@ int	fill_textures_colors(char *buf, t_data *param)
 	}
 	else
 		if (is_space_or_newline(buf))
-			return (ft_printf("Error\nThere is a wrong parameter\n"), 1);
+			return (ft_printf("Error\nThere is a wrong parameter.\n"), 1);
 	return (0);
 }

@@ -19,12 +19,12 @@ static int	allocate_map(t_data *param)
 	i = 0;
 	param->map = malloc(sizeof(char *) * (param->max_y + 2));
 	if (!param->map)
-		return (1);
+		return (ft_printf("Error\nMalloc map error.\n"), 1);
 	while (i <= param->max_y)
 	{
 		param->map[i] = malloc(sizeof(char) * (param->max_x + 2));
 		if (!param->map[i])
-			return (1);
+			return (ft_printf("Error\nMalloc map error."), 1);
 		i++;
 	}
 	param->map[i] = NULL;
@@ -62,11 +62,11 @@ static int	fill_map(t_data *param)
 		return (ft_printf("Error\nCouldn't open the map.\n"), 1);
 	buf = go_to_map(param);
 	if (!buf)
-		return (1);
+		return (ft_printf("Error\nInvalid map.\n"), 1);
 	while (buf)
 	{
 		if (fill_line_map(buf, param, i) == 1)
-			return (ft_printf("Error\nmap invalid\n"), free(buf), 1);
+			return (ft_printf("Error\nInvalid map.\n"), free(buf), 1);
 		free(buf);
 		buf = get_next_line(param->fd);
 		i++;

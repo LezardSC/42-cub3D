@@ -230,7 +230,7 @@ int			ft_strlen_space(char *str);
 int			is_space_or_newline(char *buf);
 char		*go_to_map(t_data *param);
 uint32_t	convert_into_hexa(int *array);
-void		ft_put_windows(t_data *game_data);
+int			ft_put_windows(t_data *game_data);
 void		ft_put_3dview(t_data *game_data);
 int			ft_key(int key, t_data *gd);
 void		draw_player_view(t_data *game_data);
@@ -251,10 +251,13 @@ int			north_tex(t_data *gd);
 int			south_tex(t_data *gd);
 int			west_tex(t_data *gd);
 int			east_tex(t_data *gd);
-void		destroy_img(t_data *param);
+void		destroy_img(t_data *param, int j);
 int			corner(t_data *game_data, t_ray_data *ray, int i, float height);
 int			anti_fisheye(t_ray_data *ray, t_data *gd);
 void		draw_tex_process(t_data *game_data, int height, t_ray_data *ray);
 void		draw_tex(t_data *game_data, t_ray_data *ray, int i, float height);
+void		end_program(t_data *param,int boolean);
+void 		init_tex_img(t_data *param);
+void		destroy_gi(t_data *param);
 
 #endif 
