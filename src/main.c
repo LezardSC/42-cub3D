@@ -25,7 +25,7 @@ static int	check_argc(int argc)
 static int	parsing_and_error(t_data *param, char *name)
 {
 	if (init_param(param) == 1)
-		return (ft_printf("Error\nError in initialization\n"), 1);
+		return (ft_printf("Error\nError in initialization.\n"), 1);
 	param->map_name = ft_strdup(name);
 	if (!param->map_name)
 		return (1);
@@ -51,16 +51,31 @@ static void	end_program(t_data *param)
 	close(param->fd);
 }
 
+static void	secure_free(t_data *param)
+{
+	free_all_param(param);
+	mlx_clear_window(param->mlx, param->win);
+	mlx_destroy_image(param->mlx, param->gi_e);
+	mlx_destroy_image(param->mlx, param->gi_n);
+	mlx_destroy_image(param->mlx, param->gi_w);
+	mlx_destroy_image(param->mlx, param->gi_s);
+	mlx_destroy_display(param->mlx);
+	free(param->mlx);
+	close(param->fd);
+}
+
 static int	display_map(t_data *param)
 {
 	param->pixel.img = mlx_new_image(param->mlx,
-			WINDOW_WIDTH, WINDOW_HEIGHT);
+	 		WINDOW_WIDTH, WINDOW_HEIGHT);
+//	param->pixel.img = NULL;
+	if (!param->pixel.img)
+		return (secure_free(param), 1);
 	param->pixel.addr = mlx_get_data_addr(param->pixel.img,
 			&param->pixel.bits_per_pixel,
 			&param->pixel.line_length, &param->pixel.endian);
 	if (show_minimap(param) == 1)
-		return (free_all_param(param), mlx_destroy_display(param->mlx),
-			free(param->mlx), 1);
+		return (end_program(param), 1);
 	return (0);
 }
 
