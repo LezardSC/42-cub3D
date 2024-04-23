@@ -41,17 +41,17 @@ void	rotate_view(int key, t_data *gd)
 	tmp = gd->x2;
 	if (key == 65361)
 	{
-		gd->x2 = gd->x2 * cos(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 9)
-			+ gd->y2 * sin(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 9);
-		gd->y2 = -tmp * sin(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 9)
-			+ gd->y2 * cos(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 9);
+		gd->x2 = gd->x2 * cos(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 5)
+			+ gd->y2 * sin(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 5);
+		gd->y2 = -tmp * sin(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 5)
+			+ gd->y2 * cos(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 5);
 	}
 	else if (key == 65363)
 	{
-		gd->x2 = gd->x2 * cos(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 9)
-			- gd->y2 * sin(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 9);
-		gd->y2 = tmp * sin(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 9)
-			+ gd->y2 * cos(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 9);
+		gd->x2 = gd->x2 * cos(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 5)
+			- gd->y2 * sin(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 5);
+		gd->y2 = tmp * sin(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 5)
+			+ gd->y2 * cos(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 5);
 	}
 }
 
