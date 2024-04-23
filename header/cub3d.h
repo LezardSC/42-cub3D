@@ -256,8 +256,7 @@ int			corner(t_data *game_data, t_ray_data *ray, int i, float height);
 int			anti_fisheye(t_ray_data *ray, t_data *gd);
 void		draw_tex_process(t_data *game_data, int height, t_ray_data *ray);
 void		draw_tex(t_data *game_data, t_ray_data *ray, int i, float height);
-void		end_program(t_data *param,int boolean);
-void 		init_tex_img(t_data *param);
+void		end_program(t_data *param, int boolean);
 void		destroy_gi(t_data *param);
 
 #endif 

@@ -41,7 +41,7 @@ static int	parsing_and_error(t_data *param, char *name)
 	return (0);
 }
 
-void	end_program(t_data *param,int boolean)
+void	end_program(t_data *param, int boolean)
 {
 	free_all_param(param);
 	if (boolean == 3)
@@ -68,7 +68,7 @@ void	end_program(t_data *param,int boolean)
 static int	display_map(t_data *param)
 {
 	param->pixel.img = mlx_new_image(param->mlx,
-	 		WINDOW_WIDTH, WINDOW_HEIGHT);
+			WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (!param->pixel.img)
 		return (destroy_gi(param), end_program(param, 1),
 			ft_printf("Error\nInit image\n"), 1);
