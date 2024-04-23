@@ -41,24 +41,25 @@ static int	parsing_and_error(t_data *param, char *name)
 	return (0);
 }
 
-static void	end_program(t_data *param)
+void	end_program(t_data *param,int boolean)
 {
 	free_all_param(param);
-	mlx_clear_window(param->mlx, param->win);
-	mlx_destroy_image(param->mlx, param->pixel.img);
-	mlx_destroy_display(param->mlx);
-	free(param->mlx);
-	close(param->fd);
-}
-
-static void	secure_free(t_data *param)
-{
-	free_all_param(param);
-	mlx_clear_window(param->mlx, param->win);
-	mlx_destroy_image(param->mlx, param->gi_e);
-	mlx_destroy_image(param->mlx, param->gi_n);
-	mlx_destroy_image(param->mlx, param->gi_w);
-	mlx_destroy_image(param->mlx, param->gi_s);
+	if (boolean == 3)
+		destroy_gi(param);
+	if (boolean == 0)
+		mlx_destroy_image(param->mlx, param->pixel.img);
+	if (boolean == 4)
+	{
+		destroy_gi(param);
+		mlx_destroy_image(param->mlx, param->pixel.img);
+		mlx_clear_window(param->mlx, param->win);
+		mlx_destroy_window(param->mlx, param->win);
+	}
+	if (boolean < 2)
+	{
+		mlx_clear_window(param->mlx, param->win);
+		mlx_destroy_window(param->mlx, param->win);
+	}
 	mlx_destroy_display(param->mlx);
 	free(param->mlx);
 	close(param->fd);
@@ -68,14 +69,14 @@ static int	display_map(t_data *param)
 {
 	param->pixel.img = mlx_new_image(param->mlx,
 	 		WINDOW_WIDTH, WINDOW_HEIGHT);
-//	param->pixel.img = NULL;
 	if (!param->pixel.img)
-		return (secure_free(param), 1);
+		return (destroy_gi(param), end_program(param, 1),
+			ft_printf("Error\nInit image\n"), 1);
 	param->pixel.addr = mlx_get_data_addr(param->pixel.img,
 			&param->pixel.bits_per_pixel,
 			&param->pixel.line_length, &param->pixel.endian);
 	if (show_minimap(param) == 1)
-		return (end_program(param), 1);
+		return (end_program(param, 4), 1);
 	return (0);
 }
 
@@ -91,14 +92,18 @@ int	main(int argc, char **argv)
 	param.mlx = mlx_init();
 	if (!param.mlx)
 		return (free_all_param(&param),
-			mlx_destroy_display(param.mlx), free(param.mlx), 1);
+			mlx_destroy_display(param.mlx), free(param.mlx),
+			ft_printf("Error\nMlx init error.\n"), 1);
 	if (init_pixels(&param) == 1)
-		return (free_all_param(&param),
-			mlx_destroy_display(param.mlx), free(param.mlx), 1);
+		return (end_program(&param, 3), 1);
 	param.win = mlx_new_window(param.mlx,
 			WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d");
+	if (!param.win)
+		return (end_program(&param, 3),
+			ft_printf("Error\nInit window error.\n"), 1);
 	if (display_map(&param) == 1)
 		return (1);
-	ft_put_windows(&param);
-	return (end_program(&param), 0);
+	if (ft_put_windows(&param) == 1)
+		return (1);
+	return (end_program(&param, 0), 0);
 }

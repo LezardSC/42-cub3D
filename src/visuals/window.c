@@ -65,22 +65,30 @@ int	collision(t_data *gd, int x, int y)
 	return (1);
 }
 
-void	init_tex(t_data *gd)
+static int	init_tex(t_data *gd)
 {
-	if (north_tex(gd) && east_tex(gd) && south_tex(gd) && west_tex(gd))
-		ft_key(0, gd);
+	int	all_good;
+
+	all_good = 0;
+	if (north_tex(gd))
+		all_good++;
 	else
-	{
-		destroy_img(gd);
-		free_all_param(gd);
-		mlx_destroy_window(gd->mlx, gd->win);
-		mlx_destroy_image(gd->mlx, gd->pixel.img);
-		mlx_destroy_display(gd->mlx);
-		free(gd->mlx);
-		close(gd->fd);
-		ft_printf("Error\nError in texture.\n");
-		exit(0);
-	}
+		return (end_program(gd, 0), ft_printf("Error\nTexture invalid.\n"), 0);
+	if (east_tex(gd))
+		all_good++;
+	else
+		return (destroy_img(gd, 1), end_program(gd, 0), ft_printf("Error\nTexture invalid.\n"), 0);
+	if (south_tex(gd))
+		all_good++;
+	else
+		return (destroy_img(gd, 2), end_program(gd, 0), ft_printf("Error\nTexture invalid.\n"), 0);
+	if (west_tex(gd))
+		all_good++;
+	else
+		return (destroy_img(gd, 3), end_program(gd, 0), ft_printf("Error\nTexture invalid.\n"), 0);
+	if (all_good == 4)
+		ft_key(0, gd);
+	return (1);
 }
 
 void	init_pos(t_data *gd)
@@ -108,18 +116,21 @@ void	init_pos(t_data *gd)
 	}
 }
 
-void	ft_put_windows(t_data *gd)
+int	ft_put_windows(t_data *gd)
 {
 	gd->tex_side = TEX_SIDE;
 	gd->angle = ((double)ANGLE / (double)WINDOW_WIDTH) * M_PI / 180.0;
 	gd->copy_angle = ((double)ANGLE / (double)2) * M_PI / 180.0;
 	gd->x2 = gd->pos_y + (double)RAY_DISTANCE * cos(gd->copy_angle);
 	gd->y2 = gd->pos_x + (double)RAY_DISTANCE * sin(gd->copy_angle);
+	init_tex_img(gd);
 	init_pos(gd);
-	init_tex(gd);
+	if (init_tex(gd) == 0)
+		return (1);
 	mlx_hook(gd->win, 02, 1L << 0, deal_key, gd);
 	mlx_hook(gd->win, 17, 0, close_win, gd);
 	mlx_key_hook(gd->win, key_release, gd);
 	mlx_loop_hook(gd->mlx, move_player, gd);
 	mlx_loop(gd->mlx);
+	return (0);
 }

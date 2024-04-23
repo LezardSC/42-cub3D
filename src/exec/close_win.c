@@ -24,21 +24,21 @@ void	destroy_gi(t_data *param)
 		mlx_destroy_image(param->mlx, param->gi_e);
 }
 
-void	destroy_img(t_data *param)
+void	destroy_img(t_data *param, int j)
 {
 	int	i;
 
 	i = 0;
 	while (i < TEX_SIDE)
 	{
-		if (param->gi_n)
+		if (j > 0)
 			mlx_destroy_image(param->mlx, param->tex_north.img[i]);
-		if (param->gi_s)
-			mlx_destroy_image(param->mlx, param->tex_south.img[i]);
-		if (param->gi_w)
-			mlx_destroy_image(param->mlx, param->tex_west.img[i]);
-		if (param->gi_e)
+		if (j > 1)
 			mlx_destroy_image(param->mlx, param->tex_east.img[i]);
+		if (j > 2)
+			mlx_destroy_image(param->mlx, param->tex_south.img[i]);	
+		if (j > 3)
+			mlx_destroy_image(param->mlx, param->tex_west.img[i]);
 		i++;
 	}
 	destroy_gi(param);
@@ -47,7 +47,7 @@ void	destroy_img(t_data *param)
 int	close_win(t_data *param)
 {
 	mlx_destroy_window(param->mlx, param->win);
-	destroy_img(param);
+	destroy_img(param, 4);
 	free_all_param(param);
 	mlx_destroy_image(param->mlx, param->pixel.img);
 	mlx_destroy_display(param->mlx);
