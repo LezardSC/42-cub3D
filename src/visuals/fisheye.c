@@ -42,22 +42,3 @@ void	draw_tex_process(t_data *game_data, int height, t_ray_data *ray)
 		i++;
 	}
 }
-
-void init_tex_img(t_data *param)
-{
-	(void)param;
-	// int	i;
-
-	// i = 0;
-	// while (i < TEX_SIDE)
-	// 	param->tex_west.img[i] = NULL;
-	// i = 0;
-	// while (i < TEX_SIDE)
-	// 	param->tex_east.img[i] = NULL;
-	// i = 0;
-	// while (i < TEX_SIDE)
-	// 	param->tex_north.img[i] = NULL;
-	// i = 0;
-	// while (i < TEX_SIDE)
-	// 	param->tex_south.img[i] = NULL;
-}

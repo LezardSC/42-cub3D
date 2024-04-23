@@ -77,15 +77,18 @@ static int	init_tex(t_data *gd)
 	if (east_tex(gd))
 		all_good++;
 	else
-		return (destroy_img(gd, 1), end_program(gd, 0), ft_printf("Error\nTexture invalid.\n"), 0);
+		return (destroy_img(gd, 1),
+			end_program(gd, 0), ft_printf("Error\nTexture invalid.\n"), 0);
 	if (south_tex(gd))
 		all_good++;
 	else
-		return (destroy_img(gd, 2), end_program(gd, 0), ft_printf("Error\nTexture invalid.\n"), 0);
+		return (destroy_img(gd, 2),
+			end_program(gd, 0), ft_printf("Error\nTexture invalid.\n"), 0);
 	if (west_tex(gd))
 		all_good++;
 	else
-		return (destroy_img(gd, 3), end_program(gd, 0), ft_printf("Error\nTexture invalid.\n"), 0);
+		return (destroy_img(gd, 3),
+			end_program(gd, 0), ft_printf("Error\nTexture invalid.\n"), 0);
 	if (all_good == 4)
 		ft_key(0, gd);
 	return (1);
@@ -123,7 +126,6 @@ int	ft_put_windows(t_data *gd)
 	gd->copy_angle = ((double)ANGLE / (double)2) * M_PI / 180.0;
 	gd->x2 = gd->pos_y + (double)RAY_DISTANCE * cos(gd->copy_angle);
 	gd->y2 = gd->pos_x + (double)RAY_DISTANCE * sin(gd->copy_angle);
-	init_tex_img(gd);
 	init_pos(gd);
 	if (init_tex(gd) == 0)
 		return (1);

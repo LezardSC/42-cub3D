@@ -36,7 +36,7 @@ void	destroy_img(t_data *param, int j)
 		if (j > 1)
 			mlx_destroy_image(param->mlx, param->tex_east.img[i]);
 		if (j > 2)
-			mlx_destroy_image(param->mlx, param->tex_south.img[i]);	
+			mlx_destroy_image(param->mlx, param->tex_south.img[i]);
 		if (j > 3)
 			mlx_destroy_image(param->mlx, param->tex_west.img[i]);
 		i++;
