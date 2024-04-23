@@ -90,7 +90,7 @@ clean:
 
 fclean:					clean
 						${RM} ${NAME}
-						make clean -C $(LIB_DIR)
+						make fclean -C $(LIB_DIR)
 						make clean -C $(MINILIB_DIR)
 
 
