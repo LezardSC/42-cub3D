@@ -18,19 +18,19 @@ void	left_right_move(int key, t_data *gd)
 	{
 		gd->pos_y -= (gd->x2 * sin(gd->copy_angle + 90 * M_PI / 180)
 				+ gd->y2 * cos(gd->copy_angle + 90 * M_PI / 180))
-			/ (RAY_DISTANCE / 2) * 5;
+			/ (RAY_DISTANCE / 2) * 4;
 		gd->pos_x -= (gd->x2 * cos(gd->copy_angle + 90 * M_PI / 180)
 				- gd->y2 * sin(gd->copy_angle + 90 * M_PI / 180))
-			/ (RAY_DISTANCE / 2) * 5;
+			/ (RAY_DISTANCE / 2) * 4;
 	}
 	else if (key == STRAFE_RIGHT)
 	{
 		gd->pos_y += (gd->x2 * sin(gd->copy_angle + 90 * M_PI / 180)
 				+ gd->y2 * cos(gd->copy_angle + 90 * M_PI / 180))
-			/ (RAY_DISTANCE / 2) * 5;
+			/ (RAY_DISTANCE / 2) * 4;
 		gd->pos_x += (gd->x2 * cos(gd->copy_angle + 90 * M_PI / 180)
 				- gd->y2 * sin(gd->copy_angle + 90 * M_PI / 180))
-			/ (RAY_DISTANCE / 2) * 5;
+			/ (RAY_DISTANCE / 2) * 4;
 	}
 }
 
@@ -41,17 +41,17 @@ void	rotate_view(int key, t_data *gd)
 	tmp = gd->x2;
 	if (key == ROTATE_LEFT)
 	{
-		gd->x2 = gd->x2 * cos(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 5)
-			+ gd->y2 * sin(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 5);
-		gd->y2 = -tmp * sin(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 5)
-			+ gd->y2 * cos(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 5);
+		gd->x2 = gd->x2 * cos(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 7)
+			+ gd->y2 * sin(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 7);
+		gd->y2 = -tmp * sin(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 7)
+			+ gd->y2 * cos(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 7);
 	}
 	else if (key == ROTATE_RIGHT)
 	{
-		gd->x2 = gd->x2 * cos(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 5)
-			- gd->y2 * sin(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 5);
-		gd->y2 = tmp * sin(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 5)
-			+ gd->y2 * cos(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 5);
+		gd->x2 = gd->x2 * cos(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 7)
+			- gd->y2 * sin(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 7);
+		gd->y2 = tmp * sin(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 7)
+			+ gd->y2 * cos(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 7);
 	}
 }
 
@@ -60,16 +60,16 @@ void	front_back_move(int key, t_data *gd)
 	if (key == 119)
 	{
 		gd->pos_y += (gd->x2 * sin(gd->copy_angle)
-				+ gd->y2 * cos(gd->copy_angle)) / (RAY_DISTANCE / 2) * 8;
+				+ gd->y2 * cos(gd->copy_angle)) / (RAY_DISTANCE / 2) * 6;
 		gd->pos_x += (gd->x2 * cos(gd->copy_angle)
-				- gd->y2 * sin(gd->copy_angle)) / (RAY_DISTANCE / 2) * 8;
+				- gd->y2 * sin(gd->copy_angle)) / (RAY_DISTANCE / 2) * 6;
 	}
 	else if (key == 115)
 	{
 		gd->pos_y -= (gd->x2 * sin(gd->copy_angle)
-				+ gd->y2 * cos(gd->copy_angle)) / (RAY_DISTANCE / 2) * 8;
+				+ gd->y2 * cos(gd->copy_angle)) / (RAY_DISTANCE / 2) * 6;
 		gd->pos_x -= (gd->x2 * cos(gd->copy_angle)
-				- gd->y2 * sin(gd->copy_angle)) / (RAY_DISTANCE / 2) * 8;
+				- gd->y2 * sin(gd->copy_angle)) / (RAY_DISTANCE / 2) * 6;
 	}
 }
 
