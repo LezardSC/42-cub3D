@@ -68,7 +68,7 @@ void	draw_tex(t_data *game_data, t_ray_data *ray, int i, float height)
 	}
 	if (pixel == -1)
 		pixel = corner(game_data, ray, i, height);
-	if (((WINDOW_HEIGHT / 2) - height / 2) + i <= 1080
+	if (((WINDOW_HEIGHT / 2) - height / 2) + i < WINDOW_HEIGHT
 		&& ((WINDOW_HEIGHT / 2) - height / 2) + i >= 0)
 		put_pixel_to_image(game_data, game_data->c,
 			((WINDOW_HEIGHT / 2) - height / 2) + i, pixel);

@@ -38,8 +38,8 @@
 # define GREY_COLOR		0x646464
 # define ORANGE_COLOR	0xFF2D00
 
-# define WINDOW_WIDTH	1920
-# define WINDOW_HEIGHT	1080
+# define WINDOW_WIDTH	960
+# define WINDOW_HEIGHT	540
 # define TEX_SIDE		72
 
 # define ANGLE			70
