@@ -14,7 +14,7 @@
 
 void	left_right_move(int key, t_data *gd)
 {
-	if (key == ROTATE_LEFT)
+	if (key == STRAFE_LEFT)
 	{
 		gd->pos_y -= (gd->x2 * sin(gd->copy_angle + 90 * M_PI / 180)
 				+ gd->y2 * cos(gd->copy_angle + 90 * M_PI / 180))
@@ -23,7 +23,7 @@ void	left_right_move(int key, t_data *gd)
 				- gd->y2 * sin(gd->copy_angle + 90 * M_PI / 180))
 			/ (RAY_DISTANCE / 2) * 5;
 	}
-	else if (key == ROTATE_RIGHT)
+	else if (key == STRAFE_RIGHT)
 	{
 		gd->pos_y += (gd->x2 * sin(gd->copy_angle + 90 * M_PI / 180)
 				+ gd->y2 * cos(gd->copy_angle + 90 * M_PI / 180))
@@ -39,14 +39,14 @@ void	rotate_view(int key, t_data *gd)
 	int	tmp;
 
 	tmp = gd->x2;
-	if (key == 65361)
+	if (key == ROTATE_LEFT)
 	{
 		gd->x2 = gd->x2 * cos(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 5)
 			+ gd->y2 * sin(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 5);
 		gd->y2 = -tmp * sin(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 5)
 			+ gd->y2 * cos(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 5);
 	}
-	else if (key == 65363)
+	else if (key == ROTATE_RIGHT)
 	{
 		gd->x2 = gd->x2 * cos(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 5)
 			- gd->y2 * sin(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 5);
@@ -104,9 +104,9 @@ int	ft_key(int key, t_data *gd)
 		exit_game(gd);
 	else if (key == 119 || key == 115)
 		front_back_move(key, gd);
-	else if (key == ROTATE_LEFT2 || key == ROTATE_RIGHT2)
+	else if (key == ROTATE_LEFT || key == ROTATE_RIGHT)
 		rotate_view(key, gd);
-	else if (key == ROTATE_RIGHT || key == ROTATE_LEFT)
+	else if (key == STRAFE_RIGHT || key == STRAFE_LEFT)
 		left_right_move(key, gd);
 	if (!not_to_close(gd->pos_x, gd->pos_y, 10, gd))
 	{
