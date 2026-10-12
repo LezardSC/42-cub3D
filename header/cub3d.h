@@ -17,6 +17,7 @@
 # include "../libft/libft.h"
 # include <math.h>
 # include <stdio.h>
+# include <sys/time.h>
 
 # include <math.h>
 
@@ -43,6 +44,12 @@
 # define TEX_SIDE		72
 
 # define ANGLE			70
+
+# define MOVE_SPEED		300.0
+# define STRAFE_SPEED	180.0
+# define ROT_SPEED		2.5
+# define MAX_FRAME_TIME	0.05
+# define PLAYER_RADIUS	10
 
 enum e_colors
 {
@@ -174,6 +181,7 @@ typedef struct s_data
 	double		y2;
 	double		angle;
 	double		copy_angle;
+	double		last_time;
 	void		*gi_n;
 	void		*gi_e;
 	void		*gi_s;
@@ -244,7 +252,9 @@ void		draw_floor(t_data *gd);
 void		put_pixel_to_image(t_data *gd, int x, int y, int color);
 void		making_map(t_data *gd);
 int			collision(t_data *gd, int x, int y);
-void		left_right_move(int key, t_data *gd);
+void		move_dir(t_data *gd, double offset, double dist);
+void		rotate_view(t_data *gd, double a);
+double		get_time(void);
 void		new_display(t_data *game_data, char *wall_data, int ray, void *tex);
 void		put_image_in_image(t_data *game_data, int x, int y, char *img_data);
 int			get_pixel_color(t_data *gd, int x, int y, int ray);

@@ -12,68 +12,7 @@
 
 #include "../../header/cub3d.h"
 
-void	left_right_move(int key, t_data *gd)
-{
-	if (key == STRAFE_LEFT)
-	{
-		gd->pos_y -= (gd->x2 * sin(gd->copy_angle + 90 * M_PI / 180)
-				+ gd->y2 * cos(gd->copy_angle + 90 * M_PI / 180))
-			/ (RAY_DISTANCE / 2) * 4;
-		gd->pos_x -= (gd->x2 * cos(gd->copy_angle + 90 * M_PI / 180)
-				- gd->y2 * sin(gd->copy_angle + 90 * M_PI / 180))
-			/ (RAY_DISTANCE / 2) * 4;
-	}
-	else if (key == STRAFE_RIGHT)
-	{
-		gd->pos_y += (gd->x2 * sin(gd->copy_angle + 90 * M_PI / 180)
-				+ gd->y2 * cos(gd->copy_angle + 90 * M_PI / 180))
-			/ (RAY_DISTANCE / 2) * 4;
-		gd->pos_x += (gd->x2 * cos(gd->copy_angle + 90 * M_PI / 180)
-				- gd->y2 * sin(gd->copy_angle + 90 * M_PI / 180))
-			/ (RAY_DISTANCE / 2) * 4;
-	}
-}
-
-void	rotate_view(int key, t_data *gd)
-{
-	int	tmp;
-
-	tmp = gd->x2;
-	if (key == ROTATE_LEFT)
-	{
-		gd->x2 = gd->x2 * cos(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 7)
-			+ gd->y2 * sin(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 7);
-		gd->y2 = -tmp * sin(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 7)
-			+ gd->y2 * cos(gd->copy_angle * ((ANGLE / 2) * M_PI / 180.0) / 7);
-	}
-	else if (key == ROTATE_RIGHT)
-	{
-		gd->x2 = gd->x2 * cos(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 7)
-			- gd->y2 * sin(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 7);
-		gd->y2 = tmp * sin(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 7)
-			+ gd->y2 * cos(gd->copy_angle * (ANGLE / 2) * M_PI / 180.0 / 7);
-	}
-}
-
-void	front_back_move(int key, t_data *gd)
-{
-	if (key == 119)
-	{
-		gd->pos_y += (gd->x2 * sin(gd->copy_angle)
-				+ gd->y2 * cos(gd->copy_angle)) / (RAY_DISTANCE / 2) * 6;
-		gd->pos_x += (gd->x2 * cos(gd->copy_angle)
-				- gd->y2 * sin(gd->copy_angle)) / (RAY_DISTANCE / 2) * 6;
-	}
-	else if (key == 115)
-	{
-		gd->pos_y -= (gd->x2 * sin(gd->copy_angle)
-				+ gd->y2 * cos(gd->copy_angle)) / (RAY_DISTANCE / 2) * 6;
-		gd->pos_x -= (gd->x2 * cos(gd->copy_angle)
-				- gd->y2 * sin(gd->copy_angle)) / (RAY_DISTANCE / 2) * 6;
-	}
-}
-
-int	not_to_close(int centre_x, int centre_y, double rayon, t_data *gd)
+static int	not_to_close(int centre_x, int centre_y, double rayon, t_data *gd)
 {
 	double	angle_degrees;
 	double	angle_radians;
@@ -93,26 +32,42 @@ int	not_to_close(int centre_x, int centre_y, double rayon, t_data *gd)
 	return (1);
 }
 
+void	move_dir(t_data *gd, double offset, double dist)
+{
+	double	dx;
+	double	dy;
+	double	len;
+
+	dx = gd->x2 * cos(gd->copy_angle + offset)
+		- gd->y2 * sin(gd->copy_angle + offset);
+	dy = gd->x2 * sin(gd->copy_angle + offset)
+		+ gd->y2 * cos(gd->copy_angle + offset);
+	len = sqrt(dx * dx + dy * dy);
+	if (len == 0)
+		return ;
+	dx = dx / len * dist;
+	dy = dy / len * dist;
+	gd->pos_x += dx;
+	if (!not_to_close(gd->pos_x, gd->pos_y, PLAYER_RADIUS, gd))
+		gd->pos_x -= dx;
+	gd->pos_y += dy;
+	if (!not_to_close(gd->pos_x, gd->pos_y, PLAYER_RADIUS, gd))
+		gd->pos_y -= dy;
+}
+
+void	rotate_view(t_data *gd, double a)
+{
+	double	tmp;
+
+	tmp = gd->x2;
+	gd->x2 = gd->x2 * cos(a) - gd->y2 * sin(a);
+	gd->y2 = tmp * sin(a) + gd->y2 * cos(a);
+}
+
 int	ft_key(int key, t_data *gd)
 {
-	int	tmp_x;
-	int	tmp_y;
-
-	tmp_x = gd->pos_x;
-	tmp_y = gd->pos_y;
-	if (key == 65307)
+	if (key == ESC)
 		exit_game(gd);
-	else if (key == 119 || key == 115)
-		front_back_move(key, gd);
-	else if (key == ROTATE_LEFT || key == ROTATE_RIGHT)
-		rotate_view(key, gd);
-	else if (key == STRAFE_RIGHT || key == STRAFE_LEFT)
-		left_right_move(key, gd);
-	if (!not_to_close(gd->pos_x, gd->pos_y, 10, gd))
-	{
-		gd->pos_x = tmp_x;
-		gd->pos_y = tmp_y;
-	}
 	draw_floor(gd);
 	draw_player_view(gd);
 	mlx_put_image_to_window(gd->mlx, gd->win, gd->pixel.img, 0, 0);

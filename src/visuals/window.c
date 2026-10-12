@@ -132,6 +132,7 @@ int	ft_put_windows(t_data *gd)
 	mlx_hook(gd->win, 02, 1L << 0, deal_key, gd);
 	mlx_hook(gd->win, 17, 0, close_win, gd);
 	mlx_key_hook(gd->win, key_release, gd);
+	gd->last_time = get_time();
 	mlx_loop_hook(gd->mlx, move_player, gd);
 	mlx_loop(gd->mlx);
 	return (0);
